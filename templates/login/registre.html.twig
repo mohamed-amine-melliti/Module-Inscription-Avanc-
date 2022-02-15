@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello registreController!{% endblock %}
+
+{% block body %}
+    <section class="vh-100" style="background-color:Gray;">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                        <div class="card-body p-5 text-center">
+
+                            <i >Créez un mot de passe pour  </i>
+                            <p>activer votre abonnement </p>
+                            <p>Plus que quelques étapes et c'est terminé ! </p>
+                            {{ form_start(form) }}
+                            <div class="form-outline mb-4">
+{#                                <input type="email"  class="form-control " placeholder="Adresse email " />#}
+                                <input  type="email" class="form-control" {{ form_widget(form.email) }}
+
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <input type="password" id="typePasswordX-2" class="form-control " {{ form_widget(form.password) }}
+
+                            </div>
+{#                            <div class="form-outline mb-4">#}
+{#                                <input type="password" id="typePasswordX-2" class="form-control "  placeholder="confirmer votre  mot de passe  "/>#}
+
+{#                            </div>#}
+
+                            <!-- Checkbox -->
+                            <div class="form-check d-flex justify-content-start mb-4">
+                                <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        value=""
+                                        id="form1Example3"
+                                />
+                                <label class="form-check-label" for="form1Example3">
+                                    Je ne souhaite pas recevoir les offres spéciales de
+                                    <p>  "ALDINI" par e-mail</p>
+                                </label>
+                            </div>
+
+                            <button  class="btn btn-primary"  type="submit"> Suivant</button>
+
+                            <hr class="my-4">
+                           {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block javascript %}
+<script>
+    $('#registration_email').val('{{ email }}')
+</script>
+{% endblock %}

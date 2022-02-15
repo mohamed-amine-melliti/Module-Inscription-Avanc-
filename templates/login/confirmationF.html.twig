@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello registreController!{% endblock %}
+
+{% block body %}
+<div class="container mt-4" >
+ <div class="flex-md-row">
+    <div class=" col-10">
+        <div class="card-group">
+            <mark>
+    <p> Texte d'accroche à définir plus tard	</p>
+    <p> L'abonnement comprend les prestations et livrables suivants :</p>
+    <p> > La saisie comptable courante</p>
+    <p> > Le questionnaire de fin d'exercice comptable </p>
+    <p> > Le cadrage annuel de TVA (régimes réels) </p>
+    <p> > La déclaration annuelle de TVA CA12 (régime simplifié) </p>
+    <p> > La balance comptable exportable </p>
+    <p> > Le tableau des immobilisations </p>
+    <p> > Les journaux d'écritures exportables	 </p>
+    <p> > Le tableau des immobilisations  </p>
+    <p> > Le compte de résultat	 </p>
+    <p> > Le bilan </p>
+            </mark>
+
+<div>
+ <p>En cochant la case ci-dessous, vous acceptez nos <u>Conditions d'utilisation</u>,
+  notre <u>Déclaration de confidentialité</u> et vous reconnaissez avoir plus de
+   18 ans. Vous pouvez renouveler votre abonnement à chaque nouvel exercice ouvert.
+ Les frais correspondants (actuellement 120 euros hors taxe par exercice) seront
+  prélevés via le mode de paiement choisi. Vous ne serez pas prélevé si vous n'ouvrez
+  pas de nouvel exercice. La suppression de votre compte peut être exécutée
+     sur simple demande par mail à <u>suppression@aldini.fr</u>
+          </p>
+</div>
+</div>
+
+{#        <div>#}
+{#                      <p> (génération d'une déclaration d'acceptaion envoyée a <u>acceptaion@aldini.fr )</u> </p>#}
+{#        </div>#}
+
+</div>
+{#     <button class="btn btn-primary  " type="submit">Je m'abonne </button>#}
+     <a  class="btn btn-primary" href="{{ path('email') }}" type="submit">J'accepte</a>
+
+ </div>
+
+{% endblock %}

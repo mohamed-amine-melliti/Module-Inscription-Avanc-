@@ -1,0 +1,145 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DossierController!{% endblock %}
+
+{% block body %}
+
+    <div class="alert alert-dismissible alert-warning mb-3 mt-4" style="max-width: 70rem;">
+        <div class="card-body mt-4">
+        <div class="card-text" style="color: black" >FELICITATIONS ! VOUS AVEZ REJOINT LA COMMUNAUTE DES ABONNES DE ALDINI !</div>
+        <div class="card-text mt-4" style="color: black">Afin de commencer à utiliser ALDINI, veuillez compléter les champs suivants pour créer votre dossier.</div>
+
+
+
+            <p class="card-text mt-4" style="color: red">ATTENTION ! LES INFORMATIONS RENTREES SUR CETTE PAGE DOIVENT ÊTRE EXACTES ET STRICTEMENT CONFORMES AUX INFORMATIONS</p>
+            <p class="card-text" style="color: red">MENTIONNEES SUR VOTRE K-BIS ET VOTRE MEMENTO FISCAL</p>
+            <p class="card-text" style="color: red">CAR ELLES IMPACTENT IRREVERSIBLEMENT VOTRE COMPTABILITE</p>
+            <p class="card-text" style="color: red">UNE FOIS LES INFORMATIONS VALIDEES SUR CETTE PAGE, LE DOSSIER NE SERA PLUS MODIFIABLE POUR LES CHAMPS AVEC *</p>
+        </div>
+
+    </div>
+    <div >
+
+        <div class="col-6" >
+        <div class="input-group mt-3 ">
+            <input type="text" class="form-control col-6" placeholder="raison sociale"  aria-label="Recipient's username" aria-describedby="button-addon2">
+            <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Raison Sociale </label>
+        </div>
+        </div>
+        <div class="col-6">
+
+            <div class="input-group mb-3">
+                <select class="form-select col-6" id="exampleSelect1">
+                                        <option>Association Loi 1901 non lucrative</option>
+                                        <option>Association lucrative</option>
+                                        <option>SARL</option>
+                                        <option>EURL</option>
+                                        <option>SAS</option>
+                                        <option>SASU</option>
+                                        <option>SCI</option>
+                                        <option>SELARL</option>
+                                        <option>SELEURL</option>
+                                        <option>SELAS</option>
+                                        <option>SELASU</option>
+                                        <option>Entreprise individuelle</option>
+                                        <option>EIRL</option>
+                                        <option>Autoentrepreneur</option>
+
+
+
+
+                </select>
+                <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Forme juridique</label>
+            </div>
+
+
+        </div>
+
+    </div>
+    <div class="col-6" >
+        <div class="input-group mt-3 ">
+            <input type="text" class="form-control col-6"   aria-label="Recipient's username" aria-describedby="button-addon2">
+            <label class="badge bg-warning col-6"  type="text" style="font-size: 12px" >Capital social indiqué sur votre Kbis ou vos statuts </label>
+        </div>
+    </div>
+    <div class="col-6">
+
+        <div class="input-group mb-3 col-2">
+            <select class="form-select col-3" id="exampleSelect1">
+                <option> 1 </option>
+                <option>Plusieurs</option>
+            </select>
+            <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Nombre d'associés</label>
+        </div>
+    </div>
+        <div class="col-8" >
+            <div class="input-group mt-3 ">
+                <input type="text" class="form-control col-6"   aria-label="Recipient's username" aria-describedby="button-addon2">
+                <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Adresse du siège social</label>
+            </div>
+        </div>
+    <div class="col-6" >
+        <div class="input-group mt-3 ">
+            <input type="text" class="form-control col-6" placeholder="5 chiffres obligatoires"   aria-label="Recipient's username" aria-describedby="button-addon2">
+            <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Code postal </label>
+        </div>
+        <div class="input-group mt-3 col-6 ">
+            <input type="text" class="form-control col-6"   aria-label="Recipient's username" aria-describedby="button-addon2">
+            <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Ville </label>
+        </div>
+
+    </div>
+
+
+    </div>
+    <div class="col-6">
+    <div class="input-group mt-3 col-6 ">
+        <select class="form-select col-6" id="exampleSelect1">
+            <option>+33</option>
+            <option>+216</option>
+        <input type="text" class="form-control col-6"   aria-label="Recipient's username" aria-describedby="button-addon2">
+        <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Téléphone </label>
+    </div>
+    </div>
+    <div class="col-8" >
+        <div class="input-group mt-3 ">
+            <input type="text" class="form-control col-6"   aria-label="Recipient's username" aria-describedby="button-addon2">
+            <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Adresse mail</label>
+        </div>
+    </div>
+    <div class="col-7" >
+        <div class="input-group mt-3 ">
+            <input type="text" class="form-control col-6" placeholder="14 chiffres obligatoires"  aria-label="Recipient's username" aria-describedby="button-addon2">
+            <label class="badge bg-warning col-2"  type="text" style="font-size: 20px" >SIRET</label>
+        </div>
+    </div>
+    <div class="col-6">
+
+        <div class="input-group mb-3 col-2">
+            <select class="form-select col-3" id="exampleSelect1">
+                <option> oui </option>
+                <option>non</option>
+            </select>
+            <label class="badge bg-warning col-9"  type="text" style="font-size: 20px" >Êtes-vous en franchise en base de TVA (pas de TVA)*</label>
+        </div>
+    </div>
+
+    <div class="col-7 " >
+        <div class="input-group mt-3  ">
+            <input type="text" class="form-control col-6" placeholder="FR(+11 chiffres obligatoires)"  aria-label="Recipient's username" aria-describedby="button-addon2">
+            <label class="badge bg-warning col-5"  type="text" style="font-size: 20px" >Numéro de TVA intracommunautaire</label>
+        </div>
+    </div>
+
+    <div class="col-6">
+
+        <div class="input-group mb-3 col-2">
+            <select class="form-select col-3" id="exampleSelect1">
+                <option> oui </option>
+                <option>non</option>
+            </select>
+            <label class="badge bg-warning col-9"  type="text" style="font-size: 20px" >Type d'imposition*</label>
+        </div>
+    </div>
+
+{% endblock %}

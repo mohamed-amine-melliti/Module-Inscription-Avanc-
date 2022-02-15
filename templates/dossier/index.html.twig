@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DossierController!{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <span class="badge bg-warning">CREEZ VOS DOSSIERS </span>
+    <div class="container mt-xl-4">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Nouveau dossier" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <a class="btn btn-primary" href="{{ path('ouvertureDossier') }}" type="button" id="button-addon2">Créer</a>
+    </div>
+    </div>
+</div>
+{% endblock %}
