@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -23,6 +25,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'string')]
     private $password;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Dossier::class, orphanRemoval: true)]
+    private $Dossier;
+
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $acceptOffresCommericiales;
+
+    #[ORM\Column(type: 'boolean')]
+    private $acceptation;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $modePaiementChoisi;
+
+    public function __construct()
+    {
+        $this->Dossier = new ArrayCollection();
+    }
 
 //    #[ORM\Column(type: 'boolean')]
 //    private $acceptOffresCommerciales;
@@ -127,4 +146,75 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 //
 //        return $this;
 //    }
+
+/**
+ * @return Collection|Dossier[]
+ */
+public function getDossier(): Collection
+{
+    return $this->Dossier;
+}
+
+public function addDossier(Dossier $dossier): self
+{
+    if (!$this->Dossier->contains($dossier)) {
+        $this->Dossier[] = $dossier;
+        $dossier->setUser($this);
+    }
+
+    return $this;
+}
+
+public function removeDossier(Dossier $dossier): self
+{
+    if ($this->Dossier->removeElement($dossier)) {
+        // set the owning side to null (unless already changed)
+        if ($dossier->getUser() === $this) {
+            $dossier->setUser(null);
+        }
+    }
+
+    return $this;
+}
+
+public function getAcceptOffresCommericiales(): ?bool
+{
+    return $this->acceptOffresCommericiales;
+}
+
+public function setAcceptOffresCommericiales(?bool $acceptOffresCommericiales): self
+{
+    $this->acceptOffresCommericiales = $acceptOffresCommericiales;
+
+    return $this;
+}
+
+public function getAcceptation(): ?bool
+{
+    return $this->acceptation;
+}
+
+public function setAcceptation(bool $acceptation): self
+{
+    $this->acceptation = $acceptation;
+
+    return $this;
+}
+
+public function getModePaiementChoisi(): ?string
+{
+    return $this->modePaiementChoisi;
+}
+
+public function setModePaiementChoisi(string $modePaiementChoisi): self
+{
+    $this->modePaiementChoisi = $modePaiementChoisi;
+
+    return $this;
+}
+public function __toString(): string
+{
+    // TODO: Implement __toString() method.
+   return $this->email;
+}
 }
