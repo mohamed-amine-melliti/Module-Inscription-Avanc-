@@ -7,7 +7,9 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegistrationType;
 
+use App\Repository\UserRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use FontLib\Table\Type\name;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,12 +26,20 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class LoginController extends AbstractController
 {
+    /**
+     * @var UserRepository
+     */
+    private $userRepository ;
+
+
     private SessionInterface $session ;
 
+
     public function __construct(private TokenStorageInterface $tokenStorage,
-                                RequestStack $requestStack )
+                                RequestStack $requestStack  , UserRepository $userRepository)
     {
          $this->session = $requestStack->getSession();
+         $this->userRepository=$userRepository;
     }
 
     #[Route('/login', name: 'login')]
@@ -55,6 +65,7 @@ class LoginController extends AbstractController
     #[Route('/registre', name: 'registre')]
     public function registre(Request $request ,ManagerRegistry $doctrine , UserPasswordHasherInterface $hasher): Response
     {
+
 
 
 
@@ -105,8 +116,28 @@ class LoginController extends AbstractController
 
         ]);
     }
+//    #[Route('/ajoutmodePaiment{type}' , name: 'ajoutmodePaiment')]
+//    public function ajoutModePaiment(ManagerRegistry $doctrine , $type ): Response
+//    {
+//
+//        $objectManager=$doctrine->getManager();
+//        $user=$this->getUser();
+//
+//        $user->setmodePaiementChoisi($type);
+//        $objectManager ->persist($user);
+//        $objectManager ->flush();
+//        return $this->render('dossier/index.html.twig', [
+//            'controller_name' => 'DossierController',
+//        ]);
+//    }
+
     #[Route('/mail', name: 'email')]
-    public function envoieMailAcceptation(MailerInterface $mailer){
+    public function envoieMailAcceptation(MailerInterface $mailer, ManagerRegistry $doctrine ){
+        $user = $this->getUser();
+        //        dd($user);
+        $user->setAcceptation('true') ;
+
+        $objectManager=$doctrine->getManager();
         $date = new \DateTime();
         $mail = ( new TemplatedEmail())
         ->from('expediteur@demo.test')
@@ -119,6 +150,9 @@ class LoginController extends AbstractController
 
             );
         $mailer->send($mail);
+        $objectManager->persist($user);
+        $objectManager->flush();
+
         return $this->render('login/definitionPaiement.html.twig', [
 ]);
 

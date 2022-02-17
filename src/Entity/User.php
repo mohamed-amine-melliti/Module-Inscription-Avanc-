@@ -32,10 +32,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean', nullable: true)]
     private $acceptOffresCommericiales;
 
-    #[ORM\Column(type: 'boolean')]
+    #[ORM\Column(type: 'boolean' , nullable: true)]
     private $acceptation;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255,nullable: true)]
     private $modePaiementChoisi;
 
     public function __construct()
@@ -182,11 +182,11 @@ public function getAcceptOffresCommericiales(): ?bool
     return $this->acceptOffresCommericiales;
 }
 
-public function setAcceptOffresCommericiales(?bool $acceptOffresCommericiales): self
+public function setAcceptOffresCommericiales(?bool $acceptOffresCommericiales): bool
 {
     $this->acceptOffresCommericiales = $acceptOffresCommericiales;
 
-    return $this;
+    return false;
 }
 
 public function getAcceptation(): ?bool

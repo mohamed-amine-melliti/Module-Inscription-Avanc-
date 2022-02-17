@@ -4,20 +4,23 @@
 
 {% block body %}
     <div class="mt-4">
-    <div class="alert alert-dismissible alert-warning">
+        <div class="alert alert-dismissible alert-warning">
 
-        <h5 class="alert-heading">DEFINISSEZ VOTRE MODE DE PAIEMENT</h5>
-        <p class="mb-0 mt-4">Votre abonnement commencera après la création de votre dossier (étape suivante)</p>
-        <p class=" mt-4" style="font-weight: bold"> Sans engagement au-delà de l'exercice ouvert</p>
-        <p style="font-weight: bold">Renouvellement d'abonnement actionnable en ligne à tout moment </p>
-    </div>
+            <h5 class="alert-heading">DEFINISSEZ VOTRE MODE DE PAIEMENT</h5>
+            <p class="mb-0 mt-4">Votre abonnement commencera après la création de votre dossier (étape suivante)</p>
+            <p class=" mt-4" style="font-weight: bold"> Sans engagement au-delà de l'exercice ouvert</p>
+            <p style="font-weight: bold">Renouvellement d'abonnement actionnable en ligne à tout moment </p>
+        </div>
     </div>
     <div class="col-6" >
+
+        {% set mode = 'null' %}
+
         <h4> Serveur sécurisé <img src="/images/lock.png"  style="width:18px;height:18px;"> </h4>
         <ul class="list-group mt-4">
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 Carte Bancaire <img src="/images/logovisamastercard.jpg"  style="width:150px;height:30px;">
-                <input type="checkbox"  >
+                <input id="creditcard" name="payment" type="radio"  value="creditcard" >
             </li>
         </ul>
     </div>
@@ -26,15 +29,47 @@
         <ul class="list-group mt-4">
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 PayPal  <img src="/images/logopaypal.png"  style="width:80px;height:30px;">
-                <input type="checkbox">
+                <input  id="paypal" name="payment" type="radio" value="paypal">
             </li>
         </ul>
     </div>
     <div class="container-fluid mt-4">
-    <a  class="btn btn-primary" href="{{ path('dossier') }}" type="submit">S'abonner</a>
-    </div>
+        <a  data-key="{{ mode }}"  id="validation"   class="btn btn-primary"  type="submit">S'abonner</a>
     </div>
 
+    </div>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script >
+        $(document).ready(function(){
+
+
+            $('a#validation').click( function(e) {
+
+                var mode="";
+
+                if(document.getElementById("creditcard").checked ){
+                    mode="creditcard";
+                    console.log(mode);
+
+                }
+                else if(document.getElementById("paypal").checked)
+                {
+                    mode="paypal";
+                    console.log(mode);
+
+                }
+
+
+                var url = '{{ path("dossier", {'type': 'mode'}) }}';
+                url = url.replace("mode", mode);
+
+
+                $('a#validation').attr( "href", url);
+
+            } );
+        });
+    </script>
 
 {% endblock %}
