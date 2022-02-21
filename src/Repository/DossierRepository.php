@@ -19,6 +19,21 @@ class DossierRepository extends ServiceEntityRepository
         parent::__construct($registry, Dossier::class);
     }
 
+///**
+//* @return Dossier[] Returns an array of Dossier objects
+//*/
+//
+//    public function findByUserId($value)
+//    {
+//        return $this->createQueryBuilder('d')
+//            ->andWhere('d.exampleField = :val')
+//            ->setParameter('val', $value)
+//            ->orderBy('d.id', 'ASC')
+//            ->getQuery()
+//            ->getResult()
+//            ;
+//    }
+
     // /**
     //  * @return Dossier[] Returns an array of Dossier objects
     //  */
@@ -34,7 +49,23 @@ class DossierRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
+
+      **
+      * @return Dossier[] Returns an array of Dossier objects
+      *
+    *
+    public function findByExampleField($value)
+    {
+        return $this->createQueryBuilder('d')
+            ->andWhere('d.exampleField = :val')
+            ->setParameter('val', $value)
+            ->orderBy('d.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 
     /*
     public function findOneBySomeField($value): ?Dossier

@@ -13,11 +13,31 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class DossierType extends AbstractType
 {
+
+    /**
+     * Permet d'avoir la configuration de base d'un champ !
+     * @param $label
+     * @param $placeholder
+     * @param $option
+     * @return array
+     */
+    private function getConfiguration(  $placeholder , $option = [])
+    {
+        return array_merge([
+
+            'attr' => [
+                'placeholder' => $placeholder
+            ]
+
+        ], $option
+        );
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
 //            ->add('nomDossier')
-            ->add('raisonSociale' , TextType::class )
+            ->add('raisonSociale' , TextType::class , $this->getConfiguration("raisonSociale") )
             ->add('formeJuridique' , ChoiceType::class , [
                 'choices' => [
                     'Association Loi 1901 non lucrative' => 'Association Loi 1901 non lucrative',
@@ -41,7 +61,7 @@ class DossierType extends AbstractType
 
                 ]
             ])
-            ->add('capitalSocial')
+            ->add('capitalSocial' )
             ->add('nbAssocies' ,  ChoiceType::class , [
                 'choices' => [
                     '1' => '1' ,

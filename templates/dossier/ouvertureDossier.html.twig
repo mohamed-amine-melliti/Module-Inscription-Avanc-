@@ -3,153 +3,519 @@
 {% block title %}Hello DossierController!{% endblock %}
 
 {% block body %}
+
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="robots" content="noindex, nofollow">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+{#        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">#}
+        <style type="text/css">
+
+        </style>
+        {% block scripts %}
+            <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+            <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+            <script type="text/javascript">
+                window.alert = function(){};
+                var defaultCSS = document.getElementById('bootstrap-css');
+                function changeCSS(css){
+                    if(css) $('head > link').filter(':first').replaceWith('<link rel="stylesheet" href="'+ css +'" type="text/css" />');
+                    else $('head > link').filter(':first').replaceWith(defaultCSS);
+                }
+                $( document ).ready(function() {
+                    var iframe_height = parseInt($('html').height());
+                    window.parent.postMessage( iframe_height, 'https://bootsnipp.com');
+                });
+
+            </script>
+            <script>
+                var room = 1;
+                function education_fields() {
+
+                    room++;
+                    var objTo = document.getElementById('education_fields')
+                    var divtest = document.createElement("div");
+                    divtest.setAttribute("class", "form-group removeclass"+room);
+                    var rdiv = 'removeclass'+room;
+                    divtest.innerHTML = '<div class="col-sm-3 nopadding"><div class="form-group"> <input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Nom cogerant"></div></div><div class="col-sm-3 nopadding"><div class="form-group"> <input type="text" class="form-control" id="Major" name="Major[]" value="" placeholder="Prenom cogerant"></div></div><div class="col-sm-3 nopadding"><div class="form-group"> <input type="text" class="form-control" id="Degree" name="Degree[]" value="" placeholder="Participation"></div></div><div class="col-sm-3 nopadding"><div class="form-group"><div class="input-group"> <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields('+ room +');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div><div class="clear"></div>';
+
+                    objTo.appendChild(divtest)
+                }
+                function remove_education_fields(rid) {
+                    $('.removeclass'+rid).remove();
+                }
+            </script>
+        {% endblock %}
+    </head>
+
+
+
+    <div class="container">
+
+        <div id="myPopup" class="popup hide">
+            <div class="popup-header">
+                Message
+                <span class="close toggle" data-target="myPopup">close</span>
+            </div>
+            <div class="popup-body" id="msg">
+                Vous Avez Choisi  cette option . êtes-vous sûr ?
+            </div>
+            <div class="popup-footer">
+                <button id="jsr" class="toggle button" data-target="myPopup"  >Confirmer </button>
+                <button id="jnsr" class="toggle button" data-target="myPopup"  >Revenir </button>
+            </div>
+        </div>
+    </div>
     {{ form_start(form) }}
-    {{ form_widget(form) }}
-    {{ form_start(form1) }}
-    {{ form_widget(form1) }}
+
+    <div class="col-sm-3 nopadding">
+        <div class="form-group">
+            <div class="panel panel-default">
+
+                {{ form_row(form.raisonSociale ,{'attr': {'class': 'form-control'}} )}}
+
+            </div>
+
+            <div class="form-group">
 
 
-    {{ form_end(form1) }}
+                <!------------------------------------------------------------->
+                <style>
+
+
+                    .hide {
+                        visibility: hidden;
+                        opacity: 0;
+                        transform: translateX(-50%) translateY(-50%) scale(0.8) !important;
+                        -moz-transform: translateX(-50%) translateY(-50%) scale(0.8) !important;
+                        -o-transform: translateX(-50%) translateY(-50%) scale(0.8) !important;
+                        -webkit-transform: translateX(-50%) translateY(-50%) scale(0.8) !important;
+                    }
+
+                    .close {
+                        position: absolute;
+                        right: 0;
+                        top: 0;
+                        width: 25px;
+                        height: 25px;
+                        font-size: 0;
+                        cursor: pointer;
+                    }
+
+                    .close:before, .close:after {
+                        content: '';
+                        position: absolute;
+                        background: #767676;
+                        -moz-border-radius: 1px;
+                        -webkit-border-radius: 1px;
+                        -o-border-radius: 1px;
+                        border-radius: 1px;
+                        left: 14px;
+                        right: 14px;
+                        top: 30px;
+                        height: 3px;
+                        -webkit-transform: rotate(45deg);
+                        -moz-transform: rotate(45deg);
+                        -o-transform: rotate(45deg);
+                        transform: rotate(45deg);
+                        transition: all 100ms ease-in;
+                        -moz-transition: all 100ms ease-in;
+                        -webkit-transition: all 100ms ease-in;
+                        -o-transition: all 100ms ease-in;
+                    }
+
+                    .close:after {
+                        -moz-transform: rotate(-45deg);
+                        -webkit-transform: rotate(-45deg);
+                        -o-transform: rotate(-45deg);
+                        transform: rotate(-45deg);
+                    }
+
+                    .popup {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        -webkit-transform: translateX(-50%) translateY(-50%);
+                        -moz-transform: translateX(-50%) translateY(-50%);
+                        -o-transform: translateX(-50%) translateY(-50%);
+                        transform: translateX(-50%) translateY(-50%);
+                        background: #FAFDFF;
+                        -moz-border-radius: 5px;
+                        -o-border-radius: 5px;
+                        -webkit-border-radius: 5px;
+                        border-radius: 5px;
+                        width: 600px;
+                        box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.09), 0px 11px 12px 7px rgba(0, 0, 0, 0.02);
+                        -moz-transition: all 120ms;
+                        -webkit-transition: all 120ms;
+                        -o-transition: all 120ms;
+                        transition: all 120ms;
+                        z-index: 99;
+                        padding: 25px;
+                        color: #5E5E5E;
+                    }
+
+                    @media screen and (max-width: 50px) {
+                        .popup {
+                            width: 50%;
+                        }
+                    }
+
+                    .popup-header {
+                        text-transform: uppercase;
+                        font-size: 10px;
+                    }
+
+                    .popup-body {
+                        padding: 15px 0;
+                    }
+
+                    .button {
+                        padding: 10px 15px;
+                        border: 1px solid #F5F5F5;
+                        text-transform: uppercase;
+                        box-shadow: 1px 2px 3px #F5F5F5;
+                        color: #5E5E5E;
+                        cursor: pointer;
+                        transition: all 120ms ease-in;
+                        outline:none;
+                    }
+
+                    .button:hover {
+                        box-shadow: 1px 3px 5px #E9E9E9;
+                        transform: translateY(-1px);
+                    }
+
+                    .button:active, .button:visited {
+                        transform: translateY(1px);
+                        outline:none;
+                        box-shadow: 1px 2px 3px #F5F5F5;
+                    }
+
+                </style>
+
+                <script>
+                    $(document).on('change' ,'.toggle', function(event) {
+                        event.preventDefault();
+
+                        var target = $(this).data('target');
+                        $('#' + target).toggleClass('hide');
+
+                    });
+
+
+                </script>
+
+
+                <!------------------------------------------------------------->
+
+                {{ form_row(form.formeJuridique ,{'attr': {'class': ' toggle button  form-control' , 'data-target':'myPopup' ,'id':'myselect'}} )}}
+
+
+            </div>
+
+            <div class="form-group">
+
+                {{ form_row(form.capitalSocial ,{'attr': {'class': 'form-control'}} )}}
+
+            </div>
+
+            <div class="form-group">
+
+                {{ form_row(form.nbAssocies ,{'attr': {'class': 'form-control'}} )}}
+
+            </div>
+
+            <div class="form-group">
+
+                {{ form_row(form.adressSiegeSocial ,{'attr': {'class': 'form-control'}} )}}
+
+            </div>
+
+            <div class="form-group">
+
+                {{ form_row(form.codePostale,{'attr': {'class': 'form-control'}} )}}
+
+            </div>
+
+            <div class="form-group">
+
+                {{ form_row(form.ville ,{'attr': {'class': 'form-control'}} )}}
+
+            </div>
+
+            <div class="form-group">
+
+                {{ form_row(form.indicatifPaysTel ,{'attr': {'class': 'form-control'}} )}}
+
+
+            </div>
+            <div class="form-group">
+
+                {{ form_row(form.numeroTel ,{'attr': {'class': 'form-control'}} )}}
+
+            </div>
+
+            <div class="form-group">
+
+                {{ form_row(form.adressMail ,{'attr': {'class': 'form-control'}} )}}
+
+            </div>
+
+            <div class="form-group">
+
+                {{ form_row(form.siret ,{'attr': {'class': 'form-control'}} )}}
+
+            </div>
+
+            <div class="form-group">
+
+                {{ form_row(form.franchiseEnBaseTva ,{'attr': {'class': 'form-control'}} )}}
+
+            </div>
+
+            <div class="form-group">
+
+                {{ form_row(form.numeroTVAintracommunaitre ,{'attr': {'class': 'form-control'}} )}}
+
+            </div>
+
+            <div class="form-group">
+
+                {{ form_row(form.typeImposition ,{'attr': {'class': 'form-control'}} )}}
+
+            </div>
+
+            <div class="form-group">
+
+                {{ form_row(form.regimeMicro ,{'attr': {'class': 'form-control'}} )}}
+
+            </div>
+
+            <div class="form-group">
+
+                {{ form_row(form.categorieImposition ,{'attr': {'class': 'form-control'}} )}}
+
+            </div>
+
+            <div class="form-group">
+
+                {{ form_row(form.regimeIndependants ,{'attr': {'class': 'form-control'}} )}}
+
+            </div>
+
+            <div class="form-group">
+
+                {{ form_row(form.nomGerant ,{'attr': {'class': 'form-control'}} )}}
+
+            </div>
+
+            <div class="form-group">
+
+                {{ form_row(form.prenomGerant ,{'attr': {'class': 'form-control'}} )}}
+
+            </div>
+            <div class="form-group">
+
+                {{ form_row(form.secteurActivite ,{'attr': {'class': 'form-control'}} )}}
+
+            </div>
+
+
+        </div>
+    </div>
+    {{ form_row(form.save, { 'label': 'Enregistrer' }) }}
 
     {{ form_end(form) }}
 
 
-{#    <div class="alert alert-dismissible alert-warning mb-3 mt-4" style="max-width: 70rem;">#}
-{#        <div class="card-body mt-4">#}
-{#        <div class="card-text" style="color: black" >FELICITATIONS ! VOUS AVEZ REJOINT LA COMMUNAUTE DES ABONNES DE ALDINI !</div>#}
-{#        <div class="card-text mt-4" style="color: black">Afin de commencer à utiliser ALDINI, veuillez compléter les champs suivants pour créer votre dossier.</div>#}
+
+    <div class="panel panel-default">
+
+
+    <div class="panel-body">
+
+        <div id="education_fields">
+
+        </div>
+        {{ form_start(form1) }}
+
+        <div class="col-sm-3 nopadding">
+            <div class="form-group">
+
+                {{ form_row(form1.nomCogerant ,{'attr': {'class': 'form-control'}} )}}
+
+            </div>
+        </div>
+        <div class="col-sm-3 nopadding">
+            <div class="form-group">
+                {{ form_row(form1.prenomCogerant ,{'attr': {'class': 'form-control'}} )}}
+            </div>
+        </div>
+        <div class="col-sm-3 nopadding">
+            <div class="form-group">
+                {{ form_row(form1.participation ,{'attr': {'class': 'form-control'}} )}}
+            </div>
+        </div>
+        {{ form_end(form1) }}
+        <div class="col-sm-3 nopadding">
+            <div class="form-group">
+                <div class="input-group">
+
+                    <div class="input-group-btn">
+                        <button class="btn btn-success" type="button"  onclick="education_fields();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+
+    </div>
+
+    {#    <button    id="validation"   class="btn btn-primary" {{ path("dossiers")}} type="submit">Enregistrer</button>#}
 
 
 
-{#            <p class="card-text mt-4" style="color: red">ATTENTION ! LES INFORMATIONS RENTREES SUR CETTE PAGE DOIVENT ÊTRE EXACTES ET STRICTEMENT CONFORMES AUX INFORMATIONS</p>#}
-{#            <p class="card-text" style="color: red">MENTIONNEES SUR VOTRE K-BIS ET VOTRE MEMENTO FISCAL</p>#}
-{#            <p class="card-text" style="color: red">CAR ELLES IMPACTENT IRREVERSIBLEMENT VOTRE COMPTABILITE</p>#}
-{#            <p class="card-text" style="color: red">UNE FOIS LES INFORMATIONS VALIDEES SUR CETTE PAGE, LE DOSSIER NE SERA PLUS MODIFIABLE POUR LES CHAMPS AVEC *</p>#}
-{#        </div>#}
 
-{#    </div>#}
-{#    <div >#}
-
-{#        <div class="col-6" >#}
-{#        <div class="input-group mt-3 ">#}
-{#            <input type="text" class="form-control col-6" placeholder="raison sociale"  aria-label="Recipient's username" aria-describedby="button-addon2">#}
-{#            <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Raison Sociale </label>#}
-{#        </div>#}
-{#        </div>#}
-{#        <div class="col-6">#}
-
-{#            <div class="input-group mb-3">#}
-{#                <select class="form-select col-6" id="exampleSelect1">#}
-{#                                        <option>Association Loi 1901 non lucrative</option>#}
-{#                                        <option>Association lucrative</option>#}
-{#                                        <option>SARL</option>#}
-{#                                        <option>EURL</option>#}
-{#                                        <option>SAS</option>#}
-{#                                        <option>SASU</option>#}
-{#                                        <option>SCI</option>#}
-{#                                        <option>SELARL</option>#}
-{#                                        <option>SELEURL</option>#}
-{#                                        <option>SELAS</option>#}
-{#                                        <option>SELASU</option>#}
-{#                                        <option>Entreprise individuelle</option>#}
-{#                                        <option>EIRL</option>#}
-{#                                        <option>Autoentrepreneur</option>#}
+    {#    <div class="alert alert-dismissible alert-warning mb-3 mt-4" style="max-width: 70rem;">#}
+    {#        <div class="card-body mt-4">#}
+    {#        <div class="card-text" style="color: black" >FELICITATIONS ! VOUS AVEZ REJOINT LA COMMUNAUTE DES ABONNES DE ALDINI !</div>#}
+    {#        <div class="card-text mt-4" style="color: black">Afin de commencer à utiliser ALDINI, veuillez compléter les champs suivants pour créer votre dossier.</div>#}
 
 
 
+    {#            <p class="card-text mt-4" style="color: red">ATTENTION ! LES INFORMATIONS RENTREES SUR CETTE PAGE DOIVENT ÊTRE EXACTES ET STRICTEMENT CONFORMES AUX INFORMATIONS</p>#}
+    {#            <p class="card-text" style="color: red">MENTIONNEES SUR VOTRE K-BIS ET VOTRE MEMENTO FISCAL</p>#}
+    {#            <p class="card-text" style="color: red">CAR ELLES IMPACTENT IRREVERSIBLEMENT VOTRE COMPTABILITE</p>#}
+    {#            <p class="card-text" style="color: red">UNE FOIS LES INFORMATIONS VALIDEES SUR CETTE PAGE, LE DOSSIER NE SERA PLUS MODIFIABLE POUR LES CHAMPS AVEC *</p>#}
+    {#        </div>#}
 
-{#                </select>#}
-{#                <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Forme juridique</label>#}
-{#            </div>#}
+    {#    </div>#}
+    {#    <div >#}
 
+    {#        <div class="col-6" >#}
+    {#        <div class="input-group mt-3 ">#}
+    {#            <input type="text" class="form-control col-6" placeholder="raison sociale"  aria-label="Recipient's username" aria-describedby="button-addon2">#}
+    {#            <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Raison Sociale </label>#}
+    {#        </div>#}
+    {#        </div>#}
+    {#        <div class="col-6">#}
 
-{#        </div>#}
-
-{#    </div>#}
-{#    <div class="col-6" >#}
-{#        <div class="input-group mt-3 ">#}
-{#            <input type="text" class="form-control col-6"   aria-label="Recipient's username" aria-describedby="button-addon2">#}
-{#            <label class="badge bg-warning col-6"  type="text" style="font-size: 12px" >Capital social indiqué sur votre Kbis ou vos statuts </label>#}
-{#        </div>#}
-{#    </div>#}
-{#    <div class="col-6">#}
-
-{#        <div class="input-group mb-3 col-2">#}
-{#            <select class="form-select col-3" id="exampleSelect1">#}
-{#                <option> 1 </option>#}
-{#                <option>Plusieurs</option>#}
-{#            </select>#}
-{#            <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Nombre d'associés</label>#}
-{#        </div>#}
-{#    </div>#}
-{#        <div class="col-8" >#}
-{#            <div class="input-group mt-3 ">#}
-{#                <input type="text" class="form-control col-6"   aria-label="Recipient's username" aria-describedby="button-addon2">#}
-{#                <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Adresse du siège social</label>#}
-{#            </div>#}
-{#        </div>#}
-{#    <div class="col-6" >#}
-{#        <div class="input-group mt-3 ">#}
-{#            <input type="text" class="form-control col-6" placeholder="5 chiffres obligatoires"   aria-label="Recipient's username" aria-describedby="button-addon2">#}
-{#            <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Code postal </label>#}
-{#        </div>#}
-{#        <div class="input-group mt-3 col-6 ">#}
-{#            <input type="text" class="form-control col-6"   aria-label="Recipient's username" aria-describedby="button-addon2">#}
-{#            <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Ville </label>#}
-{#        </div>#}
-
-{#    </div>#}
+    {#            <div class="input-group mb-3">#}
+    {#                <select class="form-select col-6" id="exampleSelect1">#}
+    {#                                        <option>Association Loi 1901 non lucrative</option>#}
+    {#                                        <option>Association lucrative</option>#}
+    {#                                        <option>SARL</option>#}
+    {#                                        <option>EURL</option>#}
+    {#                                        <option>SAS</option>#}
+    {#                                        <option>SASU</option>#}
+    {#                                        <option>SCI</option>#}
+    {#                                        <option>SELARL</option>#}
+    {#                                        <option>SELEURL</option>#}
+    {#                                        <option>SELAS</option>#}
+    {#                                        <option>SELASU</option>#}
+    {#                                        <option>Entreprise individuelle</option>#}
+    {#                                        <option>EIRL</option>#}
+    {#                                        <option>Autoentrepreneur</option>#}
 
 
-{#    </div>#}
-{#    <div class="col-6">#}
-{#    <div class="input-group mt-3 col-6 ">#}
-{#        <select class="form-select col-6" id="exampleSelect1">#}
-{#            <option>+33</option>#}
-{#            <option>+216</option>#}
-{#        <input type="text" class="form-control col-6"   aria-label="Recipient's username" aria-describedby="button-addon2">#}
-{#        <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Téléphone </label>#}
-{#    </div>#}
-{#    </div>#}
-{#    <div class="col-8" >#}
-{#        <div class="input-group mt-3 ">#}
-{#            <input type="text" class="form-control col-6"   aria-label="Recipient's username" aria-describedby="button-addon2">#}
-{#            <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Adresse mail</label>#}
-{#        </div>#}
-{#    </div>#}
-{#    <div class="col-7" >#}
-{#        <div class="input-group mt-3 ">#}
-{#            <input type="text" class="form-control col-6" placeholder="14 chiffres obligatoires"  aria-label="Recipient's username" aria-describedby="button-addon2">#}
-{#            <label class="badge bg-warning col-2"  type="text" style="font-size: 20px" >SIRET</label>#}
-{#        </div>#}
-{#    </div>#}
-{#    <div class="col-6">#}
 
-{#        <div class="input-group mb-3 col-2">#}
-{#            <select class="form-select col-3" id="exampleSelect1">#}
-{#                <option> oui </option>#}
-{#                <option>non</option>#}
-{#            </select>#}
-{#            <label class="badge bg-warning col-9"  type="text" style="font-size: 20px" >Êtes-vous en franchise en base de TVA (pas de TVA)*</label>#}
-{#        </div>#}
-{#    </div>#}
 
-{#    <div class="col-7 " >#}
-{#        <div class="input-group mt-3  ">#}
-{#            <input type="text" class="form-control col-6" placeholder="FR(+11 chiffres obligatoires)"  aria-label="Recipient's username" aria-describedby="button-addon2">#}
-{#            <label class="badge bg-warning col-5"  type="text" style="font-size: 20px" >Numéro de TVA intracommunautaire</label>#}
-{#        </div>#}
-{#    </div>#}
+    {#                </select>#}
+    {#                <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Forme juridique</label>#}
+    {#            </div>#}
 
-{#    <div class="col-6">#}
 
-{#        <div class="input-group mb-3 col-2">#}
-{#            <select class="form-select col-3" id="exampleSelect1">#}
-{#                <option> oui </option>#}
-{#                <option>non</option>#}
-{#            </select>#}
-{#            <label class="badge bg-warning col-9"  type="text" style="font-size: 20px" >Type d'imposition*</label>#}
-{#        </div>#}
-{#    </div>#}
+    {#        </div>#}
+
+    {#    </div>#}
+    {#    <div class="col-6" >#}
+    {#        <div class="input-group mt-3 ">#}
+    {#            <input type="text" class="form-control col-6"   aria-label="Recipient's username" aria-describedby="button-addon2">#}
+    {#            <label class="badge bg-warning col-6"  type="text" style="font-size: 12px" >Capital social indiqué sur votre Kbis ou vos statuts </label>#}
+    {#        </div>#}
+    {#    </div>#}
+    {#    <div class="col-6">#}
+
+    {#        <div class="input-group mb-3 col-2">#}
+    {#            <select class="form-select col-3" id="exampleSelect1">#}
+    {#                <option> 1 </option>#}
+    {#                <option>Plusieurs</option>#}
+    {#            </select>#}
+    {#            <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Nombre d'associés</label>#}
+    {#        </div>#}
+    {#    </div>#}
+    {#        <div class="col-8" >#}
+    {#            <div class="input-group mt-3 ">#}
+    {#                <input type="text" class="form-control col-6"   aria-label="Recipient's username" aria-describedby="button-addon2">#}
+    {#                <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Adresse du siège social</label>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    <div class="col-6" >#}
+    {#        <div class="input-group mt-3 ">#}
+    {#            <input type="text" class="form-control col-6" placeholder="5 chiffres obligatoires"   aria-label="Recipient's username" aria-describedby="button-addon2">#}
+    {#            <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Code postal </label>#}
+    {#        </div>#}
+    {#        <div class="input-group mt-3 col-6 ">#}
+    {#            <input type="text" class="form-control col-6"   aria-label="Recipient's username" aria-describedby="button-addon2">#}
+    {#            <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Ville </label>#}
+    {#        </div>#}
+
+    {#    </div>#}
+
+
+    {#    </div>#}
+    {#    <div class="col-6">#}
+    {#    <div class="input-group mt-3 col-6 ">#}
+    {#        <select class="form-select col-6" id="exampleSelect1">#}
+    {#            <option>+33</option>#}
+    {#            <option>+216</option>#}
+    {#        <input type="text" class="form-control col-6"   aria-label="Recipient's username" aria-describedby="button-addon2">#}
+    {#        <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Téléphone </label>#}
+    {#    </div>#}
+    {#    </div>#}
+    {#    <div class="col-8" >#}
+    {#        <div class="input-group mt-3 ">#}
+    {#            <input type="text" class="form-control col-6"   aria-label="Recipient's username" aria-describedby="button-addon2">#}
+    {#            <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Adresse mail</label>#}
+    {#        </div>#}
+    {#    </div>#}
+    {#    <div class="col-7" >#}
+    {#        <div class="input-group mt-3 ">#}
+    {#            <input type="text" class="form-control col-6" placeholder="14 chiffres obligatoires"  aria-label="Recipient's username" aria-describedby="button-addon2">#}
+    {#            <label class="badge bg-warning col-2"  type="text" style="font-size: 20px" >SIRET</label>#}
+    {#        </div>#}
+    {#    </div>#}
+    {#    <div class="col-6">#}
+
+    {#        <div class="input-group mb-3 col-2">#}
+    {#            <select class="form-select col-3" id="exampleSelect1">#}
+    {#                <option> oui </option>#}
+    {#                <option>non</option>#}
+    {#            </select>#}
+    {#            <label class="badge bg-warning col-9"  type="text" style="font-size: 20px" >Êtes-vous en franchise en base de TVA (pas de TVA)*</label>#}
+    {#        </div>#}
+    {#    </div>#}
+
+    {#    <div class="col-7 " >#}
+    {#        <div class="input-group mt-3  ">#}
+    {#            <input type="text" class="form-control col-6" placeholder="FR(+11 chiffres obligatoires)"  aria-label="Recipient's username" aria-describedby="button-addon2">#}
+    {#            <label class="badge bg-warning col-5"  type="text" style="font-size: 20px" >Numéro de TVA intracommunautaire</label>#}
+    {#        </div>#}
+    {#    </div>#}
+
+    {#    <div class="col-6">#}
+
+    {#        <div class="input-group mb-3 col-2">#}
+    {#            <select class="form-select col-3" id="exampleSelect1">#}
+    {#                <option> oui </option>#}
+    {#                <option>non</option>#}
+    {#            </select>#}
+    {#            <label class="badge bg-warning col-9"  type="text" style="font-size: 20px" >Type d'imposition*</label>#}
+    {#        </div>#}
+    {#    </div>#}
 
 {% endblock %}
