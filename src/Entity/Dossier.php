@@ -42,8 +42,6 @@ class Dossier
     #[ORM\Column(type: 'string', length: 255)]
     private $numeroTel;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $indicatifPaysTel;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $adressMail;
@@ -203,17 +201,9 @@ class Dossier
         return $this;
     }
 
-    public function getIndicatifPaysTel(): ?string
-    {
-        return $this->indicatifPaysTel;
-    }
 
-    public function setIndicatifPaysTel(string $indicatifPaysTel): self
-    {
-        $this->indicatifPaysTel = $indicatifPaysTel;
 
-        return $this;
-    }
+
 
     public function getAdressMail(): ?string
     {

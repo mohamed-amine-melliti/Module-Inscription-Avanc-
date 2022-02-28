@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid mt-12">
+        {{form_start(form)}}
+        <div class="form-group row mt-4 m-lg-2 ">
+            <label for="staticEmail" class=" badge bg-warning col-3 ">{{ form_label(form.dateOuverture)}} </label>
+            <div class="col-sm-3">
+                {{ form_widget(form.dateOuverture)}}
+            </div>
+        </div>
+
+        <div class="form-group row mt-4 m-lg-2 ">
+            <label for="staticEmail" class=" badge bg-warning col-3 ">{{ form_label(form.dateCloture)}} </label>
+            <div class="col-sm-3">
+                {{ form_widget(form.dateCloture)}}
+            </div>
+        </div>
+
+
+        <div class="form-group row mt-4 m-lg-2 ">
+            <label for="staticEmail" class=" badge bg-warning col-3 ">{{ form_label(form.regimeTVA)}} </label>
+            <div class="col-sm-3">
+                {{ form_widget(form.regimeTVA)}}
+            </div>
+        </div>
+
+
+
+
+
+        {#    <div class="form-group">#}
+
+
+        {#        {{ form_row(form.dateOuverture  )}}#}
+
+
+        {#    </div>#}
+        <div>
+    <span class="badge bg-warning "> Veuillez confirmer votre exercice
+        </span>
+        </div>
+        <div class="mt-2">
+            <button type="submit" class="btn btn-primary" onclick= "submitForms()" > Confirmer</button>
+        </div>
+        {{form_end(form)}}
+        <div class="">
+            <a class="btn btn-primary  " type="submit" href="{{ path('ouvertureExcercice') }}">Revenir</a>
+        </div>
+    </div>
+
+    <script>
+        submitForms = function(){
+            document.forms["form"].submit();
+
+        }
+
+    </script>
+{% endblock %}

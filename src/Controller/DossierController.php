@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\CoGerant;
 use App\Entity\Dossier;
+use App\Entity\Excercice;
 use App\Form\CoGerantType;
 use App\Form\DossierType;
+use App\Form\ExcerciceType;
 use App\Repository\DossierRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
@@ -71,30 +73,39 @@ class DossierController extends AbstractController
 //        ]);
 
         $form = $this->createForm(DossierType::class,$dossier);
-        $form->add('save', SubmitType::class, [
-            'attr' => ['class' => 'save'],
-        ]);
 
         $form->handleRequest($request);
+        $form1->handleRequest($request);
+
         if($form->isSubmitted() && $form->isValid()){
+
             $dossier->setNomDossier($nomdeDossier);
             $dossier->setUser($user);
-            $this->em->persist($dossier);
 ////            if($form1->isSubmitted() && $form1->isValid()){
 //            $idossier = $dossier->getId();
 ////-            $idossier= intval($idossier);
-//            $coGerant->setDossier($idossier);
-//            $this->em->persist($coGerant);
+           $coGerant->setDossier($dossier);
+            $this->em->persist($coGerant);
+            $this->em->persist($dossier);
+            
             $this->em->flush();
+            $FormeJuridique =$dossier->getFormeJuridique();
+            $id=$dossier->getId();
+            $raisonSociale = $dossier->getRaisonSociale();
+            
 
           //  $this->em->flush();
 
 
             $this->addFlash('succes' , 'bien crée');
 
-            return $this->redirectToRoute('dossiers');
-
-        }
+            return $this->redirectToRoute('ouvertureExcercice' ,[
+              'formjuridique'=> $FormeJuridique,
+              'idDossier'=> $id ,
+              'raisonSociale' => $raisonSociale
+             
+        ]);
+    }
 
 
 
@@ -106,5 +117,45 @@ class DossierController extends AbstractController
         ]);
     }
 
+    #[Route('/ouvertureExcercice', name: 'ouvertureExcercice')]
+   public function  ouvertureExcerice(Request $request ):Response
+        {
+            $g = $request->get('formjuridique');
+            //  dd($g);
+            $rr = $request->get('raisonSociale');
+          $exercice = new Excercice();
+            $form = $this->createForm(ExcerciceType::class,$exercice);
+
+            return $this->render('dossier/ouvertureExcercie.html.twig', [
+               'controller_name' => ' ',
+                'formjuridique' =>$g ,
+                'raisonSociale'=> $rr ,
+                'form' => $form->createView()
+
+
+            ]);
+        }
+
+    #[Route('/donneesExcerice', name: 'donneesExcerice')]
+    public function  donneesExcerice(Request $request):Response
+    {
+        $exercice = new Excercice();
+        $form = $this->createForm(ExcerciceType::class,$exercice);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $this->em->persist($exercice);
+
+            $this->em->flush();
+        }
+
+
+
+        return $this->render('dossier/donneesExcerice.html.twig', [
+            'controller_name' => ' ',
+            'form' => $form->createView()
+
+
+        ]);
+    }
 
 }

@@ -6,11 +6,12 @@
 
 
     <head>
+
         <meta charset="utf-8">
         <meta name="robots" content="noindex, nofollow">
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-{#        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">#}
+        {#        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">#}
         <style type="text/css">
 
         </style>
@@ -32,6 +33,8 @@
 
             </script>
             <script>
+
+
                 var room = 1;
                 function education_fields() {
 
@@ -51,6 +54,160 @@
         {% endblock %}
     </head>
 
+    <style>
+
+
+        form-control {
+            padding : 50px 50px 0 ;
+            margin: 0 auto;
+            width: 300px;
+        }
+    </style>
+
+    <style>
+        #pageMessages {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            width: 30%;
+        }
+
+        .alert {
+            position: relative;
+        }
+
+        .alert .close {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 1em;
+        }
+
+        .alert .fa {
+            margin-right:.3em;
+        }
+    </style>
+
+
+    <script src={{  asset('js/controleSaisie.js') }}></script>
+    <script src={{  asset('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js') }}></script>
+    <script src={{  asset('https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js') }}></script>
+
+
+
+    <link rel="stylesheet" href={{  asset("css/controlesaisie.css") }}>
+    <link rel="stylesheet" href={{  asset("https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css") }}>
+    <link rel="stylesheet" href={{  asset("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css") }}>
+
+
+    <script>
+        function createAlert(title, summary, details, severity, dismissible, autoDismiss, appendToId) {
+            var iconMap = {
+                info: "fa fa-info-circle",
+                success: "fa fa-thumbs-up",
+                warning: "fa fa-exclamation-triangle",
+                danger: "fa ffa fa-exclamation-circle"
+            };
+
+            var iconAdded = false;
+
+            var alertClasses = ["alert", "animated", "flipInX"];
+            alertClasses.push("alert-" + severity.toLowerCase());
+
+            if (dismissible) {
+                alertClasses.push("alert-dismissible");
+            }
+
+            var msgIcon = $("<i />", {
+                "class": iconMap[severity] // you need to quote "class" since it's a reserved keyword
+            });
+
+            var msg = $("<div />", {
+                "class": alertClasses.join(" ") // you need to quote "class" since it's a reserved keyword
+            });
+
+            if (title) {
+                var msgTitle = $("<h4 />", {
+                    html: title
+                }).appendTo(msg);
+
+                if(!iconAdded){
+                    msgTitle.prepend(msgIcon);
+                    iconAdded = true;
+                }
+            }
+
+            if (summary) {
+                var msgSummary = $("<strong />", {
+                    html: summary
+                }).appendTo(msg);
+
+                if(!iconAdded){
+                    msgSummary.prepend(msgIcon);
+                    iconAdded = true;
+                }
+            }
+
+            if (details) {
+                var msgDetails = $("<p />", {
+                    html: details
+                }).appendTo(msg);
+
+                if(!iconAdded){
+                    msgDetails.prepend(msgIcon);
+                    iconAdded = true;
+                }
+            }
+
+
+            if (dismissible) {
+                var msgClose = $("<span />", {
+                    "class": "close", // you need to quote "class" since it's a reserved keyword
+                    "data-dismiss": "alert",
+                    html: "<i class='fa fa-times-circle'></i>"
+                }).appendTo(msg);
+            }
+
+            $('#' + appendToId).prepend(msg);
+
+            if(autoDismiss){
+                setTimeout(function(){
+                    msg.addClass("flipOutX");
+                    setTimeout(function(){
+                        msg.remove();
+                    },1000);
+                }, 1000);
+            }
+        }
+
+
+    </script>
+
+    <div id="pageMessages">
+    </div>
+
+
+
+    <div class="container2">
+
+        <div id="myPopupFinal" class="popup hide">
+            <div class="popup-header">
+                Message
+                <span class="close toggle" data-target="myPopupFinal">close</span>
+            </div>
+            <div class="popup-body" >
+                <div id="msgfinalefinale">
+
+                </div>
+
+            </div>
+            <div class="popup-footer">
+                <button id="jsrfinale" class="toggle button" data-target="myPopup"  >Confirmer </button>
+                <button id="jnsrfinale" class="toggle button" data-target="myPopup"  >Revenir </button>
+            </div>
+        </div>
+    </div>
+
 
 
     <div class="container">
@@ -60,8 +217,12 @@
                 Message
                 <span class="close toggle" data-target="myPopup">close</span>
             </div>
-            <div class="popup-body" id="msg">
-                Vous Avez Choisi  cette option . êtes-vous sûr ?
+            <div class="popup-body" >
+                ous Avez Choisi  cette option .
+                <div id="msg">
+
+                </div>
+                êtes-vous sûr ?
             </div>
             <div class="popup-footer">
                 <button id="jsr" class="toggle button" data-target="myPopup"  >Confirmer </button>
@@ -69,7 +230,8 @@
             </div>
         </div>
     </div>
-    {{ form_start(form) }}
+    {{ form_start(form , {'attr': {'id': 'dossier','class': 'validate-form'}}) }}
+
 
     <div class="col-sm-3 nopadding">
         <div class="form-group">
@@ -197,23 +359,301 @@
 
                 </style>
 
+                <link rel="stylesheet" href="{{ asset('css/intlTelInput.css') }}">
+
+                <script src={{  asset('js/intlTelInput.js') }}></script>
+
+
+
                 <script>
+                    /********PART 1***********/
+                    $( document ).ready(function() {
+
+                        $('#dossier_nbAssocies').hide();
+                        $('label[for="dossier_nbAssocies"]').hide();
+                        /**************/
+                        var input = document.querySelector("#dossier_numeroTel");
+                        var iti = window.intlTelInput(input, {
+                            // separateDialCode:true,
+                            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.3/build/js/utils.js",
+                        });
+
+// store the instance variable so we can access it in the console e.g. window.iti.getNumber()
+                        window.iti = iti;
+                        /**************/
+
+                    });
+                    /*********PART 2 [Forme Juridique]***********/
+
                     $(document).on('change' ,'.toggle', function(event) {
                         event.preventDefault();
+                        $('#msg').text($('#dossier_formeJuridique :selected').text() );
+
+                        var target = $(this).data('target');
+                        $('#' + target).toggleClass('hide');
+                        return false;
+                    });
+
+
+                    $(document).on('click' ,'#jsr', function(event) {
 
                         var target = $(this).data('target');
                         $('#' + target).toggleClass('hide');
 
+                        if( $('#dossier_formeJuridique :selected').text()=='SAS' ||
+                            $('#dossier_formeJuridique :selected').text()=='SARL' ||
+                            $('#dossier_formeJuridique :selected').text()=='SELARL' ||
+                            $('#dossier_formeJuridique :selected').text()=='SELAS' )
+                        {
+
+                            $('#dossier_nbAssocies').show();
+                            $('label[for="dossier_nbAssocies"]').show();
+
+                            $('#dossier_categorieImposition').val("BNC");
+                        }
+
+                        else {
+                            $('#dossier_nbAssocies').hide();
+                            $('label[for="dossier_nbAssocies"]').hide();
+                        }
+
+                            if ($('#dossier_formeJuridique :selected').text()=='Association Loi 1901 non lucrative')
+                            {
+                                $('#dossier_typeImposition').val("IS");
+                                $('#dossier_categorieImposition').val("Sans");
+                            }
+                            else if ($('#dossier_formeJuridique :selected').text()=='Association lucrative')
+                            {
+                                $('#dossier_typeImposition').val("IS");
+                                $('#dossier_categorieImposition').val("Sans");
+                            }
+
+                            else if ($('#dossier_formeJuridique :selected').text()=='Entreprise individuelle')
+                            {
+                                $('#dossier_typeImposition').val("IR");
+
+
+                                $("#dossier_categorieImposition option[value='Sans']").attr("disabled","disabled");
+                                $("#dossier_categorieImposition option[value='Revenus Fonciers']").attr("disabled","disabled");
+                                $("#dossier_categorieImposition option[value='Micro-BIC']").attr("disabled","disabled");
+                                $("#dossier_categorieImposition option[value='Micro-BNC']").attr("disabled","disabled");
+                                $("#dossier_categorieImposition option[value='Micro-Ba']").attr("disabled","disabled");
+                                $("#dossier_categorieImposition option[value='Micro-Foncier']").attr("disabled","disabled");
+
+
+
+
+                            }
+
+                            else if ($('#dossier_formeJuridique :selected').text()=='Autoentrepreneur')
+                            {
+                                $('#dossier_typeImposition').val("IR");
+                            }
+
+
+
+
+
+                     else   if($('#dossier_formeJuridique :selected').text()=='EURL' ||
+                            $('#dossier_formeJuridique :selected').text()=='SARL'
+                        )
+                        {
+                            $("#dossier_categorieImposition option[value='BNC']").attr("disabled","disabled");
+
+                            $("#dossier_categorieImposition option[value='Sans']").attr("disabled","disabled");
+                            $("#dossier_categorieImposition option[value='Revenus Fonciers']").attr("disabled","disabled");
+                            $("#dossier_categorieImposition option[value='Micro-BIC']").attr("disabled","disabled");
+                            $("#dossier_categorieImposition option[value='Micro-BNC']").attr("disabled","disabled");
+                            $("#dossier_categorieImposition option[value='Micro-Ba']").attr("disabled","disabled");
+                            $("#dossier_categorieImposition option[value='Micro-Foncier']").attr("disabled","disabled");
+
+                        }
+                        else if($('#dossier_formeJuridique :selected').text()=='SAS' ||
+                            $('#dossier_formeJuridique :selected').text()=='SASU'
+                        )
+                        {
+                            $("#dossier_categorieImposition option[value='Sans']").attr("disabled","disabled");
+                            $("#dossier_categorieImposition option[value='Revenus Fonciers']").attr("disabled","disabled");
+                            $("#dossier_categorieImposition option[value='Micro-BIC']").attr("disabled","disabled");
+                            $("#dossier_categorieImposition option[value='Micro-BNC']").attr("disabled","disabled");
+                            $("#dossier_categorieImposition option[value='Micro-Ba']").attr("disabled","disabled");
+                            $("#dossier_categorieImposition option[value='Micro-Foncier']").attr("disabled","disabled");
+                        }
+
+                        else if($('#dossier_formeJuridique :selected').text()=='SCI')
+                        {
+
+                            $("#dossier_categorieImposition option[value='Sans']").attr("disabled","disabled");
+                            $("#dossier_categorieImposition option[value='BNC']").attr("disabled","disabled");
+                            $("#dossier_categorieImposition option[value='Micro-BIC']").attr("disabled","disabled");
+                            $("#dossier_categorieImposition option[value='Micro-BNC']").attr("disabled","disabled");
+                            $("#dossier_categorieImposition option[value='Micro-Ba']").attr("disabled","disabled");
+                            $("#dossier_categorieImposition option[value='Micro-Foncier']").attr("disabled","disabled");
+                        }
+
+                        else if($('#dossier_formeJuridique :selected').text()=='EIRL')
+                        {
+                            $("#dossier_categorieImposition option[value='Sans']").attr("disabled","disabled");
+                            $("#dossier_categorieImposition option[value='Revenus Fonciers']").attr("disabled","disabled");
+                            $("#dossier_categorieImposition option[value='Micro-BIC']").attr("disabled","disabled");
+                            $("#dossier_categorieImposition option[value='Micro-BNC']").attr("disabled","disabled");
+                            $("#dossier_categorieImposition option[value='Micro-Ba']").attr("disabled","disabled");
+                            $("#dossier_categorieImposition option[value='Micro-Foncier']").attr("disabled","disabled");
+
+                        }
+
+
+                    });
+                    /********************************/
+
+                    $(document).on('click' ,'#jnsr', function(event) {
+                        var target = $(this).data('target');
+                        $('#' + target).toggleClass('hide');
+                    });
+                    /*********PART 3 (forme juridique + nb associes) ***********/
+
+                    $(document).on('change' ,'#dossier_nbAssocies', function(event) {
+
+                        if($('#dossier_nbAssocies :selected').text()=='1' ){
+                            if($('#dossier_formeJuridique :selected').text() == 'SARL' )
+                            {
+                                $('#dossier_formeJuridique').val('EURL');
+                            }
+
+                            else if($('#dossier_formeJuridique :selected').text() == 'SAS')
+                            {
+                                $('#dossier_formeJuridique').val('SASU');
+                            }
+
+                            else if($('#dossier_formeJuridique :selected').text() == 'SELARL'  )
+                            {
+                                $('#dossier_formeJuridique').val('SELEURL');
+
+                            }
+                        }
+                    });
+                    /*********PART 4 [Franchise TVA]***********/
+
+                    $(document).on('change' ,'.toggleTVA', function(event) {
+                        event.preventDefault();
+                        $('#msg').text($('#dossier_franchiseEnBaseTva :selected').text() );
+
+                        var target = $(this).data('target');
+                        $('#' + target).toggleClass('hide');
+
+                        console.log($('#dossier_franchiseEnBaseTva :selected').text() )
+
+                        return false;
+
+                    });
+
+                    /*********PART 5 [TYPE  D'IMPOSITION]***********/
+                    $(document).on('change' ,'.toggleTypeImpo', function(event) {
+                        event.preventDefault();
+                        $('#msg').text($('#dossier_typeImposition :selected').text() );
+
+                        var target = $(this).data('target');
+                        $('#' + target).toggleClass('hide');
+
+                        console.log($('#dossier_typeImposition :selected').text() )
+
+                        return false;
+
+                    });
+                    /*********PART 6 [Régime Micro]***********/
+
+                    $(document).on('change' ,'.toggleRegMicro', function(event) {
+                        event.preventDefault();
+                        $('#msg').text($('#dossier_regimeMicro :selected').text() );
+
+
+                        var target = $(this).data('target');
+                        $('#' + target).toggleClass('hide');
+
+                        if ($('#dossier_regimeMicro :selected').text() == "oui"){
+                            createAlert('Opps!','Attention','Pour rappel , la tenue de comptablilité n"est pas obligatoire en régime micro.','danger',true,false,'pageMessages');
+
+                            if($('#dossier_categorieImposition :selected').text() =='BIC')
+                            {
+                                $('#dossier_categorieImposition').val("Micro-BIC");
+
+                            }
+
+                            else if($('#dossier_categorieImposition :selected').text() =='BNC')
+                            {
+                                $('#dossier_categorieImposition').val("Micro-BNC");
+                            }
+
+                            else if($('#dossier_categorieImposition :selected').text() =='BA')
+                            {
+                                $('#dossier_categorieImposition').val("Micro-Ba");
+                            }
+
+                            else if( $('#dossier_categorieImposition :selected').text() =='Revenus Fonciers')
+                            {
+                                $('#dossier_categorieImposition').val("Micro-Foncier");
+                            }
+
+                        }
+
+
+
+                        var target = $(this).data('target');
+                        $('#' + target).toggleClass('hide');
+
+                        return false;
+
                     });
 
 
+                    /*********PART 7 [Catégorie Imposition]***********/
+                    $(document).on('change' ,'.toggleCategorieImpo', function(event) {
+                        event.preventDefault();
+                        $('#msg').text($('#dossier_categorieImposition :selected').text() );
+
+                        var target = $(this).data('target');
+                        $('#' + target).toggleClass('hide');
+
+                        console.log($('#dossier_categorieImposition :selected').text() )
+
+                        return false;
+
+                    });
+
+                    /*********PART 8 [Secteur d'activité ]***********/
+
+                    $(document).on('change' ,'#dossier_categorieImposition', function(event) {
+                        event.preventDefault();
+
+                        if( $('#dossier_categorieImposition:selected').text()=='BA' || $('#dossier_categorieImposition:selected').text()=='Micro-BA'  )
+                        {
+
+                         //  $("#dossier_secteurActivite option[value='Micro-Foncier']").attr("disabled","disabled");
+                           $('#dossier_secteurActivite').val("Agriculture Elevage");
+                            createAlert('Opps!','Attention','Pour rappel , ATTENTION ! VOTRE ACTIVITE ETANT REGLEMENTEE, VOTRE COMPTABILITE DOIT ÊTRE ATTESTEE PAR UN EXPERT-COMPTABLE ','danger',true,false,'pageMessages');
+
+                        }
+
+
+
+
+                        return false;
+
+                    });
                 </script>
+
+                <!--------------------------Controle de saisie----------------------------------->
+                <style>
+                    .error
+                    {
+                        color:red;
+                        font-family: serif;
+                    }
+                </style>
 
 
                 <!------------------------------------------------------------->
-
-                {{ form_row(form.formeJuridique ,{'attr': {'class': ' toggle button  form-control' , 'data-target':'myPopup' ,'id':'myselect'}} )}}
-
+                {{ form_row(form.formeJuridique ,{'attr': {'class': ' toggle button  form-control' , 'data-target':'myPopup'}} )}}
 
             </div>
 
@@ -235,10 +675,12 @@
 
             </div>
 
+
             <div class="form-group">
-
-                {{ form_row(form.codePostale,{'attr': {'class': 'form-control'}} )}}
-
+                <div class="input-holder">
+                    {{ form_row(form.codePostale,{'attr': {'class': 'form-control validate '  , 'maxlength':'5' }} )}}
+                    <span class="message">Un code postale doit inclure 5 chiffre</span>
+                </div>
             </div>
 
             <div class="form-group">
@@ -247,15 +689,15 @@
 
             </div>
 
+
+
             <div class="form-group">
 
-                {{ form_row(form.indicatifPaysTel ,{'attr': {'class': 'form-control'}} )}}
+                <div class="col">
+                    {{ form_label(form.numeroTel)}}
+                </div>
 
-
-            </div>
-            <div class="form-group">
-
-                {{ form_row(form.numeroTel ,{'attr': {'class': 'form-control'}} )}}
+                {{ form_widget(form.numeroTel ,{'attr': {'class': 'form-control'}} )}}
 
             </div>
 
@@ -266,38 +708,42 @@
             </div>
 
             <div class="form-group">
+                <div class="input-holder">
+                    {{ form_row(form.siret ,{'attr': {'class': 'form-control validate' , 'maxlength':'14' }} )}}
+                    <span id="messagesiret" class="message">Un numéro siret doit inclure 14 chiffre</span>
+                </div>
+            </div>
 
-                {{ form_row(form.siret ,{'attr': {'class': 'form-control'}} )}}
+
+
+            <div class="form-group">
+
+                {{ form_row(form.franchiseEnBaseTva ,{'attr': {'class': ' toggleTVA button  form-control ' , 'data-target':'myPopup'}} )}}
+
+            </div>
+
+            <div class="form-group">
+                <div class="input-holder">
+                    {{ form_row(form.numeroTVAintracommunaitre ,{'attr': {'class': 'form-control validate', 'maxlength':'13' }} )}}
+                    <span id="messagenumeroTVAintracommunaitre" class="message">Un numéro TVA intracommunaitre doit étre sous la forme "FR+11 chiffres"</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                {{ form_row(form.typeImposition ,{'attr': {'class': ' toggleTypeImpo button  form-control' , 'data-target':'myPopup'}} )}}
 
             </div>
 
             <div class="form-group">
 
-                {{ form_row(form.franchiseEnBaseTva ,{'attr': {'class': 'form-control'}} )}}
+                {{ form_row(form.regimeMicro ,{'attr': {'class': ' toggleRegMicro button  form-control' , 'data-target':'myPopup'}})}}
 
             </div>
 
             <div class="form-group">
 
-                {{ form_row(form.numeroTVAintracommunaitre ,{'attr': {'class': 'form-control'}} )}}
-
-            </div>
-
-            <div class="form-group">
-
-                {{ form_row(form.typeImposition ,{'attr': {'class': 'form-control'}} )}}
-
-            </div>
-
-            <div class="form-group">
-
-                {{ form_row(form.regimeMicro ,{'attr': {'class': 'form-control'}} )}}
-
-            </div>
-
-            <div class="form-group">
-
-                {{ form_row(form.categorieImposition ,{'attr': {'class': 'form-control'}} )}}
+                {{ form_row(form.categorieImposition ,{'attr': {'class': ' toggleCategorieImpo button  form-control' , 'data-target':'myPopup'}} )}}
 
             </div>
 
@@ -318,204 +764,245 @@
                 {{ form_row(form.prenomGerant ,{'attr': {'class': 'form-control'}} )}}
 
             </div>
-            <div class="form-group">
 
-                {{ form_row(form.secteurActivite ,{'attr': {'class': 'form-control'}} )}}
-
-            </div>
 
 
         </div>
     </div>
-    {{ form_row(form.save, { 'label': 'Enregistrer' }) }}
 
-    {{ form_end(form) }}
 
 
 
     <div class="panel panel-default">
 
 
-    <div class="panel-body">
+        <div class="panel-body">
 
-        <div id="education_fields">
-
-        </div>
-        {{ form_start(form1) }}
-
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-
-                {{ form_row(form1.nomCogerant ,{'attr': {'class': 'form-control'}} )}}
+            <div id="education_fields">
 
             </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                {{ form_row(form1.prenomCogerant ,{'attr': {'class': 'form-control'}} )}}
-            </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                {{ form_row(form1.participation ,{'attr': {'class': 'form-control'}} )}}
-            </div>
-        </div>
-        {{ form_end(form1) }}
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
+            {{ form_start(form1) }}
 
-                    <div class="input-group-btn">
-                        <button class="btn btn-success" type="button"  onclick="education_fields();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
+            <div class="col-sm-3 nopadding">
+                <div class="form-group">
+
+                    {{ form_row(form1.nomCogerant ,{'attr': {'class': 'form-control'}} )}}
+
+                </div>
+            </div>
+            <div class="col-sm-3 nopadding">
+                <div class="form-group">
+                    {{ form_row(form1.prenomCogerant ,{'attr': {'class': 'form-control'}} )}}
+                </div>
+            </div>
+            <div class="col-sm-3 nopadding">
+                <div class="form-group">
+                    {{ form_row(form1.participation ,{'attr': {'class': 'form-control'}} )}}
+                </div>
+            </div>
+            <div class="col-sm-3">
+
+                {{ form_row(form.secteurActivite ,{'attr': {'class': 'form-control'}} )}}
+
+            </div>
+
+            <button type="submit" class="btn btn-primary" onclick= "submitForms()"  data-target="#myPopupFinal">Finaliser</button>
+
+            {{ form_end(form1) }}
+            {{ form_end(form) }}
+
+
+
+            <div class="col-sm-3 nopadding">
+                <div class="form-group">
+                    <div class="input-group">
+
+                        <!----<div class="input-group-btn">
+                            <button class="btn btn-success" type="button"  onclick="education_fields();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
+                        </div>--->
                     </div>
                 </div>
             </div>
+            <div class="clear"></div>
+
         </div>
-        <div class="clear"></div>
-
-    </div>
-
-    {#    <button    id="validation"   class="btn btn-primary" {{ path("dossiers")}} type="submit">Enregistrer</button>#}
 
 
+        <!----------------SAISIE ------------------------------------->
+
+        <script>
+
+            // Simple Validation - By Chad Humphrey - hmphry.com
+            // Released under the MIT license
+
+            // Get all forms
+            var simpleValidation = function(){
 
 
-    {#    <div class="alert alert-dismissible alert-warning mb-3 mt-4" style="max-width: 70rem;">#}
-    {#        <div class="card-body mt-4">#}
-    {#        <div class="card-text" style="color: black" >FELICITATIONS ! VOUS AVEZ REJOINT LA COMMUNAUTE DES ABONNES DE ALDINI !</div>#}
-    {#        <div class="card-text mt-4" style="color: black">Afin de commencer à utiliser ALDINI, veuillez compléter les champs suivants pour créer votre dossier.</div>#}
+                var validateForm = $('form[name="dossier"]')
+
+                // Gets all forms to Validate
+                validateForm.each(function(){
+                    // Defining basic variables, bro
+                    var validateForm = $(this);
+                    var validate = {};
+                    var validateThis = $(this).find('.validate');
+                    var validatingLength = $(this).find('.validate').length;
+                    var submitBtn = $(this).find('.submit');
+
+                    // For Loop Getting Elements to Validate
+                    for(var i = 1; i <= validatingLength; i++){
+                        // Adding Inputs to object, false for default
+                        validate['input'+i] = false;
+                    }
+
+                    $('#dossier_numeroTVAintracommunaitre').blur(function(){
+                        var index =  $(this).prevAll().length+1;
+                        var validateThisVal = $(this).val();
+                        var validateThisType = $(this).attr('type');
+
+                        const reg = new RegExp('[fr|FR]{2}[0-9]{11}');
+
+
+                        // Condition to see if  exists
+                        if(!validateThisVal.match(reg)){
+                            $(this).addClass('not-valid');
+                            $('span#messagenumeroTVAintracommunaitre').show();
+                            $(this).removeClass('is-valid');
+                            return validate['input'+index] = false;
+                        }
+
+                        else if(validateThisVal.length<13){
+                            $(this).addClass('not-valid');
+                            $('span#messagenumeroTVAintracommunaitre').show();
+                            $(this).removeClass('is-valid');
+                            return validate['input'+index] = false;
+                        }
+
+                        else{
+                            $(this).addClass('is-valid');
+                            $(this).removeClass('not-valid');
+                            $('span#messagenumeroTVAintracommunaitre').hide();
+                            return validate['input'+index] = true;
+                        }
 
 
 
-    {#            <p class="card-text mt-4" style="color: red">ATTENTION ! LES INFORMATIONS RENTREES SUR CETTE PAGE DOIVENT ÊTRE EXACTES ET STRICTEMENT CONFORMES AUX INFORMATIONS</p>#}
-    {#            <p class="card-text" style="color: red">MENTIONNEES SUR VOTRE K-BIS ET VOTRE MEMENTO FISCAL</p>#}
-    {#            <p class="card-text" style="color: red">CAR ELLES IMPACTENT IRREVERSIBLEMENT VOTRE COMPTABILITE</p>#}
-    {#            <p class="card-text" style="color: red">UNE FOIS LES INFORMATIONS VALIDEES SUR CETTE PAGE, LE DOSSIER NE SERA PLUS MODIFIABLE POUR LES CHAMPS AVEC *</p>#}
-    {#        </div>#}
+                    });
 
-    {#    </div>#}
-    {#    <div >#}
+                    $('#dossier_siret').blur(function(){
+                        var index =  $(this).prevAll().length+1;
+                        var validateThisVal = $(this).val();
+                        var validateThisType = $(this).attr('type');
 
-    {#        <div class="col-6" >#}
-    {#        <div class="input-group mt-3 ">#}
-    {#            <input type="text" class="form-control col-6" placeholder="raison sociale"  aria-label="Recipient's username" aria-describedby="button-addon2">#}
-    {#            <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Raison Sociale </label>#}
-    {#        </div>#}
-    {#        </div>#}
-    {#        <div class="col-6">#}
+                        const reg = new RegExp('^[0-9]+$');
 
-    {#            <div class="input-group mb-3">#}
-    {#                <select class="form-select col-6" id="exampleSelect1">#}
-    {#                                        <option>Association Loi 1901 non lucrative</option>#}
-    {#                                        <option>Association lucrative</option>#}
-    {#                                        <option>SARL</option>#}
-    {#                                        <option>EURL</option>#}
-    {#                                        <option>SAS</option>#}
-    {#                                        <option>SASU</option>#}
-    {#                                        <option>SCI</option>#}
-    {#                                        <option>SELARL</option>#}
-    {#                                        <option>SELEURL</option>#}
-    {#                                        <option>SELAS</option>#}
-    {#                                        <option>SELASU</option>#}
-    {#                                        <option>Entreprise individuelle</option>#}
-    {#                                        <option>EIRL</option>#}
-    {#                                        <option>Autoentrepreneur</option>#}
+
+                        // Condition to see if  exists
+                        if(!validateThisVal.match(reg)){
+                            $(this).addClass('not-valid');
+                            $('span#messagesiret').show();
+                            $(this).removeClass('is-valid');
+                            return validate['input'+index] = false;
+                        }
+
+                        else if(validateThisVal.length<14){
+                            $(this).addClass('not-valid');
+                            $('span#messagesiret').show();
+                            $(this).removeClass('is-valid');
+                            return validate['input'+index] = false;
+                        }
+
+                        else{
+                            $(this).addClass('is-valid');
+                            $(this).removeClass('not-valid');
+                            $('span#messagesiret').hide();
+                            return validate['input'+index] = true;
+                        }
 
 
 
+                    });
 
-    {#                </select>#}
-    {#                <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Forme juridique</label>#}
-    {#            </div>#}
+                    $('#dossier_codePostale').blur(function(){
+                        var index =  $(this).prevAll().length+1;
+                        var validateThisVal = $(this).val();
+                        var validateThisType = $(this).attr('type');
 
-
-    {#        </div>#}
-
-    {#    </div>#}
-    {#    <div class="col-6" >#}
-    {#        <div class="input-group mt-3 ">#}
-    {#            <input type="text" class="form-control col-6"   aria-label="Recipient's username" aria-describedby="button-addon2">#}
-    {#            <label class="badge bg-warning col-6"  type="text" style="font-size: 12px" >Capital social indiqué sur votre Kbis ou vos statuts </label>#}
-    {#        </div>#}
-    {#    </div>#}
-    {#    <div class="col-6">#}
-
-    {#        <div class="input-group mb-3 col-2">#}
-    {#            <select class="form-select col-3" id="exampleSelect1">#}
-    {#                <option> 1 </option>#}
-    {#                <option>Plusieurs</option>#}
-    {#            </select>#}
-    {#            <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Nombre d'associés</label>#}
-    {#        </div>#}
-    {#    </div>#}
-    {#        <div class="col-8" >#}
-    {#            <div class="input-group mt-3 ">#}
-    {#                <input type="text" class="form-control col-6"   aria-label="Recipient's username" aria-describedby="button-addon2">#}
-    {#                <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Adresse du siège social</label>#}
-    {#            </div>#}
-    {#        </div>#}
-    {#    <div class="col-6" >#}
-    {#        <div class="input-group mt-3 ">#}
-    {#            <input type="text" class="form-control col-6" placeholder="5 chiffres obligatoires"   aria-label="Recipient's username" aria-describedby="button-addon2">#}
-    {#            <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Code postal </label>#}
-    {#        </div>#}
-    {#        <div class="input-group mt-3 col-6 ">#}
-    {#            <input type="text" class="form-control col-6"   aria-label="Recipient's username" aria-describedby="button-addon2">#}
-    {#            <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Ville </label>#}
-    {#        </div>#}
-
-    {#    </div>#}
+                        const re = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
+                        const reg = new RegExp('^[0-9]+$');
 
 
-    {#    </div>#}
-    {#    <div class="col-6">#}
-    {#    <div class="input-group mt-3 col-6 ">#}
-    {#        <select class="form-select col-6" id="exampleSelect1">#}
-    {#            <option>+33</option>#}
-    {#            <option>+216</option>#}
-    {#        <input type="text" class="form-control col-6"   aria-label="Recipient's username" aria-describedby="button-addon2">#}
-    {#        <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Téléphone </label>#}
-    {#    </div>#}
-    {#    </div>#}
-    {#    <div class="col-8" >#}
-    {#        <div class="input-group mt-3 ">#}
-    {#            <input type="text" class="form-control col-6"   aria-label="Recipient's username" aria-describedby="button-addon2">#}
-    {#            <label class="badge bg-warning col-3"  type="text" style="font-size: 20px" >Adresse mail</label>#}
-    {#        </div>#}
-    {#    </div>#}
-    {#    <div class="col-7" >#}
-    {#        <div class="input-group mt-3 ">#}
-    {#            <input type="text" class="form-control col-6" placeholder="14 chiffres obligatoires"  aria-label="Recipient's username" aria-describedby="button-addon2">#}
-    {#            <label class="badge bg-warning col-2"  type="text" style="font-size: 20px" >SIRET</label>#}
-    {#        </div>#}
-    {#    </div>#}
-    {#    <div class="col-6">#}
+                        // Condition to see if  exists
+                        if(!validateThisVal.match(reg)){
+                            $(this).addClass('not-valid');
+                            $('span.message').show();
+                            $(this).removeClass('is-valid');
+                            return validate['input'+index] = false;
+                        }
 
-    {#        <div class="input-group mb-3 col-2">#}
-    {#            <select class="form-select col-3" id="exampleSelect1">#}
-    {#                <option> oui </option>#}
-    {#                <option>non</option>#}
-    {#            </select>#}
-    {#            <label class="badge bg-warning col-9"  type="text" style="font-size: 20px" >Êtes-vous en franchise en base de TVA (pas de TVA)*</label>#}
-    {#        </div>#}
-    {#    </div>#}
+                        else if(validateThisVal.length<5){
+                            $(this).addClass('not-valid');
+                            $('span.message').show();
+                            $(this).removeClass('is-valid');
+                            return validate['input'+index] = false;
+                        }
 
-    {#    <div class="col-7 " >#}
-    {#        <div class="input-group mt-3  ">#}
-    {#            <input type="text" class="form-control col-6" placeholder="FR(+11 chiffres obligatoires)"  aria-label="Recipient's username" aria-describedby="button-addon2">#}
-    {#            <label class="badge bg-warning col-5"  type="text" style="font-size: 20px" >Numéro de TVA intracommunautaire</label>#}
-    {#        </div>#}
-    {#    </div>#}
+                        else{
+                            $(this).addClass('is-valid');
+                            $(this).removeClass('not-valid');
+                            $('span.message').hide();
+                            return validate['input'+index] = true;
+                        }
 
-    {#    <div class="col-6">#}
 
-    {#        <div class="input-group mb-3 col-2">#}
-    {#            <select class="form-select col-3" id="exampleSelect1">#}
-    {#                <option> oui </option>#}
-    {#                <option>non</option>#}
-    {#            </select>#}
-    {#            <label class="badge bg-warning col-9"  type="text" style="font-size: 20px" >Type d'imposition*</label>#}
-    {#        </div>#}
-    {#    </div>#}
 
+                    });
+
+
+                    validateForm.submit(function(event){
+                        // Prevents Default
+                        event.preventDefault();
+
+                        // Logging form errors
+                        var falseCtn = 0;
+                        for(var i = 1; i <= validatingLength; i++){
+                            if(validate['input'+i] == false){
+                                falseCtn++;
+                            }
+                        }
+
+                        // Checking if any falses exist
+                        if(falseCtn > 0){
+                            $(this).unbind('submit').submit();
+                            $(this).click();
+                        } else{
+                        }
+                    });
+
+
+
+
+                });
+
+
+
+            };
+
+            simpleValidation()
+
+
+
+
+            submitForms = function(){
+
+                var target = $(this).data('target');
+                $('#' + target).toggleClass('hide');
+
+                document.forms["form"].submit();
+                document.forms["form1"].submit();
+            }
+            //endmodif
+        </script>
+        <!------------------------------------------------------------->
 {% endblock %}

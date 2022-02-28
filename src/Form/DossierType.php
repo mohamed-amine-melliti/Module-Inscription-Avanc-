@@ -7,6 +7,8 @@ use App\Entity\Dossier;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -54,11 +56,6 @@ class DossierType extends AbstractType
                     'Entreprise individuelle' => 'Entreprise individuelle',
                     'EIRL' => 'EIRL',
                     'Autoentrepreneur' => 'Autoentrepreneur'
-
-
-
-
-
                 ]
             ])
             ->add('capitalSocial' )
@@ -69,19 +66,22 @@ class DossierType extends AbstractType
                 ]
                 ])
             ->add('adressSiegeSocial' , TextType::class )
-            ->add('codePostale' , TextType::class )
-            ->add('ville' , TextType::class )
-            ->add('numeroTel' , TextType::class )
-            ->add('indicatifPaysTel' , TextType::class )
-            ->add('adressMail' , TextType::class )
-            ->add('siret', TextType::class )
+            ->add('codePostale' , NumberType::class , [
+                'required'   => true,
+
+            ] )
+            ->add('ville' , TextType::class , array('label' => 'Ville')  )
+            ->add('numeroTel' , TelType::class ,  array('label' => 'Téléphone') )
+
+            ->add('adressMail' , TextType::class , array('label' => 'Adresse mail')  )
+            ->add('siret', TextType::class ,  array('label' => 'Siret')  )
             ->add('franchiseEnBaseTva' , ChoiceType::class , [
         'choices' => [
             'oui' => 'oui' ,
             'non' => 'non'
         ]
     ] )
-            ->add('numeroTVAintracommunaitre')
+            ->add('numeroTVAintracommunaitre' , TextType::class ,  array('label' => 'Numéro de TVA intracommunautaire'))
             ->add('typeImposition' , ChoiceType::class , [
                 'choices' => [
                     'IR' => 'IR' ,
@@ -105,6 +105,7 @@ class DossierType extends AbstractType
                      'Micro-BNC' => 'Micro-BNC' ,
                     'Micro-Ba' => 'Micro-Ba' ,
                     'Micro-Foncier' => 'Micro-Foncier'
+
                 ]
             ])
             ->add('regimeIndependants'  , ChoiceType::class , [
@@ -120,8 +121,29 @@ class DossierType extends AbstractType
 //                'required' => false,
 //            ])
 
-            ->add('secteurActivite')
+            ->add('secteurActivite'  , ChoiceType::class , [
+                'choices' => [
+                    'Café Restauration' => 'Café Restauration' ,
+                    'Assurance' => 'Assurance' ,
+                    'BTP' => 'BTP' ,
+                    'Transport de marchandises' => 'Transport de marchandises' ,
+                    'Transport de personnes' => 'Transport de personnes' ,
+                    'Commerçant classique' => 'Commerçant classique' ,
+                    'Garage' => 'Garage' ,
+                    'Services' => 'Services' ,
+                    'Profession Libérale' => 'Profession Libérale',
+                    'Négoce' => 'Négoce' ,
+                    'E-commerce' => 'E-commerce' ,
+                    'Vente de produits autofabriqués' =>  'Vente de produits autofabriqués',
+                    'Agriculture Elevage' => 'Agriculture Elevage' ,
+                    'Sport et Solidarité' => 'Sport et Solidarité' ,
 
+                    'Immobilier' => 'Immobilier
+' ,
+
+
+                ]
+            ])
 
         ;
     }

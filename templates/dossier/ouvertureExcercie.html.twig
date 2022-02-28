@@ -1,0 +1,338 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {% endblock %}
+
+{% block body %}
+
+    <input type="hidden" value="">
+    <form action="{{ path('donneesExcerice') }}" method="post">
+        <div class="mt-4" >
+
+        <span class="badge bg-warning "> S'agit il du 1er exercice comptable de  {{ raisonSociale}}   ?
+        </span>
+            <select id="firstYesNo" >
+                <option>oui</option>
+                <option>non</option>
+            </select>
+        </div>
+
+        <div id="siOui"  >
+
+            <div id="siJuridiqueOui">
+                <div class="form-group mt-4 col-4" >
+                    <span class="badge bg-warning "> "Veuillez indiquer la date de création de l'entreprise" </span>
+                </div>
+            </div>
+
+            <div id="siJuridiqueNon">
+                <div class="form-group mt-4 col-4" >
+                    <span class="badge bg-warning "> "Veuillez indiquer la date de signature de status" </span>
+                </div>
+            </div>
+
+
+            <div class="form-group mt-4 col-4" >
+                <input id="date" type="date" value="2017-06-01">
+            </div>
+
+
+            <div class="form-group row mt-4">
+
+                <label for="staticEmail" class=" badge bg-warning col-3 " >Date de clôture du 1er exercice</label>
+
+                <div class="col-sm-3">
+                    <input type="text"  class="date_cloture_1_ex" id="date_cloture_1_ex" >
+                </div>
+
+            </div>
+
+            <div class="form-group mt-4 col-4" >
+                <input id="date" type="date" value="2017-06-01">
+            </div>
+
+            <div class="form-group mt-4 col-4" >
+                <span class="badge bg-warning "> "Veuillez indiquer la date de signature des statuts"</span>
+            </div>
+
+            <div class="form-group mt-4 col-4" >
+
+
+                <span class="badge bg-warning "> Veuillez indiquer la date de cloture du 1er exercice comptable (Bilan)</span>
+                <span class="badge bg-warning "> Cela est défini dans les statuts de la société à l'article Exercice social</span>
+
+            </div>
+
+            <div class="form-group mt-4 col-6 m-lg-2 ">
+                <div class="col-6">
+                    <select>
+                        <option>28</option>
+                        <option>29</option>
+                        <option>30</option>
+                        <option>31</option>
+
+                    </select>
+                    <label for="staticEmail" class=" badge bg-warning col-3  ">Jour</label>
+                </div>
+
+
+
+            </div>
+
+            <div class="form-group mt-4 col-6 m-lg-2 ">
+                <input type="text"  class="annee" id="annee" >
+                <label for="staticEmail" class=" badge bg-warning col-3  ">Année</label>
+            </div>
+            <div class="form-group  col-6 m-lg-2 ">
+                <input type="text"  class="mois" id="mois" >
+                <label for="staticEmail" class=" badge bg-warning col-3  ">Mois</label>
+            </div>
+        </div>
+
+
+        <div id="siNon">
+            <div class="form-group mt-4 col-4" >
+
+
+                <span class="badge bg-warning "> Quelle est la date de fin du dernier bilan comptable déposé aux impôts ?</span>
+
+            </div>
+            <div class="form-group mt-4 col-4" >
+                <input id="dateFinDernierBilanComptable" type="date" value="2017-06-01">
+            </div>
+
+
+            {#    <div class="form-group mt-4 col-6 m-lg-2 ">#}
+            {#        <input type="text"  class="jour" id="jour" >#}
+            {#        <label for="staticEmail" class=" badge bg-warning col-3  ">Jour</label>#}
+            {#    </div>#}
+            {#    <div class="form-group  col-6 m-lg-2 ">#}
+            {#        <input type="text"  class="mois" id="mois" >#}
+            {#        <label for="staticEmail" class=" badge bg-warning col-3  ">Mois</label>#}
+            {#    </div>#}
+            {#    <div class="form-group  col-6 m-lg-2 ">#}
+            {#        <input type="text"  class="annee" id="annee" >#}
+            {#        <label for="staticEmail" class=" badge bg-warning col-3  ">Année</label>#}
+            {#    </div>#}
+            <div class="form-group row mt-4 m-lg-2 ">
+                <label for="staticEmail" class=" badge bg-warning col-3 ">Date d'ouverture du nouvel exercice</label>
+                <div class="col-sm-3">
+                    <input type="text"  class="date_cloture_1_ex" id="nouvelExcerciceOuverture" >
+                </div>
+            </div>
+            <div class="form-group row mt-4 m-lg-2 ">
+                <label for="staticEmail" class=" badge bg-warning col-3 " id="test">Date de clôture du 1er exercice</label>
+                <div class="col-sm-3">
+                    <input type="text"  class="date_cloture_1_ex" id="nouvelExcerciceCloture" >
+                </div>
+
+            </div>
+
+            <div class="mt-4" >
+                <div id="siDifferentdeFormeJuridique">
+        <span class="badge bg-warning " > La date de clôture change-t-elle sur ce nouvel exercice    ?
+        </span>
+                    <select>
+                        <option>oui</option>
+                        <option>non</option>
+
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group  col-6  ">
+
+                <label  class=" badge bg-warning   ">Cela est défini dans les statuts de la société à l'article Exercice social"</label>
+            </div>
+
+            <div class="form-group mt-4 col-6 m-lg-2 ">
+                <div class="col-6">
+                    <select>
+                        <option>28</option>
+                        <option>29</option>
+                        <option>30</option>
+                        <option>31</option>
+
+                    </select>
+                    <label for="staticEmail" class=" badge bg-warning col-3  ">Jour</label>
+                </div>
+
+
+
+            </div>
+            <div class="form-group  col-6 m-lg-2 ">
+                <input type="text"  class="annee" id="annee" >
+                <label for="staticEmail" class=" badge bg-warning col-3  ">Année</label>
+            </div>
+
+            <div class="form-group mt-4 col-6 m-lg-2 ">
+                <div class="col-6">
+                    <select>
+                        <option>Janvier</option>
+                        <option>février</option>
+                        <option>mars</option>
+                        <option>avril</option>
+                        <option>mai</option>
+                        <option>juin</option>
+                        <option>juillet</option>
+                        <option>aout</option>
+                        <option>septembre</option>
+                        <option>october</option>
+                        <option>novembre</option>
+                        <option>decembre</option>
+
+
+
+                    </select>
+                    <label for="staticEmail" class=" badge bg-warning col-3  ">Mois</label>
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+
+        <div class="mt-4" >
+
+            <div id="one">
+        <span class="badge bg-warning "> Merci de confirmer votre régime de TVA sur ce nouvel exercice
+        </span>
+            </div>
+            <span class="badge bg-warning "> (Pour le 1er exercice, le Memento Fiscal que vous avez reçu de votre SIE confirme le régime)
+        </span>
+
+            <select>
+                <option>Régime Mensuel - Réel Normal</option>
+                <option>Régime Trimestriel - Mini Réel</option>
+                <option>   Régime Simplifié déclaration à l'année </option>
+            </select>
+        </div>
+        <div class="centre">
+            <button  class="btn btn-primary"  type="submit">Ouvrir l'exercice</button>
+        </div>
+    </form>
+    </div>
+
+    <script src={{  asset('https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js') }}></script>
+
+
+    <script>
+
+        $(document).ready(function() {
+
+            var form = "{{ path('ouvertureExcercice',{'formjuridique': 'text'}) }}";
+
+
+
+
+            $('div#siOui ').hide("fast");
+            $('div#siNon ').hide("fast");
+
+            $('div#tbenfijami3el7alet ').show("fast");
+
+
+
+
+
+            if( '{{ formjuridique }}'=="Entreprise individuelle" ||
+                '{{ formjuridique }}'=="EIRL" ||
+                '{{ formjuridique }}'=="Autoentrepreneur" ||
+                '{{ formjuridique }}'=="SCI"
+            )
+            {
+                $('div#siJuridiqueOui').show("fast");
+                $('div#siJuridiqueNon').hide("fast");
+                $('div#siDifferentdeFormeJuridique').hide("fast");
+                $('#nouvelExcerciceCloture').show("fast");
+
+
+            }
+
+            else {
+
+                $('div#siJuridiqueOui').hide("fast");
+                $('div#siJuridiqueNon').show("fast");
+
+                $('#nouvelExcerciceCloture').hide("fast");
+                $('label#test').hide("fast");
+
+
+                $('div#siDifferentdeFormeJuridique').show("fast");
+
+            }
+
+        });
+        /**********************1er partie [si Oui/Non]********************************/
+        $(document).on('change' ,'#firstYesNo', function(event ) {
+            if( $('#firstYesNo :selected').text()=='oui')
+            {
+                $('div#siOui').show("slow");
+                $('div#siNon').hide("slow");
+            }
+
+
+            else if ($('#firstYesNo :selected').text()=='non')
+            {
+                $('div#siOui').hide("slow");
+                $('div#siNon').show("slow");
+
+
+            }
+        });
+        /**********************2eme partie [date cloture]********************************/
+        $(document).on('change' ,'#date', function(event ){
+
+            var date = new Date($('#date').val());
+            var year = date.getFullYear();
+            document.getElementById("date_cloture_1_ex").value = "31/12"+'/'+year;
+            $("#date_cloture_1_ex ").attr("disabled","disabled");
+
+
+
+        });
+
+        $(document).on('change' ,'#dateFinDernierBilanComptable', function(event ){
+
+
+            if( '{{ formjuridique }}'=="Entreprise individuelle" ||
+                '{{ formjuridique }}'=="EIRL" ||
+                '{{ formjuridique }}'=="Autoentrepreneur" ||
+                '{{ formjuridique }}'=="SCI"
+            )
+            {
+                var date = new Date($('#dateFinDernierBilanComptable').val());
+                var year = date.getFullYear();
+                year = year + 1;
+
+                document.getElementById("nouvelExcerciceOuverture").value = "01/01" + '/' + year;
+                document.getElementById("nouvelExcerciceCloture").value = "31/12" + '/' + year;
+
+                $("#nouvelExcerciceOuverture ").attr("disabled", "disabled");
+                $("#nouvelExcerciceCloture ").attr("disabled", "disabled");
+
+
+
+            }
+
+            else {
+
+                var date = new Date($('#date').val());
+                var day = date.getDate();
+                var year = date.getFullYear();
+                var month = date.getMonth() + 1;
+
+                day=day+1;
+                document.getElementById("nouvelExcerciceOuverture").value = day+'/'+month+'/'+year;
+
+            }
+
+
+
+        });
+
+    </script>
+
+
+
+{% endblock %}
