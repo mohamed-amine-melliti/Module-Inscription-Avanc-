@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Inscription Aldini</title>
+
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    {% include  'Divs/navbar.html.twig' %}
+
+    <!-- Font-->
+    <link rel="stylesheet" type="text/css" href="css/nunito-font.css">
+    <link rel="stylesheet" type="text/css"
+          href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+    <!-- Main Style Css -->
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<div class="page-content">
+    <div class="wizard-v5-content">
+        <div class="wizard-form">
+
+            <form class="form-register" action="{{ path('donneesExcerice') }}" method="post">
+                <input type="hidden" name="formjuridique" value="{{ formjuridique }}">
+
+                <div id="form-total">
+                    <!-- SECTION 1 -->
+                    <h2>
+                        <span class="step-icon"><i class="zmdi zmdi-check"></i></span>
+                        <span class="step-text">Ouverture Excercice</span>
+                    </h2>
+                    <section>
+                        <div class="inner">
+
+                            <div class="form-row" id="">
+                                <div class="form-holder form-holder-2">
+                                    <label> S'agit il du 1er exercice comptable de {{ nomdeDossier }} ?</label>
+                                    <select class="form-control" id="firstYesNo">
+                                        <option value=""></option>
+                                        <option value="non">non</option>
+                                        <option value="oui">oui</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            {% include 'Divs/siOui.html' %}
+
+                            {% include 'Divs/siNon.html' %}
+
+
+                            <div class="form-row" id="">
+                                <div class="form-holder form-holder-2">
+                                    <label> Merci de confirmer votre régime de TVA sur ce nouvel exercice (Pour le 1er
+                                        exercice, le Memento Fiscal que vous avez reçu de votre SIE confirme le
+                                        régime)</label>
+                                    <select name="regime" id="regime">
+                                        <option value=""></option>
+                                        <option>Régime Mensuel - Réel Normal</option>
+                                        <option>Régime Trimestriel - Mini Réel</option>
+                                        <option> Régime Simplifié déclaration à l'année</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+                    <!-- SECTION 2 -->
+
+                    <!-- SECTION 3 -->
+                    <h2>
+                        <span class="step-icon"><i class="zmdi zmdi-check"></i></span>
+                        <span class="step-text">Données Excercice</span>
+                    </h2>
+                    <section>
+                        <div class="inner">
+                            <h3></h3>
+                            <div class="form-row table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                    <tr class="space-row">
+                                        <th>Date ouverture de l'exercice</th>
+                                        <td id="fullname-val"></td>
+                                    </tr>
+                                    <tr class="space-row">
+                                        <th>Date clôture de l'exercice</th>
+                                        <td id="email-val"></td>
+                                    </tr>
+                                    <tr class="space-row">
+                                        <th>Régime de TVA de l'exercice</th>
+                                        <td id="phone-val"></td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script src={{ asset('js/jquery-3.3.1.min.js') }}></script>
+<script src={{ asset('js/jquery.steps.js') }}></script>
+<script src={{ asset('js/main.js') }}></script>
+
+
+<script src={{ asset('js/ouvertureExcercice.js') }}></script>
+
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Inscription Aldini</title>
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- 5edmti-->
+    {% include  'Divs/navbar.html.twig' %}
+
+    <link rel="stylesheet" href={{ asset("https://code.jquery.com/ui/1.7.3/themes/base/jquery-ui.css") }}>
+    <link rel="stylesheet" href={{ asset("css/monstylesheet.css") }}>
+
+
+    <link rel="stylesheet" href={{ asset("css/controlesaisie.css") }}>
+    <link rel="stylesheet" href={{ asset("css/popUpAwelMat7el.css") }}>
+    <link rel="stylesheet" href={{ asset("css/tandhimLesDivs.css") }}>
+
+    <link rel="stylesheet"
+          href={{ asset("https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css") }}>
+    <link rel="stylesheet" href={{ asset("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css") }}>
+    <!-- Font-->
+
+    <link rel="stylesheet" href={{ asset("css/nunito-font.css") }}>
+    <link rel="stylesheet"
+          href={{ asset("fonts/material-design-iconic-font/css/material-design-iconic-font.min.css") }}>
+
+    <!-- Main Style Css -->
+    <link rel="stylesheet" href={{ asset("css/style.css") }}>
+    <link rel="stylesheet" href="{{ asset('css/intlTelInput.css') }}">
+
+
+    <!---------------Create Alerte ---------------------------------------------------------------------------------------->
+    <script src={{ asset('https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js') }}></script>
+    <script src={{ asset('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js') }}></script>
+
+    <!--- <link rel="stylesheet" href={{ asset("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css") }}> ---->
+
+    <link rel="stylesheet" href={{ asset("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css") }}>
+    <link rel="stylesheet"
+          href={{ asset("https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css") }}>
+    <!---------------Create Alerte ---------------------------------------------------------------------------------------->
+
+    <!-- Page Ouverture Dossier-->
+
+</head>
+
+
+<body>
+
+
+<div class="page-content">
+    <div class="wizard-v5-content">
+        <div class="wizard-form">
+            {{ form_start(form, {'attr': {'id': 'dossier','class': 'form-register'}} ) }}
+            <div id="form-total">
+
+
+                <!-- SECTION 3 -->
+                <h2>
+                    <span class="step-icon"><i class="zmdi zmdi-check"></i></span>
+                    <span class="step-text">CREEZ VOS DOSSIERS</span>
+                </h2>
+
+                {% include 'Divs/navigation.html' %}
+
+                <section>
+                    <div class="inner">
+
+                        <div class="form-row">
+                            <div class="form-holder form-holder-2">
+                                <label for="">Nom Dossier : </label>
+                                {{ form_widget (form.nomDossier ,{'attr': {' class':'form-control', 'style':'text-transform:uppercase' }}) }}
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- SECTION 1 -->
+                <h2>
+                    <span class="step-icon"><i class="zmdi zmdi-check"></i></span>
+                    <span class="step-text">Ouverture Dossier</span>
+                </h2>
+                <section>
+
+                    <div class="inner">
+
+                        <div class="form-row">
+                            <div class="form-holder form-holder-2">
+                                <label for="">Secteur d'activité : </label>
+                                {{ form_widget(form.secteurActivite,{'attr': {'class': 'form-control'}} ) }}
+                            </div>
+                        </div>
+
+                        {% include 'dossier/DivsSecteurActivite.html' %}
+
+                        <div class="form-row">
+                            <div class="form-holder form-holder-2">
+                                {{ form_row(form.raisonSociale ,{'attr': {'class': 'form-control', 'style':'text-transform:uppercase'}} ) }}
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-holder form-holder-2">
+                                {{ form_row(form.formeJuridique ,{'attr': {'class': ' toggle button  form-control' , 'data-target':'myPopup'}} ) }}
+                            </div>
+                        </div>
+
+                        <div class="form-row" id="DivCapitalSocial">
+                            <div class="form-holder form-holder-2">
+                                {{ form_row(form.capitalSocial ,{'attr': {'class': 'form-control'}} ) }}
+                            </div>
+                        </div>
+
+                        <div class="form-row" id="DivNbAssocie">
+                            <div class="form-holder form-holder-2">
+
+                                {{ form_label(form.nbAssocies,"Nombre d'associés" , {'label_attr': {'class' : 'foo'}}) }}
+                                {{ form_widget(form.nbAssocies ,{'attr': {'class': 'form-control'}} ) }}
+                            </div>
+                        </div>
+
+
+                        <div class="form-row">
+                            <div class="form-holder form-holder-2">
+                                {{ form_row(form.adressSiegeSocial ,{'attr': {'class': 'form-control'}} ) }}
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-holder form-holder-2">
+
+                                {{ form_label(form.codePostale) }}
+                                {{ form_widget(form.codePostale,{'attr': {'class': 'form-control validate '  , 'maxlength':'5' }} ) }}
+
+
+                                <span class="message">Un code postal doit inclure 5 chiffres</span>
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-holder form-holder-2">
+                                <label for="">Ville</label>
+                                {{ form_widget(form.ville ,{'attr': {'class': 'form-control', 'style':'text-transform:uppercase'}} ) }}
+                                <span><i class="zmdi zmdi-pin"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-holder form-holder-2">
+                                <label for="email">Numéro téléphone : </label>
+                                {{ form_widget(form.numeroTel ,{'attr': {'class': 'form-control intl-tel-input', 'maxlength':'9', 'onkeyup':'Validate(this.id,"integer");' }} ) }}
+                                <span id="messageTel" class="message">Ce numéro de téléphone n'est pas valide</span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-row">
+                            <div class="form-holder form-holder-2">
+                                {{ form_row(form.adressMail ,{'attr': {'class': 'form-control', 'style':'text-transform:lowercase','type':'mail'}} ) }}
+
+                                <span id="messageMail" class="message">Ceci n'est pas une adresse email valide</span>
+                            </div>
+
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-holder form-holder-2">
+                                {{ form_row(form.siret ,{'attr': {'class': 'form-control validate' , 'maxlength':'14' }} ) }}
+
+                                <span id="messagesiret" class="message">Un numéro siret doit inclure 14 chiffre</span>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-holder form-holder-2">
+                                {{ form_row(form.franchiseEnBaseTva ,{'attr': {'class': ' toggleTVA button  form-control ' , 'data-target':'myPopup'}} ) }}
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-holder form-holder-2">
+                                {{ form_row(form.numeroTVAintracommunaitre ,{'attr': {'class': 'form-control validate', 'maxlength':'13'  }} ) }}
+
+                                <span id="messagenumeroTVAintracommunaitre" class="message">Un numéro TVA intracommunaitre doit étre sous la forme "FR+11 chiffres"</span>
+
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-holder form-holder-2">
+                                {{ form_row(form.typeImposition ,{'attr': {'class': ' toggleTypeImpo button  form-control' , 'data-target':'myPopup'}} ) }}
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-holder form-holder-2">
+                                {{ form_row(form.categorieImposition ,{'attr': {'class': ' toggleCategorieImpo button  form-control' , 'data-target':'myPopupCategImposition'}} ) }}
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-holder form-holder-2">
+                                {{ form_row(form.regimeMicro ,{'attr': {'class': ' toggleRegMicro button  form-control' , 'data-target':'myPopup'}}) }}
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="form-holder">
+                                {{ form_label(form.nomGerant ,'',{'label_attr': {'id': 'foo1',}}) }}
+                                {{ form_widget(form.nomGerant ,{'attr': {'class': 'form-control', 'style':'text-transform:uppercase'}} ) }}
+                            </div>
+
+                            <div class="form-holder">
+                                {{ form_label(form.prenomGerant,'',{'label_attr': {'id': 'foo2'}}) }}
+                                {{ form_widget(form.prenomGerant ,{'attr': {'class': 'form-control'}} ) }}
+                            </div>
+
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-holder form-holder-2">
+                                {{ form_label(form.capital,'% Capital',{'label_attr': {'id': 'foo2'}}) }}
+
+                                {{ form_widget(form.capital,{'attr': {'class': 'form-control'}} ) }}
+                                <span id="messageCapital"
+                                      class="message">Ceci n'est pas une chiffre capitale valide</span>
+                            </div>
+                        </div>
+
+                        {% include 'dossier/Divs1pt7MiseAjour.html' %}
+
+                    </div>
+
+                </section>
+                <!-- SECTION 2 -->
+
+                <h2>
+                    <span class="step-icon"><i class="zmdi zmdi-check"></i></span>
+                    <span class="step-text">Ouverture Dossier - Step 2 -</span>
+                </h2>
+                <section>
+                    <div class="inner">
+
+                        <form id="formCogerant" class="form-inline" name="form" role="form"
+                              action="{{ path('ouvertureDossier') }}">
+                            <div class="form-row fieldGroup" id="p_scents">
+
+                                <div class="form-holder">
+                                    <label>Nom Cogérant </label>
+                                    <input type="text" class="form-control input-step-2" id="nomCogerant(1)"
+                                           name="nomCogerant(1)" style="text-transform: uppercase">
+                                </div>
+
+                                <div class="form-holder">
+                                    <label>Prénom Cogérant </label>
+                                    <input type="text" class="form-control input-step-2" id="prenomCogerant(1)"
+                                           name="prenomCogerant(1)">
+                                </div>
+
+                                <div class="form-holder">
+                                    <label>%Capital </label>
+                                    <input type="text" class="form-control input-step-2" id="capitalCogerant(1)"
+                                           name="capitalCogerant(1)">
+                                </div>
+
+
+                            </div>
+
+                            <input type="hidden" id="nb_elements" name="nb_elements" value=1>
+
+                            <button href="javascript:void(0)" class="ui primary right floated button addMore"
+                                    type="button" id="addCogerant">
+                                Ajouter Cogérant
+                            </button>
+                        </form>
+
+
+                    </div>
+                </section>
+
+
+                <!-- SECTION 2 -->
+                <h2>
+                    <span class="step-icon"><i class="zmdi zmdi-check"></i></span>
+                    <span class="step-text">Ouverture Dossier -Step 3-</span>
+                </h2>
+                <section>
+                    <div class="inner">
+
+                        {% include 'dossier/Divs1pt8.html' %}
+
+
+                        <div class="form-row">
+                            <div class="form-holder">
+                                {{ form_label(form.regimeIndependants ,'',{'label_attr': {'id': 'foo3'}}) }}
+                                {{ form_widget(form.regimeIndependants ,{'attr': {'class': 'form-control'}} ) }}
+                            </div>
+                        </div>
+
+                        {% include 'dossier/Divs1pt8Part2.html' %}
+
+                    </div>
+                </section>
+                {{ form_end(form) }}
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script src={{ asset('js/jquery-3.3.1.min.js') }}></script>
+<script src={{ asset('js/jquery.steps.js') }}></script>
+<script src={{ asset('js/main.js') }}></script>
+
+
+<!------------------------------------------------------------->
+<script src={{ asset('js/functionsPrincipales.js') }}></script>
+
+<script src={{ asset('js/miseAjour1-7.js') }}></script>
+<script src={{ asset('js/functions7achtiBehom.js') }}></script>
+
+<script src={{ asset('js/controleSaisie.js') }}></script>
+<script src={{ asset('js/popUpSecteurActivite.js') }}></script>
+
+<script src={{ asset('js/multipleCogerant.js') }}></script>
+<script src="{{ asset('js/intlTelInput.js') }}"></script>
+
+<!-----------------------------------------API codepostale------------------------------------------------------------->
+<script src={{ asset('https://code.jquery.com/ui/1.12.1/jquery-ui.min.js') }}></script>
+
+<script src={{ asset('js/VilleAutoComplete.js') }}></script>
+<script src={{ asset('js/apiSirene.js') }}></script>
+
+
+
+
+
+<!--------------------------------------------------------------------------------------------------------------------->
+<div id="pageMessages">
+</div>
+{% include 'dossier/DivsPopUp.html' %}
+
+</body>
+
+</html>

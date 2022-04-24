@@ -31,14 +31,11 @@ class DossierController extends AbstractController
     public function show(): Response
     {
 
-////        $objectManager=$doctrine->getManager();
-//        $user=$this->getUser()->getUserIdentifier();
-//        $dossiers = $this->dossierRepository->findByUserId($user);
-////         dd($dossiers);
-
-//
-        return $this->render('dossier/index.html.twig', [
+        $user = $this->getUser();
+        $dossiers = $this->dossierRepository->findByUser($user);
+        return $this->render('dossier/indexE.html.twig', [
             'controller_name' => 'DossierController',
+            'dossiers' => $dossiers
         ]);
     }
 
@@ -52,8 +49,8 @@ class DossierController extends AbstractController
         $user->setmodePaiementChoisi($type);
         $objectManager ->persist($user);
         $objectManager ->flush();
-        return $this->render('dossier/index.html.twig', [
-            'controller_name' => 'ouvertureDossier',
+
+        return $this->redirectToRoute('ouvertureDossier' ,[
         ]);
     }
 
@@ -61,38 +58,59 @@ class DossierController extends AbstractController
     public function ouvertureDossier( Request $request ): Response
     {
         $user = $this->getUser();
-        $nomdeDossier = $request->get('nomdossier');
+        //$nomdeDossier = $request->get('nomdossier');
+        /**********************************************/
+
+        /**********************************************/
 //       dd($nomdeDossier);
         $dossier = new Dossier();
         $coGerant = new CoGerant();
-        $nomdeDossier =strval($nomdeDossier);
+
+
+
+
+
+        //$nomdeDossier =strval($nomdeDossier);
 
         $form1 = $this->createForm(CoGerantType::class , $coGerant);
-//        $form1->add('save', SubmitType::class, [
-//            'attr' => ['class' => 'save'],
-//        ]);
 
         $form = $this->createForm(DossierType::class,$dossier);
+        $form->remove('coGerant');
 
         $form->handleRequest($request);
-        $form1->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
 
-            $dossier->setNomDossier($nomdeDossier);
+
+
+            /*****************************************************************/
+
+            $j1=$request->get("nb_elements");
+            $j= intval($j1, 10);
+
+            for($i=1 ; $i<$j  ; $i++ ){
+
+                $coGerant->setNomCogerant($request->get('nomCogerant('.$i.')'));
+                $coGerant->setPrenomCogerant($request->get('prenomCogerant('.$i.')'));
+                $coGerant->setParticipation($request->get('capitalCogerant('.$i.')'));
+                $dossier ->getCoGerant()->add($coGerant);
+                dd($j);
+
+            }
+
+            /*****************************************************************/
             $dossier->setUser($user);
-////            if($form1->isSubmitted() && $form1->isValid()){
-//            $idossier = $dossier->getId();
-////-            $idossier= intval($idossier);
-           $coGerant->setDossier($dossier);
+
+            $coGerant->setDossier($dossier);
             $this->em->persist($coGerant);
             $this->em->persist($dossier);
-            
+
             $this->em->flush();
             $FormeJuridique =$dossier->getFormeJuridique();
             $id=$dossier->getId();
             $raisonSociale = $dossier->getRaisonSociale();
-            
+            $nomdeDossier= $dossier->getNomDossier();
+
 
           //  $this->em->flush();
 
@@ -102,18 +120,18 @@ class DossierController extends AbstractController
             return $this->redirectToRoute('ouvertureExcercice' ,[
               'formjuridique'=> $FormeJuridique,
               'idDossier'=> $id ,
-              'raisonSociale' => $raisonSociale
-             
-        ]);
-    }
+              'raisonSociale' => $raisonSociale,
+                'nomdeDossier' => $nomdeDossier,
+
+            ]);
+         }
 
 
 
-        return $this->render('dossier/ouvertureDossier.html.twig', [
+        return $this->render('dossier/newOuvertureDossier.html.twig', [
             'controller_name' => 'DossierController',
             'form' => $form->createView(),
-            'form1' => $form1->createView()
-
+           // 'nomDossier'=> $nomdeDossier,
         ]);
     }
 
@@ -123,13 +141,16 @@ class DossierController extends AbstractController
             $g = $request->get('formjuridique');
             //  dd($g);
             $rr = $request->get('raisonSociale');
-          $exercice = new Excercice();
+            $nn = $request->get('nomdeDossier');
+
+            $exercice = new Excercice();
             $form = $this->createForm(ExcerciceType::class,$exercice);
 
-            return $this->render('dossier/ouvertureExcercie.html.twig', [
+            return $this->render('dossier/newOuvertureExcercice.html.twig', [
                'controller_name' => ' ',
                 'formjuridique' =>$g ,
                 'raisonSociale'=> $rr ,
+                'nomdeDossier' =>$nn,
                 'form' => $form->createView()
 
 
@@ -141,18 +162,178 @@ class DossierController extends AbstractController
     {
         $exercice = new Excercice();
         $form = $this->createForm(ExcerciceType::class,$exercice);
-        $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
-            $this->em->persist($exercice);
 
-            $this->em->flush();
+
+        $formjurdique = $request->get('formjuridique');
+
+        $regime = $request->get('regime');
+
+        //ken loula oui  (1er excercie)
+
+        $firstYesNo = $request->get('firstYesNo');
+        $ClotureChangeOuNon= $request->get('ClotureChangeOuNon');
+        if ($firstYesNo == 'oui') {
+
+
+            //ken forme juridique feha condition = SCI
+            if ($formjurdique == "SCI" or $formjurdique == "Entreprise individuelle" or $formjurdique == "EIRL" or $formjurdique == "Autoentrepreneur") {
+                $dateCreationEntreprise = $request->get('dateCreationEntreprise');
+                $datecloture1ex = $request->get('datecloture1ex');
+
+                $form->get('dateOuverture')->setData($dateCreationEntreprise);
+                $form->get('dateCloture')->setData($datecloture1ex);
+                $form->get('regimeTVA')->setData($regime);
+                $form ->handleRequest($request);
+                if($form->isSubmitted() && $form->isValid()){
+                    $this->em->persist($exercice);
+
+                    $this->em->flush();
+                }
+
+
+                return $this->render('dossier/donneesExcerice.html.twig', [
+                    'controller_name' => ' ',
+                    'form' => $form->createView(),
+//
+
+                ]);
+
+            } //ken forme juridique different de SCI
+            else {
+                $datesignatureStatus = $request->get('datesignatureStatus');
+                $jourCloture1erEerc = $request->get('jourCloture1erEerc');
+                $MoisCloture1erExcerciceSIFORMEJURIDIQUEDIFFERENT = $request->get('MoisCloture1erExcerciceSIFORMEJURIDIQUEDIFFERENT');
+                $anneeCloture1erExcerciceSIFORMEJURIDIQUEDIFFERENT = $request->get('anneeCloture1erExcerciceSIFORMEJURIDIQUEDIFFERENT');
+
+                $date_kemla =  $jourCloture1erEerc .'/'. $MoisCloture1erExcerciceSIFORMEJURIDIQUEDIFFERENT . '/'. $anneeCloture1erExcerciceSIFORMEJURIDIQUEDIFFERENT;
+
+                $form->get('dateOuverture')->setData($datesignatureStatus);
+                $form->get('dateCloture')->setData($date_kemla);
+                $form->get('regimeTVA')->setData($regime);
+                $form ->handleRequest($request);
+                if($form->isSubmitted() && $form->isValid()){
+                    $this->em->persist($exercice);
+
+                    $this->em->flush();
+                }
+
+
+                return $this->render('dossier/donneesExcerice.html.twig', [
+                    'controller_name' => ' ',
+                    'form' => $form->createView(),
+//
+
+                ]);
+            }
+
         }
+        //ken loula non (1er excercie)
+    else
+        {
+
+
+            //ken forme juridique feha condition = SCI
+            if ($formjurdique == "SCI" or $formjurdique == "Entreprise individuelle" or $formjurdique == "EIRL" or $formjurdique == "Autoentrepreneur") {
+            $dateFinDernierBilanComptable =$request->get('dateFinDernierBilanComptable');
+            $nouvelExcerciceOuverture = $request->get('nouvelExcerciceOuverture');
+            $nouvelExcerciceCloture = $request->get('nouvelExcerciceCloture');
+
+                $form->get('dateOuverture')->setData($nouvelExcerciceOuverture);
+                $form->get('dateCloture')->setData($nouvelExcerciceCloture);
+                $form->get('regimeTVA')->setData($regime);
+
+                $form ->handleRequest($request);
+                if($form->isSubmitted() && $form->isValid()){
+                    $this->em->persist($exercice);
+
+                    $this->em->flush();
+                }
+
+                return $this->render('dossier/donneesExcerice.html.twig', [
+                    'controller_name' => ' ',
+                    'form' => $form->createView(),
+//
+
+                ]);
+
+
+            } //ken forme juridique different de SCI
+
+            else {
+                $dateFinDernierBilanComptable =$request->get('dateFinDernierBilanComptable');
+                $nouvelExcerciceOuverture = $request->get('nouvelExcerciceOuverture');
+
+                $form->get('dateOuverture')->setData($nouvelExcerciceOuverture);
+
+                $form->get('regimeTVA')->setData($regime);
+
+
+
+                //ken nouvel excercice changera
+                if ($ClotureChangeOuNon == 'oui') {
+                    $JOURclotureNouvelExNonOuiDifSCI = $request->get('JOURclotureNouvelExNonOuiDifSCI');
+                    $AnneeclotureNouvelExNonOuiDifSCI = $request->get('AnneeclotureNouvelExNonOuiDifSCI');
+                    $MoisclotureNouvelExNonOuiDifSCI = $request->get('MoisclotureNouvelExNonOuiDifSCI');
+
+
+ $date_xx = $JOURclotureNouvelExNonOuiDifSCI .'/'.$MoisclotureNouvelExNonOuiDifSCI .'/'.$AnneeclotureNouvelExNonOuiDifSCI ;
+                    $form->get('dateCloture')->setData($date_xx);
+                    $form ->handleRequest($request);
+                    if($form->isSubmitted() && $form->isValid()){
+                        $this->em->persist($exercice);
+
+                        $this->em->flush();
+                    }
+
+                    return $this->render('dossier/donneesExcerice.html.twig', [
+                        'controller_name' => ' ',
+                        'form' => $form->createView(),
+
+                    ]);
+
+                } //ken nouvel excercice ne chanegra pas
+                else {
+                    $CloturenouvelExcerciceSiNonEtDifferentduFormeJuridique = $request->get('CloturenouvelExcerciceSiNonEtDifferentduFormeJuridique');
+                    $dateFinDernierBilanComptable =$request->get('dateFinDernierBilanComptable');
+                    $nouvelExcerciceOuverture = $request->get('nouvelExcerciceOuverture');
+
+
+                    $form->get('dateOuverture')->setData($nouvelExcerciceOuverture);
+                    $form->get('dateCloture')->setData($CloturenouvelExcerciceSiNonEtDifferentduFormeJuridique);
+                    $form->get('regimeTVA')->setData($regime);
+                    $form ->handleRequest($request);
+                    if($form->isSubmitted() && $form->isValid()){
+                        $this->em->persist($exercice);
+
+                        $this->em->flush();
+                    }
+
+                    return $this->render('dossier/donneesExcerice.html.twig', [
+                        'controller_name' => ' ',
+                        'form' => $form->createView(),
+
+                    ]);
+                }
+
+
+            }
+        }
+
+
+
+
+
+
+
+//        $form->handleRequest($request);
+
+
 
 
 
         return $this->render('dossier/donneesExcerice.html.twig', [
             'controller_name' => ' ',
-            'form' => $form->createView()
+            'form' => $form->createView(),
 
 
         ]);

@@ -24,7 +24,7 @@ class Dossier
     #[ORM\Column(type: 'string', length: 255)]
     private $formeJuridique;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255 , nullable: true )]
     private $capitalSocial;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -73,7 +73,11 @@ class Dossier
     #[ORM\Column(type: 'string', length: 255)]
     private $prenomGerant;
 
-    #[ORM\OneToMany(mappedBy: 'dossier', targetEntity: CoGerant::class, orphanRemoval: true)]
+    #[ORM\Column(type: 'float', nullable: true)]
+    private $capitalGerant;
+
+
+    #[ORM\OneToMany(mappedBy: 'dossier', targetEntity: CoGerant::class, cascade: ["persist"], orphanRemoval: true)]
     private $coGerant;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'Dossier')]
@@ -82,6 +86,11 @@ class Dossier
 
     #[ORM\Column(type: 'string', length: 255)]
     private $secteurActivite;
+
+    #[ORM\Column(type: 'float', nullable: true)]
+    private $capital;
+
+
 
     public function __construct()
     {
@@ -378,4 +387,55 @@ class Dossier
 
         return $this;
     }
+
+    public function getCapital(): ?float
+    {
+        return $this->capital;
+    }
+
+    public function setCapital(?float $capital): self
+    {
+        $this->capital = $capital;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCapitalGerant()
+    {
+        return $this->capitalGerant;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @param mixed $capitalGerant
+     */
+    public function setCapitalGerant($capitalGerant): void
+    {
+        $this->capitalGerant = $capitalGerant;
+    }
+
+    /**
+     * @param ArrayCollection $coGerant
+     */
+    public function setCoGerant(ArrayCollection $coGerant): void
+    {
+        $this->coGerant = $coGerant;
+    }
+
+
+
+
+
+
+
 }

@@ -112,6 +112,9 @@
     "knplabs/knp-snappy": {
         "version": "v1.4.1"
     },
+    "kylekatarnls/vicopo": {
+        "version": "1.2.1"
+    },
     "laminas/laminas-code": {
         "version": "4.5.1"
     },
@@ -171,6 +174,15 @@
     },
     "symfony/amqp-messenger": {
         "version": "v5.4.3"
+    },
+    "symfony/apache-pack": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "9d254a22efca7264203eea98b866f16f944b2f09"
+        }
     },
     "symfony/asset": {
         "version": "v5.4.3"

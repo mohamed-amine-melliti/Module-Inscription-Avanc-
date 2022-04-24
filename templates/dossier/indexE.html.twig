@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DossierController!{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+    <span class="badge bg-warning">CREEZ VOS DOSSIERS </span>
+
+    <div class="container mt-xl-4">
+        <div class="input-group mb-3">
+            <form action="{{ path('ouvertureDossier') }}" method="post">
+                <input type="text" class="form-control" placeholder="Nouveau dossier" id="nomdossier"  name="nomdossier"  style="text-transform:uppercase">
+                <button class="btn btn-primary"  type="submit">Créer</button>
+            </form>
+        </div>
+    </div>
+    {% if dossiers %}
+        <div class="container mt-xl-4" style="text-align-all: justify">
+
+            {% for dossier in dossiers  %}
+
+                {#           <div style="text-align-all: justify">    <h3>{{ dossier.raisonSociale}} </h3> <h5 style="color: #30f504"> Créé &#9989; </h5> </div>#}
+                <div class="col-8" >
+
+                    <ul class="list-group mt-6">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {{ dossier.raisonSociale}}
+                        </li>
+                    </ul>
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        </div>
+    {% endif %}
+
+
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}
+

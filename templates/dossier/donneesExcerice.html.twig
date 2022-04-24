@@ -4,12 +4,45 @@
 
 {% block body %}
 
+{#    {{ dump(dateCreationEntreprise)  }}#}
+{#    {{ dump(datecloture1ex)  }}#}
+
+
+
+
+{#  formjuridique SCI ET NON #}
+{#    {{ dump(dateFinDernierBilanComptable)  }}#}
+{#    {{ dump(nouvelExcerciceOuverture)  }}#}
+{#    {{ dump(nouvelExcerciceCloture)  }}#}
+
+
+
+
+    {#  formjuridique #SCI ET oui #}
+
+{#    {{ dump(datesignatureStatus)  }}#}
+{#    {{ dump(jourCloture1erEerc)  }}#}
+{#    {{ dump(anneeCloture1erExcerciceSIFORMEJURIDIQUEDIFFERENT)  }}#}
+{#    {{ dump(MoisCloture1erExcerciceSIFORMEJURIDIQUEDIFFERENT)  }}#}
+
+{#    #}{#  formjuridique #SCI ET nn #}
+{#    {{ dump(MoisCloture1erExcerciceSIFORMEJURIDIQUEDIFFERENT)  }}#}
+
+
+
+
+
+
+
+
+
+
     <div class="container-fluid mt-12">
         {{form_start(form)}}
         <div class="form-group row mt-4 m-lg-2 ">
             <label for="staticEmail" class=" badge bg-warning col-3 ">{{ form_label(form.dateOuverture)}} </label>
             <div class="col-sm-3">
-                {{ form_widget(form.dateOuverture)}}
+                {{ form_widget(form.dateOuverture , {'attr': {' class':'nom-dossier' }})}}
             </div>
         </div>
 

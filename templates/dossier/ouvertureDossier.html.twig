@@ -4,206 +4,111 @@
 
 {% block body %}
 
-
     <head>
 
         <meta charset="utf-8">
         <meta name="robots" content="noindex, nofollow">
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        {#        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">#}
-        <style type="text/css">
 
-        </style>
+
+        <script src={{ asset('https://code.jquery.com/jquery-3.5.1.min.js') }}></script>
+        <script src={{ asset('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js') }}></script>
+        <script src={{ asset('js/functionsPrincipales.js') }}></script>
+
         {% block scripts %}
-            <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-            <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
-            <script type="text/javascript">
-                window.alert = function(){};
-                var defaultCSS = document.getElementById('bootstrap-css');
-                function changeCSS(css){
-                    if(css) $('head > link').filter(':first').replaceWith('<link rel="stylesheet" href="'+ css +'" type="text/css" />');
-                    else $('head > link').filter(':first').replaceWith(defaultCSS);
-                }
-                $( document ).ready(function() {
-                    var iframe_height = parseInt($('html').height());
-                    window.parent.postMessage( iframe_height, 'https://bootsnipp.com');
-                });
+            <script src={{ asset('https://code.jquery.com/jquery-1.10.2.min.js') }}></script>
+            <script src={{ asset("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js") }}></script>
 
-            </script>
-            <script>
-
-
-                var room = 1;
-                function education_fields() {
-
-                    room++;
-                    var objTo = document.getElementById('education_fields')
-                    var divtest = document.createElement("div");
-                    divtest.setAttribute("class", "form-group removeclass"+room);
-                    var rdiv = 'removeclass'+room;
-                    divtest.innerHTML = '<div class="col-sm-3 nopadding"><div class="form-group"> <input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Nom cogerant"></div></div><div class="col-sm-3 nopadding"><div class="form-group"> <input type="text" class="form-control" id="Major" name="Major[]" value="" placeholder="Prenom cogerant"></div></div><div class="col-sm-3 nopadding"><div class="form-group"> <input type="text" class="form-control" id="Degree" name="Degree[]" value="" placeholder="Participation"></div></div><div class="col-sm-3 nopadding"><div class="form-group"><div class="input-group"> <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields('+ room +');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div><div class="clear"></div>';
-
-                    objTo.appendChild(divtest)
-                }
-                function remove_education_fields(rid) {
-                    $('.removeclass'+rid).remove();
-                }
-            </script>
         {% endblock %}
     </head>
 
-    <style>
-
-
-        form-control {
-            padding : 50px 50px 0 ;
-            margin: 0 auto;
-            width: 300px;
-        }
-    </style>
-
-    <style>
-        #pageMessages {
-            position: fixed;
-            bottom: 15px;
-            right: 15px;
-            width: 30%;
-        }
-
-        .alert {
-            position: relative;
-        }
-
-        .alert .close {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            font-size: 1em;
-        }
-
-        .alert .fa {
-            margin-right:.3em;
-        }
-    </style>
-
-
-    <script src={{  asset('js/controleSaisie.js') }}></script>
-    <script src={{  asset('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js') }}></script>
-    <script src={{  asset('https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js') }}></script>
-
-
-
-    <link rel="stylesheet" href={{  asset("css/controlesaisie.css") }}>
-    <link rel="stylesheet" href={{  asset("https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css") }}>
-    <link rel="stylesheet" href={{  asset("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css") }}>
-
-
-    <script>
-        function createAlert(title, summary, details, severity, dismissible, autoDismiss, appendToId) {
-            var iconMap = {
-                info: "fa fa-info-circle",
-                success: "fa fa-thumbs-up",
-                warning: "fa fa-exclamation-triangle",
-                danger: "fa ffa fa-exclamation-circle"
-            };
-
-            var iconAdded = false;
-
-            var alertClasses = ["alert", "animated", "flipInX"];
-            alertClasses.push("alert-" + severity.toLowerCase());
-
-            if (dismissible) {
-                alertClasses.push("alert-dismissible");
-            }
-
-            var msgIcon = $("<i />", {
-                "class": iconMap[severity] // you need to quote "class" since it's a reserved keyword
-            });
-
-            var msg = $("<div />", {
-                "class": alertClasses.join(" ") // you need to quote "class" since it's a reserved keyword
-            });
-
-            if (title) {
-                var msgTitle = $("<h4 />", {
-                    html: title
-                }).appendTo(msg);
-
-                if(!iconAdded){
-                    msgTitle.prepend(msgIcon);
-                    iconAdded = true;
-                }
-            }
-
-            if (summary) {
-                var msgSummary = $("<strong />", {
-                    html: summary
-                }).appendTo(msg);
-
-                if(!iconAdded){
-                    msgSummary.prepend(msgIcon);
-                    iconAdded = true;
-                }
-            }
-
-            if (details) {
-                var msgDetails = $("<p />", {
-                    html: details
-                }).appendTo(msg);
-
-                if(!iconAdded){
-                    msgDetails.prepend(msgIcon);
-                    iconAdded = true;
-                }
-            }
-
-
-            if (dismissible) {
-                var msgClose = $("<span />", {
-                    "class": "close", // you need to quote "class" since it's a reserved keyword
-                    "data-dismiss": "alert",
-                    html: "<i class='fa fa-times-circle'></i>"
-                }).appendTo(msg);
-            }
-
-            $('#' + appendToId).prepend(msg);
-
-            if(autoDismiss){
-                setTimeout(function(){
-                    msg.addClass("flipOutX");
-                    setTimeout(function(){
-                        msg.remove();
-                    },1000);
-                }, 1000);
-            }
-        }
-
-
-    </script>
+    <link rel="stylesheet" href={{ asset("css/controlesaisie.css") }}>
+    <link rel="stylesheet" href={{ asset("css/popUpAwelMat7el.css") }}>
+    <link rel="stylesheet" href={{ asset("css/tandhimLesDivs.css") }}>
+    <link rel="stylesheet"
+          href={{ asset("https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css") }}>
+    <link rel="stylesheet" href={{ asset("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css") }}>
 
     <div id="pageMessages">
     </div>
 
+    <!-------------------------------------------------------------------->
+    <div class="container">
 
-
-    <div class="container2">
-
-        <div id="myPopupFinal" class="popup hide">
+        <div id="myPopupSecteurActiviteFehaOuiWallaNon" class="popup hide">
             <div class="popup-header">
-                Message
-                <span class="close toggle" data-target="myPopupFinal">close</span>
+                <span class="close toggle" data-target="myPopupSecteurActiviteFehaOuiWallaNon">close</span>
+                <span class="close toggle" data-target="myPopupSecteurActiviteFehaOuiWallaNon">close</span>
             </div>
-            <div class="popup-body" >
-                <div id="msgfinalefinale">
+
+
+            <div class="popup-body">
+
+                <div id="msgSecteurActiviteFehaOuiWallaNon">
+
 
                 </div>
-
             </div>
+
             <div class="popup-footer">
-                <button id="jsrfinale" class="toggle button" data-target="myPopup"  >Confirmer </button>
-                <button id="jnsrfinale" class="toggle button" data-target="myPopup"  >Revenir </button>
+                <button id="jsrSecteurActiviteFehaOuiWallaNon" class="toggle button"
+                        data-target="myPopupSecteurActiviteFehaOuiWallaNon">oui
+                </button>
+                <button id="jnsrSecteurActiviteFehaOuiWallaNon" class="toggle button"
+                        data-target="myPopupSecteurActiviteFehaOuiWallaNon">non
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-------------------------------------------------------------->
+    <div class="container">
+
+        <div id="myPopupSecteurActivite" class="popup hide">
+            <div class="popup-header">
+                <span class="close toggle" data-target="myPopupSecteurActivite">close</span>
+                <span class="close toggle" data-target="myPopupSecteurActivite">close</span>
+            </div>
+
+
+            <div class="popup-body">
+                <div id="msgSecteurActivite">
+                </div>
+            </div>
+
+            <div class="popup-footer">
+                <button id="jsrSecteurActivite" class="toggle button" data-target="myPopupSecteurActivite">oui</button>
+                <button id="jnsrSecteurActivite" class="toggle button" data-target="myPopupSecteurActivite">non</button>
+            </div>
+
+        </div>
+    </div>
+    <!-------------------------------------------------------------->
+    <div class="container">
+
+        <div id="myPopupFinal" class="popup hide">
+
+            <div class="popup-header">
+                <span class="close toggle" data-target="myPopupFinal">close</span>
+            </div>
+
+
+            <div class="popup-body">
+                <div id="msgfinalefinale">
+                    "Confirmez-vous la création du dossier ? ATTENTION VOUS ÊTES SUR LE POINT DE DECLENCHER VOTRE
+                    ABONNEMENT"
+
+                </div>
+            </div>
+
+            <div class="popup-footer">
+                <button id="jsrfinale" type="submit" onclick="submitForms()" class="toggle button btn btn-primary"
+                        data-target="myPopupFinal">Confirmer
+                </button>
+                <button id="jnsrfinale" class="toggle button" data-target="myPopupFinal">Revenir</button>
             </div>
         </div>
     </div>
@@ -213,796 +118,523 @@
     <div class="container">
 
         <div id="myPopup" class="popup hide">
+
             <div class="popup-header">
                 Message
                 <span class="close toggle" data-target="myPopup">close</span>
             </div>
-            <div class="popup-body" >
-                ous Avez Choisi  cette option .
+
+            <div class="popup-body" id="mosalah">
+                Vous avez choisi cette option .
                 <div id="msg">
 
                 </div>
                 êtes-vous sûr ?
             </div>
+
             <div class="popup-footer">
-                <button id="jsr" class="toggle button" data-target="myPopup"  >Confirmer </button>
-                <button id="jnsr" class="toggle button" data-target="myPopup"  >Revenir </button>
+                <button id="jsr" class="toggle button" data-target="myPopup">Confirmer</button>
+                <button id="jnsr" class="toggle button" data-target="myPopup">Revenir</button>
             </div>
         </div>
     </div>
-    {{ form_start(form , {'attr': {'id': 'dossier','class': 'validate-form'}}) }}
+    <!--------------------->
+
+    <div class="container">
+
+        <div id="myPopupCategImposition" class="popup hide">
+            <div class="popup-header">
+                Message
+                <span class="close toggle" data-target="myPopupCategImposition">close</span>
+            </div>
+            <div class="popup-body" id="">
+                Vous avez choisi cette option .
+                <div id="msgCategImposition">
+
+                </div>
+                êtes-vous sûr ?
+            </div>
+            <div class="popup-footer">
+                <button id="jsrCategImposition" class="toggle button" data-target="myPopupCategImposition">Confirmer
+                </button>
+                <button id="jnsrCategImposition" class="toggle button" data-target="myPopupCategImposition">Revenir
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-------------------------------------------------------------------->
+
+    <div class="overlay ">
+        <div class="modelBox animated swing">
+            <div align="right"><a href="#" class=" btn-close" style="color: red;">X</a></div>
+            <div class="mText">
+
+                Afin de commencer à utiliser ALDINI, veuillez compléter les champs suivants pour créer votre dossier
+
+            </div>
+        </div>
+    </div>
+
+    <!-------------------------------------------------------------------->
+    {{ form_start(form , {'attr': {'id': 'dossier','class': 'validate-form ms-5'}}) }}
+
+    <div class=" col-11">
+        <div class="card-group">
+            <mark>
+
+                <p style="color: red"> ATTENTION ! LES INFORMATIONS RENTREES SUR CETTE PAGE DOIVENT ÊTRE EXACTES ET
+                    STRICTEMENT CONFORMES AUX INFORMATIONS
+                    MENTIONNEES SUR VOTRE K-BIS ET VOTRE MEMENTO FISCAL
+                    CAR ELLES IMPACTENT IRREVERSIBLEMENT VOTRE COMPTABILITE
+                    UNE FOIS LES INFORMATIONS VALIDEES SUR CETTE PAGE, LE DOSSIER NE SERA PLUS MODIFIABLE POUR LES
+                    CHAMPS AVEC *
+                </p>
+            </mark>
+
+        </div>
+    </div>
+
+    <div class="col-sm-3 mt-4">
+        <div class="form-group" style="width: 110%;">
+            {{ form_label(form.secteurActivite,"Secteur d'activité" , {'label_attr': {'class' : 'foo'}}) }}
+            {{ form_widget(form.secteurActivite,{'attr': {'class': 'form-control'}} ) }}
+        </div>
+    </div>
+    <!-------------------Divs mte3 secteur Activité ---------------------------->
+    <div class="col-sm-3" id="lazemTet5abaCafeResto">
+        Avec débit de tabac ?
+        <div class="form-group" style="width: 110%;">
+            <select class="form-control" id="ouinonSecteurActivite">
+                <option value=""></option>
+                <option value="non">non</option>
+                <option onclick="redirect();" value="oui">oui</option>
+            </select>
+        </div>
+    </div>
+    <!--------------------------------------------->
+    <div class="col-sm-3" id="lazemTet5abaTransportPerso">
+        Exercez-vous une activité de taxi sous licence?
+        <div class="form-group" style="width: 110%;">
+            <select class="form-control" id="ouinonTransportPerso">
+                <option value=""></option>
+                <option value="oui">oui</option>
+                <option value="non">non</option>
+            </select>
+        </div>
+    </div>
+    <!--------------------------------------------->
+    <div class="col-sm-3" id="lazemTet5abaTransportPersoThenya">
+        Exercez-vous une activité de VTC, chauffeur privé ou autre transport collectif de personnes?
+        <select class="form-control" id="ouinonTransportPersoThenya" style="width: 110%;">
+            <option value=""></option>
+            <option onclick="createAlert('Opps!','.','REPONSE INCOHERENTE','danger',true,false,'pageMessages');fasa5KolChaywM3ahaSecteurActivite();"
+                    value="non">non
+            </option>
+            <option onclick="createAlert('Opps!','.','ATTENTION ! VOTRE ACTIVITE ETANT REGLEMENTEE, VOTRE COMPTABILITE NECESSITE UN COMMISSAIRE AUX COMPTES OU, A DEFAUT, UN EXPERT-COMPTABLE POUR LES CAPACITES FINANCIERES A JUSTIFIER AU DREAL','danger',true,false,'pageMessages');"
+                    value="oui">oui
+            </option>
+        </select>
+    </div>
+    <!--------------------------------------------->
+    <div class="col-sm-3" id="lazemTet5abaImmobilier">
+        Exercez-vous une activité d'agent immobilier ? (différent d'une activité de SCI)
+        <select class="form-control" id="ouinonImmobilier" style="width: 110%;">
+            <option value=""></option>
+            <option value="non">non</option>
+            <option id="matloubaBa3din" value="oui">oui</option>
+        </select>
+    </div>
+    <!--------------------------------------------->
+    <div class="col-sm-3" id="lazemTet5abaImmobilierThenya">
+        Exercez-vous uniquement une activité d'intermédiaire de vente?
+        <select class="form-control" id="ouinonImmobilierThenya" style="width: 110%;">
+            <option value=""></option>
+            <option value="oui">oui</option>
+            <option onclick="createAlert('Opps!','.','DESOLE ! NOUS NE POUVONS PAS TRAITER CETTE ACTIVITE.','danger',true,false,'pageMessages');redirect();"
+                    value="non">non
+            </option>
+        </select>
+    </div>
+    <!------------------------------------------------------------------------------>
 
 
     <div class="col-sm-3 nopadding">
-        <div class="form-group">
+        <div class="form-group" style="width: 110%;">
             <div class="panel panel-default">
-
-                {{ form_row(form.raisonSociale ,{'attr': {'class': 'form-control'}} )}}
-
+                {{ form_widget (form.nomDossier ,{'attr': {' class':'nom-dossier', 'style':'text-transform:uppercase' }}) }}
             </div>
+        </div>
 
-            <div class="form-group">
-
-
-                <!------------------------------------------------------------->
-                <style>
-
-
-                    .hide {
-                        visibility: hidden;
-                        opacity: 0;
-                        transform: translateX(-50%) translateY(-50%) scale(0.8) !important;
-                        -moz-transform: translateX(-50%) translateY(-50%) scale(0.8) !important;
-                        -o-transform: translateX(-50%) translateY(-50%) scale(0.8) !important;
-                        -webkit-transform: translateX(-50%) translateY(-50%) scale(0.8) !important;
-                    }
-
-                    .close {
-                        position: absolute;
-                        right: 0;
-                        top: 0;
-                        width: 25px;
-                        height: 25px;
-                        font-size: 0;
-                        cursor: pointer;
-                    }
-
-                    .close:before, .close:after {
-                        content: '';
-                        position: absolute;
-                        background: #767676;
-                        -moz-border-radius: 1px;
-                        -webkit-border-radius: 1px;
-                        -o-border-radius: 1px;
-                        border-radius: 1px;
-                        left: 14px;
-                        right: 14px;
-                        top: 30px;
-                        height: 3px;
-                        -webkit-transform: rotate(45deg);
-                        -moz-transform: rotate(45deg);
-                        -o-transform: rotate(45deg);
-                        transform: rotate(45deg);
-                        transition: all 100ms ease-in;
-                        -moz-transition: all 100ms ease-in;
-                        -webkit-transition: all 100ms ease-in;
-                        -o-transition: all 100ms ease-in;
-                    }
-
-                    .close:after {
-                        -moz-transform: rotate(-45deg);
-                        -webkit-transform: rotate(-45deg);
-                        -o-transform: rotate(-45deg);
-                        transform: rotate(-45deg);
-                    }
-
-                    .popup {
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        -webkit-transform: translateX(-50%) translateY(-50%);
-                        -moz-transform: translateX(-50%) translateY(-50%);
-                        -o-transform: translateX(-50%) translateY(-50%);
-                        transform: translateX(-50%) translateY(-50%);
-                        background: #FAFDFF;
-                        -moz-border-radius: 5px;
-                        -o-border-radius: 5px;
-                        -webkit-border-radius: 5px;
-                        border-radius: 5px;
-                        width: 600px;
-                        box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.09), 0px 11px 12px 7px rgba(0, 0, 0, 0.02);
-                        -moz-transition: all 120ms;
-                        -webkit-transition: all 120ms;
-                        -o-transition: all 120ms;
-                        transition: all 120ms;
-                        z-index: 99;
-                        padding: 25px;
-                        color: #5E5E5E;
-                    }
-
-                    @media screen and (max-width: 50px) {
-                        .popup {
-                            width: 50%;
-                        }
-                    }
-
-                    .popup-header {
-                        text-transform: uppercase;
-                        font-size: 10px;
-                    }
-
-                    .popup-body {
-                        padding: 15px 0;
-                    }
-
-                    .button {
-                        padding: 10px 15px;
-                        border: 1px solid #F5F5F5;
-                        text-transform: uppercase;
-                        box-shadow: 1px 2px 3px #F5F5F5;
-                        color: #5E5E5E;
-                        cursor: pointer;
-                        transition: all 120ms ease-in;
-                        outline:none;
-                    }
+        <div class="form-group" style="width: 110%;">
+            {{ form_row(form.raisonSociale ,{'attr': {'class': 'form-control', 'style':'text-transform:uppercase',}} ) }}
+        </div>
 
-                    .button:hover {
-                        box-shadow: 1px 3px 5px #E9E9E9;
-                        transform: translateY(-1px);
-                    }
 
-                    .button:active, .button:visited {
-                        transform: translateY(1px);
-                        outline:none;
-                        box-shadow: 1px 2px 3px #F5F5F5;
-                    }
+        <div class="form-group" style="width: 110%;">
+            {{ form_row(form.formeJuridique ,{'attr': {'class': ' toggle button  form-control' , 'data-target':'myPopup'}} ) }}
 
-                </style>
 
-                <link rel="stylesheet" href="{{ asset('css/intlTelInput.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/intlTelInput.css') }}">
 
-                <script src={{  asset('js/intlTelInput.js') }}></script>
+            <script src="{{ asset('js/intlTelInput.js') }}"></script>
 
 
+        </div>
 
-                <script>
-                    /********PART 1***********/
-                    $( document ).ready(function() {
+        <div class="form-group" style="width: 110%;">
 
-                        $('#dossier_nbAssocies').hide();
-                        $('label[for="dossier_nbAssocies"]').hide();
-                        /**************/
-                        var input = document.querySelector("#dossier_numeroTel");
-                        var iti = window.intlTelInput(input, {
-                            // separateDialCode:true,
-                            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.3/build/js/utils.js",
-                        });
+            {{ form_row(form.capitalSocial ,{'attr': {'class': 'form-control'}} ) }}
 
-// store the instance variable so we can access it in the console e.g. window.iti.getNumber()
-                        window.iti = iti;
-                        /**************/
+        </div>
 
-                    });
-                    /*********PART 2 [Forme Juridique]***********/
+        <div class="form-group" style="width: 110%;">
 
-                    $(document).on('change' ,'.toggle', function(event) {
-                        event.preventDefault();
-                        $('#msg').text($('#dossier_formeJuridique :selected').text() );
+            {{ form_label(form.nbAssocies,"Nombre d'associés" , {'label_attr': {'class' : 'foo'}}) }}
+            {{ form_widget(form.nbAssocies ,{'attr': {'class': 'form-control'}} ) }}
 
-                        var target = $(this).data('target');
-                        $('#' + target).toggleClass('hide');
-                        return false;
-                    });
+        </div>
 
+        <div class="form-group" style="width: 110%;">
 
-                    $(document).on('click' ,'#jsr', function(event) {
+            {{ form_row(form.adressSiegeSocial ,{'attr': {'class': 'form-control'}} ) }}
 
-                        var target = $(this).data('target');
-                        $('#' + target).toggleClass('hide');
-
-                        if( $('#dossier_formeJuridique :selected').text()=='SAS' ||
-                            $('#dossier_formeJuridique :selected').text()=='SARL' ||
-                            $('#dossier_formeJuridique :selected').text()=='SELARL' ||
-                            $('#dossier_formeJuridique :selected').text()=='SELAS' )
-                        {
+        </div>
 
-                            $('#dossier_nbAssocies').show();
-                            $('label[for="dossier_nbAssocies"]').show();
+        <div id="hediDivMte3codePostale" class="form-group" style="width: 110%;">
 
-                            $('#dossier_categorieImposition').val("BNC");
-                        }
+            <div style="width: 100%;  float: left; ">
 
-                        else {
-                            $('#dossier_nbAssocies').hide();
-                            $('label[for="dossier_nbAssocies"]').hide();
-                        }
-
-                            if ($('#dossier_formeJuridique :selected').text()=='Association Loi 1901 non lucrative')
-                            {
-                                $('#dossier_typeImposition').val("IS");
-                                $('#dossier_categorieImposition').val("Sans");
-                            }
-                            else if ($('#dossier_formeJuridique :selected').text()=='Association lucrative')
-                            {
-                                $('#dossier_typeImposition').val("IS");
-                                $('#dossier_categorieImposition').val("Sans");
-                            }
-
-                            else if ($('#dossier_formeJuridique :selected').text()=='Entreprise individuelle')
-                            {
-                                $('#dossier_typeImposition').val("IR");
-
-
-                                $("#dossier_categorieImposition option[value='Sans']").attr("disabled","disabled");
-                                $("#dossier_categorieImposition option[value='Revenus Fonciers']").attr("disabled","disabled");
-                                $("#dossier_categorieImposition option[value='Micro-BIC']").attr("disabled","disabled");
-                                $("#dossier_categorieImposition option[value='Micro-BNC']").attr("disabled","disabled");
-                                $("#dossier_categorieImposition option[value='Micro-Ba']").attr("disabled","disabled");
-                                $("#dossier_categorieImposition option[value='Micro-Foncier']").attr("disabled","disabled");
-
-
-
-
-                            }
-
-                            else if ($('#dossier_formeJuridique :selected').text()=='Autoentrepreneur')
-                            {
-                                $('#dossier_typeImposition').val("IR");
-                            }
-
-
-
-
-
-                     else   if($('#dossier_formeJuridique :selected').text()=='EURL' ||
-                            $('#dossier_formeJuridique :selected').text()=='SARL'
-                        )
-                        {
-                            $("#dossier_categorieImposition option[value='BNC']").attr("disabled","disabled");
-
-                            $("#dossier_categorieImposition option[value='Sans']").attr("disabled","disabled");
-                            $("#dossier_categorieImposition option[value='Revenus Fonciers']").attr("disabled","disabled");
-                            $("#dossier_categorieImposition option[value='Micro-BIC']").attr("disabled","disabled");
-                            $("#dossier_categorieImposition option[value='Micro-BNC']").attr("disabled","disabled");
-                            $("#dossier_categorieImposition option[value='Micro-Ba']").attr("disabled","disabled");
-                            $("#dossier_categorieImposition option[value='Micro-Foncier']").attr("disabled","disabled");
-
-                        }
-                        else if($('#dossier_formeJuridique :selected').text()=='SAS' ||
-                            $('#dossier_formeJuridique :selected').text()=='SASU'
-                        )
-                        {
-                            $("#dossier_categorieImposition option[value='Sans']").attr("disabled","disabled");
-                            $("#dossier_categorieImposition option[value='Revenus Fonciers']").attr("disabled","disabled");
-                            $("#dossier_categorieImposition option[value='Micro-BIC']").attr("disabled","disabled");
-                            $("#dossier_categorieImposition option[value='Micro-BNC']").attr("disabled","disabled");
-                            $("#dossier_categorieImposition option[value='Micro-Ba']").attr("disabled","disabled");
-                            $("#dossier_categorieImposition option[value='Micro-Foncier']").attr("disabled","disabled");
-                        }
-
-                        else if($('#dossier_formeJuridique :selected').text()=='SCI')
-                        {
-
-                            $("#dossier_categorieImposition option[value='Sans']").attr("disabled","disabled");
-                            $("#dossier_categorieImposition option[value='BNC']").attr("disabled","disabled");
-                            $("#dossier_categorieImposition option[value='Micro-BIC']").attr("disabled","disabled");
-                            $("#dossier_categorieImposition option[value='Micro-BNC']").attr("disabled","disabled");
-                            $("#dossier_categorieImposition option[value='Micro-Ba']").attr("disabled","disabled");
-                            $("#dossier_categorieImposition option[value='Micro-Foncier']").attr("disabled","disabled");
-                        }
-
-                        else if($('#dossier_formeJuridique :selected').text()=='EIRL')
-                        {
-                            $("#dossier_categorieImposition option[value='Sans']").attr("disabled","disabled");
-                            $("#dossier_categorieImposition option[value='Revenus Fonciers']").attr("disabled","disabled");
-                            $("#dossier_categorieImposition option[value='Micro-BIC']").attr("disabled","disabled");
-                            $("#dossier_categorieImposition option[value='Micro-BNC']").attr("disabled","disabled");
-                            $("#dossier_categorieImposition option[value='Micro-Ba']").attr("disabled","disabled");
-                            $("#dossier_categorieImposition option[value='Micro-Foncier']").attr("disabled","disabled");
-
-                        }
-
-
-                    });
-                    /********************************/
-
-                    $(document).on('click' ,'#jnsr', function(event) {
-                        var target = $(this).data('target');
-                        $('#' + target).toggleClass('hide');
-                    });
-                    /*********PART 3 (forme juridique + nb associes) ***********/
-
-                    $(document).on('change' ,'#dossier_nbAssocies', function(event) {
-
-                        if($('#dossier_nbAssocies :selected').text()=='1' ){
-                            if($('#dossier_formeJuridique :selected').text() == 'SARL' )
-                            {
-                                $('#dossier_formeJuridique').val('EURL');
-                            }
-
-                            else if($('#dossier_formeJuridique :selected').text() == 'SAS')
-                            {
-                                $('#dossier_formeJuridique').val('SASU');
-                            }
-
-                            else if($('#dossier_formeJuridique :selected').text() == 'SELARL'  )
-                            {
-                                $('#dossier_formeJuridique').val('SELEURL');
-
-                            }
-                        }
-                    });
-                    /*********PART 4 [Franchise TVA]***********/
-
-                    $(document).on('change' ,'.toggleTVA', function(event) {
-                        event.preventDefault();
-                        $('#msg').text($('#dossier_franchiseEnBaseTva :selected').text() );
-
-                        var target = $(this).data('target');
-                        $('#' + target).toggleClass('hide');
-
-                        console.log($('#dossier_franchiseEnBaseTva :selected').text() )
-
-                        return false;
-
-                    });
-
-                    /*********PART 5 [TYPE  D'IMPOSITION]***********/
-                    $(document).on('change' ,'.toggleTypeImpo', function(event) {
-                        event.preventDefault();
-                        $('#msg').text($('#dossier_typeImposition :selected').text() );
-
-                        var target = $(this).data('target');
-                        $('#' + target).toggleClass('hide');
-
-                        console.log($('#dossier_typeImposition :selected').text() )
-
-                        return false;
-
-                    });
-                    /*********PART 6 [Régime Micro]***********/
-
-                    $(document).on('change' ,'.toggleRegMicro', function(event) {
-                        event.preventDefault();
-                        $('#msg').text($('#dossier_regimeMicro :selected').text() );
-
-
-                        var target = $(this).data('target');
-                        $('#' + target).toggleClass('hide');
-
-                        if ($('#dossier_regimeMicro :selected').text() == "oui"){
-                            createAlert('Opps!','Attention','Pour rappel , la tenue de comptablilité n"est pas obligatoire en régime micro.','danger',true,false,'pageMessages');
-
-                            if($('#dossier_categorieImposition :selected').text() =='BIC')
-                            {
-                                $('#dossier_categorieImposition').val("Micro-BIC");
-
-                            }
-
-                            else if($('#dossier_categorieImposition :selected').text() =='BNC')
-                            {
-                                $('#dossier_categorieImposition').val("Micro-BNC");
-                            }
-
-                            else if($('#dossier_categorieImposition :selected').text() =='BA')
-                            {
-                                $('#dossier_categorieImposition').val("Micro-Ba");
-                            }
-
-                            else if( $('#dossier_categorieImposition :selected').text() =='Revenus Fonciers')
-                            {
-                                $('#dossier_categorieImposition').val("Micro-Foncier");
-                            }
-
-                        }
-
-
-
-                        var target = $(this).data('target');
-                        $('#' + target).toggleClass('hide');
-
-                        return false;
-
-                    });
-
-
-                    /*********PART 7 [Catégorie Imposition]***********/
-                    $(document).on('change' ,'.toggleCategorieImpo', function(event) {
-                        event.preventDefault();
-                        $('#msg').text($('#dossier_categorieImposition :selected').text() );
-
-                        var target = $(this).data('target');
-                        $('#' + target).toggleClass('hide');
-
-                        console.log($('#dossier_categorieImposition :selected').text() )
-
-                        return false;
-
-                    });
-
-                    /*********PART 8 [Secteur d'activité ]***********/
-
-                    $(document).on('change' ,'#dossier_categorieImposition', function(event) {
-                        event.preventDefault();
-
-                        if( $('#dossier_categorieImposition:selected').text()=='BA' || $('#dossier_categorieImposition:selected').text()=='Micro-BA'  )
-                        {
-
-                         //  $("#dossier_secteurActivite option[value='Micro-Foncier']").attr("disabled","disabled");
-                           $('#dossier_secteurActivite').val("Agriculture Elevage");
-                            createAlert('Opps!','Attention','Pour rappel , ATTENTION ! VOTRE ACTIVITE ETANT REGLEMENTEE, VOTRE COMPTABILITE DOIT ÊTRE ATTESTEE PAR UN EXPERT-COMPTABLE ','danger',true,false,'pageMessages');
-
-                        }
-
-
-
-
-                        return false;
-
-                    });
-                </script>
-
-                <!--------------------------Controle de saisie----------------------------------->
-                <style>
-                    .error
-                    {
-                        color:red;
-                        font-family: serif;
-                    }
-                </style>
-
-
-                <!------------------------------------------------------------->
-                {{ form_row(form.formeJuridique ,{'attr': {'class': ' toggle button  form-control' , 'data-target':'myPopup'}} )}}
-
-            </div>
-
-            <div class="form-group">
-
-                {{ form_row(form.capitalSocial ,{'attr': {'class': 'form-control'}} )}}
-
-            </div>
-
-            <div class="form-group">
-
-                {{ form_row(form.nbAssocies ,{'attr': {'class': 'form-control'}} )}}
-
-            </div>
-
-            <div class="form-group">
-
-                {{ form_row(form.adressSiegeSocial ,{'attr': {'class': 'form-control'}} )}}
+                {{ form_label(form.codePostale) }}
+                {{ form_widget(form.codePostale,{'attr': {'class': 'form-control validate '  , 'maxlength':'5' }} ) }}
 
             </div>
 
 
-            <div class="form-group">
-                <div class="input-holder">
-                    {{ form_row(form.codePostale,{'attr': {'class': 'form-control validate '  , 'maxlength':'5' }} )}}
-                    <span class="message">Un code postale doit inclure 5 chiffre</span>
-                </div>
-            </div>
-
-            <div class="form-group">
-
-                {{ form_row(form.ville ,{'attr': {'class': 'form-control'}} )}}
-
+            <div class="input-holder" style="margin-left: 50%; height: 100px;">
+                <span class="message" id="messageCodePostale">Un code postal doit inclure 5 chiffres</span>
             </div>
 
 
+        </div>
 
-            <div class="form-group">
 
-                <div class="col">
-                    {{ form_label(form.numeroTel)}}
-                </div>
+        <div id="hediDivMte3Ville" class="form-group" style="width: 110%; margin-bottom: 56px">
+            {{ form_label(form.ville) }}
+            {{ form_widget(form.ville ,{'attr': {'class': 'form-control', 'style':'text-transform:uppercase'}} ) }}
+        </div>
 
-                {{ form_widget(form.numeroTel ,{'attr': {'class': 'form-control'}} )}}
 
+        <div class="form-group" style="width: 110%;">
+            <div class="col">
+                {{ form_label(form.numeroTel) }}
             </div>
 
-            <div class="form-group">
-
-                {{ form_row(form.adressMail ,{'attr': {'class': 'form-control'}} )}}
-
+            <div class="form-group" style="width: 110%;">
+                {{ form_widget(form.numeroTel ,{'attr': {'class': 'form-control intl-tel-input', 'maxlength':'9', 'onkeyup':'Validate(this.id,"integer");' }} ) }}
             </div>
 
-            <div class="form-group">
-                <div class="input-holder">
-                    {{ form_row(form.siret ,{'attr': {'class': 'form-control validate' , 'maxlength':'14' }} )}}
-                    <span id="messagesiret" class="message">Un numéro siret doit inclure 14 chiffre</span>
-                </div>
+            <div class="input-holder" style="margin-left: 50%; height: 100px;">
+                <span id="messageTel" class="message">Ce numéro de téléphone n'est pas valide</span>
+            </div>
+        </div>
+
+
+        <div class="form-group" style="width: 110%;">
+
+            <div style="width: 100%; height: 100px; float: left;">
+                {{ form_row(form.adressMail ,{'attr': {'class': 'form-control', 'style':'text-transform:lowercase','type':'mail'}} ) }}
             </div>
 
-
-
-            <div class="form-group">
-
-                {{ form_row(form.franchiseEnBaseTva ,{'attr': {'class': ' toggleTVA button  form-control ' , 'data-target':'myPopup'}} )}}
-
+            <div class="input-holder" style="margin-left: 50%; height: 100px;">
+                <span id="messageMail" class="message">Ceci n'est pas une adresse email valide</span>
             </div>
 
-            <div class="form-group">
-                <div class="input-holder">
-                    {{ form_row(form.numeroTVAintracommunaitre ,{'attr': {'class': 'form-control validate', 'maxlength':'13' }} )}}
-                    <span id="messagenumeroTVAintracommunaitre" class="message">Un numéro TVA intracommunaitre doit étre sous la forme "FR+11 chiffres"</span>
-                </div>
+        </div>
+
+        <div class="form-group" style="width: 110%;">
+            <div style="width: 100%; height: 100px; float: left;">
+                {{ form_row(form.siret ,{'attr': {'class': 'form-control validate' , 'maxlength':'14' }} ) }}
             </div>
 
-            <div class="form-group">
+            <div class="input-holder" style="margin-left: 50%; height: 100px;">
+                <span id="messagesiret" class="message">Un numéro siret doit inclure 14 chiffre</span>
+            </div>
+        </div>
 
-                {{ form_row(form.typeImposition ,{'attr': {'class': ' toggleTypeImpo button  form-control' , 'data-target':'myPopup'}} )}}
 
+        <div class="form-group" style="width: 110%;">
+
+            {{ form_row(form.franchiseEnBaseTva ,{'attr': {'class': ' toggleTVA button  form-control ' , 'data-target':'myPopup'}} ) }}
+
+        </div>
+
+        <div class="form-group" style="width: 110%;">
+
+            <div style="width: 100%; height: 100px; float: left;">
+                {{ form_row(form.numeroTVAintracommunaitre ,{'attr': {'class': 'form-control validate', 'maxlength':'13'  }} ) }}
             </div>
 
-            <div class="form-group">
-
-                {{ form_row(form.regimeMicro ,{'attr': {'class': ' toggleRegMicro button  form-control' , 'data-target':'myPopup'}})}}
-
+            <div class="input-holder" style="margin-left: 50%; height: 100px;">
+                <span id="messagenumeroTVAintracommunaitre" class="message">Un numéro TVA intracommunaitre doit étre sous la forme "FR+11 chiffres"</span>
             </div>
+        </div>
 
-            <div class="form-group">
+        <div class="form-group" style="width: 110%;">
 
-                {{ form_row(form.categorieImposition ,{'attr': {'class': ' toggleCategorieImpo button  form-control' , 'data-target':'myPopup'}} )}}
+            {{ form_row(form.typeImposition ,{'attr': {'class': ' toggleTypeImpo button  form-control' , 'data-target':'myPopup'}} ) }}
 
+        </div>
+
+
+        <div class="form-group" style="width: 110%;">
+
+            {{ form_row(form.categorieImposition ,{'attr': {'class': ' toggleCategorieImpo button  form-control' , 'data-target':'myPopupCategImposition'}} ) }}
+
+        </div>
+
+        <div class="form-group" style="width: 110%;">
+
+            {{ form_row(form.regimeMicro ,{'attr': {'class': ' toggleRegMicro button  form-control' , 'data-target':'myPopup'}}) }}
+
+        </div>
+
+
+        <div class="form-group" style="width: 110%;">
+
+            {{ form_label(form.nomGerant ,'',{'label_attr': {'id': 'foo1',}}) }}
+            {{ form_widget(form.nomGerant ,{'attr': {'class': 'form-control', 'style':'text-transform:uppercase'}} ) }}
+
+        </div>
+
+        <div class="form-group" style="width: 110%;">
+
+            {{ form_label(form.prenomGerant,'',{'label_attr': {'id': 'foo2'}}) }}
+            {{ form_widget(form.prenomGerant ,{'attr': {'class': 'form-control'}} ) }}
+
+        </div>
+
+        <div class="form-group" style="width: 110%;">
+
+            {{ form_row(form.capital,{'attr': {'class': 'form-control'}} ) }}
+
+        </div>
+
+        <div class="input-holder" style="margin-left: 50%; height: 100px;">
+            <span id="messageCapital" class="message">Ceci n'est pas une chiffre capitale valide</span>
+        </div>
+
+
+    </div>
+
+
+    <div id="education_fields">
+
+    </div>
+
+
+    <!------------------------------------------------------------------------>
+    <div id="rubrique" class="dynamic-field" id="dynamic-field-1">
+        <div class="row">
+            <div class="col-sm-3 nopadding">
+
+                <ul class="Cogerants" id="cemenu"
+                    data-index="{{ form.coGerant|length > 0 ? form.coGerant|last.vars.name + 1 : 0 }}"
+                    data-prototype="{{ form_widget(form.coGerant.vars.prototype)|e('html_attr') }}">
+                    {% for Cogerant in form.coGerant %}
+
+                        <li>
+                            {{ form_row(Cogerant.nomCogerant,{'attr': {'class': 'form-control', 'style':'text-transform:uppercase'}}) }}
+                        </li>
+
+                        <li>
+                            {{ form_row(Cogerant.prenomCogerant,{'attr': {'class': 'form-control'}}) }}
+                        </li>
+
+                        <li>
+                            {{ form_row(Cogerant.participation,{'attr': {'class': 'form-control'}}) }}
+                        </li>
+
+                    {% endfor %}
+
+                </ul>
+                <button id="ajouterCogerant" type="button" class="add_item_link"
+                        data-collection-holder-class="Cogerants">Ajouter co-gérant
+                </button>
             </div>
-
-            <div class="form-group">
-
-                {{ form_row(form.regimeIndependants ,{'attr': {'class': 'form-control'}} )}}
-
-            </div>
-
-            <div class="form-group">
-
-                {{ form_row(form.nomGerant ,{'attr': {'class': 'form-control'}} )}}
-
-            </div>
-
-            <div class="form-group">
-
-                {{ form_row(form.prenomGerant ,{'attr': {'class': 'form-control'}} )}}
-
-            </div>
+        </div>
+    </div>
 
 
+    <div class="col-sm-3" id="miseAjourSCIakaho">
+        Le gérant et co-gérant(s) sont-ils rémunérés ?
+        <div class="form-group" style="width: 110%;">
+            <select class="form-control" id="ouinonSCIrenumeres">
+                <option value=""></option>
+                <option value="non">non</option>
+                <option onclick="" value="oui">oui</option>
+            </select>
+        </div>
+    </div>
 
+
+    <div class="col-sm-3" id="miseAjourSCISARL">
+        Le gérant et co-gérant(s) sont-ils associés ?
+        <div class="form-group" style="width: 110%;">
+            <select class="form-control" id="ouinonSCISARL">
+                <option value=""></option>
+                <option value="non">non</option>
+                <option onclick="" value="oui">oui</option>
+            </select>
         </div>
     </div>
 
 
 
-
-    <div class="panel panel-default">
-
-
-        <div class="panel-body">
-
-            <div id="education_fields">
-
-            </div>
-            {{ form_start(form1) }}
-
-            <div class="col-sm-3 nopadding">
-                <div class="form-group">
-
-                    {{ form_row(form1.nomCogerant ,{'attr': {'class': 'form-control'}} )}}
-
-                </div>
-            </div>
-            <div class="col-sm-3 nopadding">
-                <div class="form-group">
-                    {{ form_row(form1.prenomCogerant ,{'attr': {'class': 'form-control'}} )}}
-                </div>
-            </div>
-            <div class="col-sm-3 nopadding">
-                <div class="form-group">
-                    {{ form_row(form1.participation ,{'attr': {'class': 'form-control'}} )}}
-                </div>
-            </div>
-            <div class="col-sm-3">
-
-                {{ form_row(form.secteurActivite ,{'attr': {'class': 'form-control'}} )}}
-
-            </div>
-
-            <button type="submit" class="btn btn-primary" onclick= "submitForms()"  data-target="#myPopupFinal">Finaliser</button>
-
-            {{ form_end(form1) }}
-            {{ form_end(form) }}
-
-
-
-            <div class="col-sm-3 nopadding">
-                <div class="form-group">
-                    <div class="input-group">
-
-                        <!----<div class="input-group-btn">
-                            <button class="btn btn-success" type="button"  onclick="education_fields();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
-                        </div>--->
-                    </div>
-                </div>
-            </div>
-            <div class="clear"></div>
-
+    <div class="col-sm-3 nopadding">
+        <div class="form-group" style="width: 110%;">
+            {{ form_label(form.regimeIndependants ,'',{'label_attr': {'id': 'foo3'}}) }}
+            {{ form_widget(form.regimeIndependants ,{'attr': {'class': 'form-control'}} ) }}
         </div>
+    </div>
 
 
-        <!----------------SAISIE ------------------------------------->
+    <button id="finalbutton" class="btn btn-primary" data-target="myPopupFinal">Finaliser</button>
+    {{ form_end(form) }}
 
-        <script>
+    <!----------------HNE TOUFA ELFORM--------------------------->
 
-            // Simple Validation - By Chad Humphrey - hmphry.com
-            // Released under the MIT license
+    <div class="col-sm-3 nopadding">
+        <div class="form-group" style="width: 110%;">
+            <div class="input-group">
 
-            // Get all forms
-            var simpleValidation = function(){
+                <!----<div class="input-group-btn">
+                    <button class="btn btn-success" type="button"  onclick="education_fields();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
+                </div>--->
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
 
-
-                var validateForm = $('form[name="dossier"]')
-
-                // Gets all forms to Validate
-                validateForm.each(function(){
-                    // Defining basic variables, bro
-                    var validateForm = $(this);
-                    var validate = {};
-                    var validateThis = $(this).find('.validate');
-                    var validatingLength = $(this).find('.validate').length;
-                    var submitBtn = $(this).find('.submit');
-
-                    // For Loop Getting Elements to Validate
-                    for(var i = 1; i <= validatingLength; i++){
-                        // Adding Inputs to object, false for default
-                        validate['input'+i] = false;
-                    }
-
-                    $('#dossier_numeroTVAintracommunaitre').blur(function(){
-                        var index =  $(this).prevAll().length+1;
-                        var validateThisVal = $(this).val();
-                        var validateThisType = $(this).attr('type');
-
-                        const reg = new RegExp('[fr|FR]{2}[0-9]{11}');
+    </div>
 
 
-                        // Condition to see if  exists
-                        if(!validateThisVal.match(reg)){
-                            $(this).addClass('not-valid');
-                            $('span#messagenumeroTVAintracommunaitre').show();
-                            $(this).removeClass('is-valid');
-                            return validate['input'+index] = false;
-                        }
+    <!----------------SAISIE ------------------------------------->
 
-                        else if(validateThisVal.length<13){
-                            $(this).addClass('not-valid');
-                            $('span#messagenumeroTVAintracommunaitre').show();
-                            $(this).removeClass('is-valid');
-                            return validate['input'+index] = false;
-                        }
+    <script>
 
-                        else{
-                            $(this).addClass('is-valid');
-                            $(this).removeClass('not-valid');
-                            $('span#messagenumeroTVAintracommunaitre').hide();
-                            return validate['input'+index] = true;
-                        }
+        submitForms = function () {
+            document.forms[0].submit();
+            document.forms[1].submit();
+        }
 
+    </script>
 
+    <script>
+        const addFormToCollection = (e) => {
+            const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
 
-                    });
+            const item = document.createElement('li');
+            item.innerHTML = collectionHolder
+                .dataset
+                .prototype
+                .replace(
+                    /__name__/g,
+                    collectionHolder.dataset.index
+                );
 
-                    $('#dossier_siret').blur(function(){
-                        var index =  $(this).prevAll().length+1;
-                        var validateThisVal = $(this).val();
-                        var validateThisType = $(this).attr('type');
-
-                        const reg = new RegExp('^[0-9]+$');
+            collectionHolder.appendChild(item);
+            addTagFormDeleteLink(item);
 
 
-                        // Condition to see if  exists
-                        if(!validateThisVal.match(reg)){
-                            $(this).addClass('not-valid');
-                            $('span#messagesiret').show();
-                            $(this).removeClass('is-valid');
-                            return validate['input'+index] = false;
-                        }
+            collectionHolder.dataset.index++;
 
-                        else if(validateThisVal.length<14){
-                            $(this).addClass('not-valid');
-                            $('span#messagesiret').show();
-                            $(this).removeClass('is-valid');
-                            return validate['input'+index] = false;
-                        }
+        };
+    </script>
+    <script>
 
-                        else{
-                            $(this).addClass('is-valid');
-                            $(this).removeClass('not-valid');
-                            $('span#messagesiret').hide();
-                            return validate['input'+index] = true;
-                        }
+        document.querySelectorAll('.add_item_link').forEach(btn => {
+            btn.addEventListener("click", addFormToCollection)
+        });
+    </script>
 
+    <script>
+        const addTagFormDeleteLink = (item) => {
+            const removeFormButton = document.createElement('button');
+            removeFormButton.innerText = 'Supprimer cogérant';
 
+            item.append(removeFormButton);
 
-                    });
-
-                    $('#dossier_codePostale').blur(function(){
-                        var index =  $(this).prevAll().length+1;
-                        var validateThisVal = $(this).val();
-                        var validateThisType = $(this).attr('type');
-
-                        const re = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
-                        const reg = new RegExp('^[0-9]+$');
+            removeFormButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                // remove the li for the tag form
+                item.remove();
+            });
+        }
+    </script>
 
 
-                        // Condition to see if  exists
-                        if(!validateThisVal.match(reg)){
-                            $(this).addClass('not-valid');
-                            $('span.message').show();
-                            $(this).removeClass('is-valid');
-                            return validate['input'+index] = false;
-                        }
+    <script>
+        document
+            .querySelectorAll('ul.Cogerants ')
+            .forEach((Cogerant) => {
+                addTagFormDeleteLink(Cogerant)
+            })
 
-                        else if(validateThisVal.length<5){
-                            $(this).addClass('not-valid');
-                            $('span.message').show();
-                            $(this).removeClass('is-valid');
-                            return validate['input'+index] = false;
-                        }
+    </script>
 
-                        else{
-                            $(this).addClass('is-valid');
-                            $(this).removeClass('not-valid');
-                            $('span.message').hide();
-                            return validate['input'+index] = true;
-                        }
+    <script type="text/javascript">
+        window.alert = function () {
+        };
+        var defaultCSS = document.getElementById('bootstrap-css');
 
+        function changeCSS(css) {
+            if (css) $('head > link').filter(':first').replaceWith('<link rel="stylesheet" href="' + css + '" type="text/css" />');
+            else $('head > link').filter(':first').replaceWith(defaultCSS);
+        }
 
+        $(document).ready(function () {
+            var iframe_height = parseInt($('html').height());
+            window.parent.postMessage(iframe_height, 'https://bootsnipp.com');
+        });
 
-                    });
-
-
-                    validateForm.submit(function(event){
-                        // Prevents Default
-                        event.preventDefault();
-
-                        // Logging form errors
-                        var falseCtn = 0;
-                        for(var i = 1; i <= validatingLength; i++){
-                            if(validate['input'+i] == false){
-                                falseCtn++;
-                            }
-                        }
-
-                        // Checking if any falses exist
-                        if(falseCtn > 0){
-                            $(this).unbind('submit').submit();
-                            $(this).click();
-                        } else{
-                        }
-                    });
+    </script>
+    <script>
 
 
+        var room = 1;
 
+        function education_fields() {
 
-                });
+            room++;
+            var objTo = document.getElementById('education_fields')
+            var divtest = document.createElement("div");
+            divtest.setAttribute("class", "form-group removeclass" + room);
+            var rdiv = 'removeclass' + room;
+            divtest.innerHTML = '<div class="col-sm-3 nopadding"><div class="form-group" style="width: 110%;"> <input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Nom cogerant"></div></div><div class="col-sm-3 nopadding"><div class="form-group" style="width: 110%;"> <input type="text" class="form-control" id="Major" name="Major[]" value="" placeholder="Prenom cogerant"></div></div><div class="col-sm-3 nopadding"><div class="form-group" style="width: 110%;"> <input type="text" class="form-control" id="Degree" name="Degree[]" value="" placeholder="Participation"></div></div><div class="col-sm-3 nopadding"><div class="form-group" style="width: 110%;"><div class="input-group"> <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(' + room + ');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div><div class="clear"></div>';
 
+            objTo.appendChild(divtest)
+        }
 
+        function remove_education_fields(rid) {
+            $('.removeclass' + rid).remove();
+        }
+    </script>
 
-            };
+    <!------------------------------------------------------------->
+    <script src={{ asset('js/popUpAwelMat7el.js') }}></script>
+    <script src={{ asset('js/miseAjour1-7.js') }}></script>
+    <script src={{ asset('js/controleSaisie.js') }}></script>
+    <script src={{ asset('js/functions7achtiBehom.js') }}></script>
+    <script src={{ asset('js/popUpSecteurActivite.js') }}></script>
+    <script src={{ asset('js/multipleCogerant.js') }}></script>
+    <!-----------------------------------------API codepostale--------------------------------------- --------------------->
 
-            simpleValidation()
+    <script src={{ asset('https://code.jquery.com/jquery-3.1.1.min.js') }}></script>
+    <script src={{ asset('https://code.jquery.com/ui/1.12.1/jquery-ui.min.js') }}></script>
+    <link rel="stylesheet" href={{ asset("https://code.jquery.com/ui/1.7.3/themes/base/jquery-ui.css") }}>
+    <link rel="stylesheet" href={{ asset("css/monstylesheet.css") }}>
+    <script src={{ asset('js/VilleAutoComplete.js') }}></script>
 
+    <!------------------------------------------------------------------------------------------------------->
 
-
-
-            submitForms = function(){
-
-                var target = $(this).data('target');
-                $('#' + target).toggleClass('hide');
-
-                document.forms["form"].submit();
-                document.forms["form1"].submit();
-            }
-            //endmodif
-        </script>
-        <!------------------------------------------------------------->
 {% endblock %}

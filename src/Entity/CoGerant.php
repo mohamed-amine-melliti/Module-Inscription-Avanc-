@@ -13,13 +13,13 @@ class CoGerant
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255 , nullable: true)]
     private $nomCogerant;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255 , nullable: true)]
     private $prenomCogerant;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255 , nullable: true)]
     private $participation;
 
     #[ORM\ManyToOne(targetEntity: Dossier::class, inversedBy: 'coGerant')]
@@ -78,4 +78,7 @@ class CoGerant
 
         return $this;
     }
+
+
+
 }

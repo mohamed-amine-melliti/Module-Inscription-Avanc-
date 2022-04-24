@@ -3,20 +3,21 @@
 {% block title %}Hello DossierController!{% endblock %}
 
 {% block body %}
-<div class="container mt-4">
-    <span class="badge bg-warning">CREEZ VOS DOSSIERS </span>
+    <div class="container mt-4">
+        <span class="badge bg-warning">CREEZ VOS DOSSIERS </span>
 
-    <div class="container mt-xl-4">
-    <div class="input-group mb-3">
-        <form action="{{ path('ouvertureDossier') }}" method="post">
-        <input type="text" class="form-control" placeholder="Nouveau dossier" id="nomdossier" , name="nomdossier">
-        <button class="btn btn-primary"  type="submit">Créer</button>
-        </form>
+        <div class="container mt-xl-4">
+            <div class="input-group mb-3">
+                <form action="{{ path('ouvertureDossier') }}" method="post">
+                    <input type="text" class="form-control" placeholder="Nouveau dossier" id="nomdossier" ,
+                           name="nomdossier" style="text-transform:uppercase">
+
+                    <button class="btn btn-primary" type="submit">Créer</button>
+                </form>
+            </div>
+        </div>
+
     </div>
-    </div>
-
-
-</div>
 
 
 {% endblock %}

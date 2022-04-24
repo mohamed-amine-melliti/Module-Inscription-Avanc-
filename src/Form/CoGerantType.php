@@ -13,9 +13,18 @@ class CoGerantType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nomCogerant' ,  TextType::class )
-            ->add('prenomCogerant' ,  TextType::class )
-            ->add('participation' , TextType::class )
+            ->add('nomCogerant' ,  TextType::class , [
+                    'label' => 'Nom co-gérant',
+                'empty_data' => ''
+            ] )
+            ->add('prenomCogerant' ,  TextType::class , [
+                'label' => 'Prénom co-gérant',
+                'empty_data' => ''
+            ]   )
+            ->add('participation' , TextType::class , [
+                'label' => '% Capital',
+                'empty_data' => ''
+            ]  )
 
         ;
     }

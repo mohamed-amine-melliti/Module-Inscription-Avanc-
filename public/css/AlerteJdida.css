@@ -1,0 +1,24 @@
+.messages-wrapper {
+    position: absolute;
+    top: 25px;
+    left: 15%;
+    width: 70%;
+    z-index: 2000;
+}
+
+.messages-wrapper .message {
+    display: none;
+}
+
+.messages-wrapper .message.show {
+    display: inline;
+}
+
+.messages-wrapper .message .alert {
+    margin-bottom: 7px;
+    box-shadow: 0 0 4px 0 #b6b6b6;
+}
+
+.messages-server-wrapper {
+    display: none;
+}

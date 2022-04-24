@@ -18,11 +18,12 @@ class RegistrationType extends AbstractType
      * @param $option
      * @return array
      */
-    private function getConfiguration(  $placeholder , $option = []){
+    private function getConfiguration($placeholder,  $option = []){
         return array_merge([
 
                 'attr' => [
-                    'placeholder' => $placeholder
+                    'placeholder' => $placeholder,
+
                 ]
 
             ], $option
@@ -35,7 +36,7 @@ class RegistrationType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, $this->getConfiguration("votre email "))
-            ->add('password',PasswordType::class , $this->getConfiguration("mot de passe"))
+            ->add('password',PasswordType::class , $this->getConfiguration("mot de passe") )
         ;
     }
 
