@@ -48,16 +48,32 @@ $(function () {
 
             /****************************************************/
             var RegimeTva = $('#regime').val();
-            if (
-                $('#dossier_formeJuridique :selected').text() === 'SARL' ||
-                $('#dossier_formeJuridique :selected').text() === 'SELARL' ||
-                $('#dossier_formeJuridique :selected').text() === 'SCI'
-            ) {
-                var OuvertureExcercice = $('#nouvelExcerciceOuverture').val();
-                var ClotureExcercice = $('#nouvelExcerciceCloture').val();
+            var juridique = $('#myjuridique').val();
 
-            } else {
+            if (
+                $('#myjuridique').val() === 'SARL' ||
+                $('#myjuridique').val() === 'SELARL' ||
+                 $('#myjuridique').val() === 'SCI'
+            ) {
+
+
+
+                if ($('#firstYesNo :selected').text() === 'oui') {
+                    var ClotureExcercice = $('#datecloture1ex').val();
+                    var OuvertureExcercice = $('#dateCreationEntreprise').val();
+
+                }
+
+                else {
+                    var OuvertureExcercice = $('#nouvelExcerciceOuverture').val();
+                    var ClotureExcercice = $('#nouvelExcerciceCloture').val();
+                }
+
+            }
+
+            else {
                 var OuvertureExcercice = $('#nouvelExcerciceOuverturesiDifferentdeFormeJuridique').val();
+
                 if ($('#ClotureChangeOuNon :selected').text() === 'oui') {
                     var ClotureExcercice = $('#dateClotureNvExcerciceSIdiffJuridiqueEtOui').val();
 

@@ -62,17 +62,21 @@ class __TwigTemplate_ac437cc9bb8004f7e6de2effce04b72fdbcf972b3468c5a3b52b1764b65
     <link rel=\"stylesheet\" href=\"css/style.css\"/>
 </head>
 <body>
+<style>
+    select {  text-align-last:center; }
+
+</style>
 <div class=\"page-content\">
     <div class=\"wizard-v5-content\">
         <div class=\"wizard-form\">
 
             <form class=\"form-register\" action=\"";
-        // line 24
+        // line 28
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("donneesExcerice");
         echo "\" method=\"post\">
-                <input type=\"hidden\" name=\"formjuridique\" value=\"";
-        // line 25
-        echo twig_escape_filter($this->env, (isset($context["formjuridique"]) || array_key_exists("formjuridique", $context) ? $context["formjuridique"] : (function () { throw new RuntimeError('Variable "formjuridique" does not exist.', 25, $this->source); })()), "html", null, true);
+                <input type=\"hidden\" id=\"myjuridique\" name=\"formjuridique\" value=\"";
+        // line 29
+        echo twig_escape_filter($this->env, (isset($context["formjuridique"]) || array_key_exists("formjuridique", $context) ? $context["formjuridique"] : (function () { throw new RuntimeError('Variable "formjuridique" does not exist.', 29, $this->source); })()), "html", null, true);
         echo "\">
 
                 <div id=\"form-total\">
@@ -87,8 +91,8 @@ class __TwigTemplate_ac437cc9bb8004f7e6de2effce04b72fdbcf972b3468c5a3b52b1764b65
                             <div class=\"form-row\" id=\"\">
                                 <div class=\"form-holder form-holder-2\">
                                     <label> S'agit il du 1er exercice comptable de ";
-        // line 38
-        echo twig_escape_filter($this->env, (isset($context["nomdeDossier"]) || array_key_exists("nomdeDossier", $context) ? $context["nomdeDossier"] : (function () { throw new RuntimeError('Variable "nomdeDossier" does not exist.', 38, $this->source); })()), "html", null, true);
+        // line 42
+        echo twig_escape_filter($this->env, (isset($context["nomdeDossier"]) || array_key_exists("nomdeDossier", $context) ? $context["nomdeDossier"] : (function () { throw new RuntimeError('Variable "nomdeDossier" does not exist.', 42, $this->source); })()), "html", null, true);
         echo " ?</label>
                                     <select class=\"form-control\" id=\"firstYesNo\">
                                         <option value=\"\"></option>
@@ -100,14 +104,14 @@ class __TwigTemplate_ac437cc9bb8004f7e6de2effce04b72fdbcf972b3468c5a3b52b1764b65
 
 
                             ";
-        // line 48
-        $this->loadTemplate("Divs/siOui.html", "dossier/newOuvertureExcercice.html.twig", 48)->display($context);
-        // line 49
+        // line 52
+        $this->loadTemplate("Divs/siOui.html", "dossier/newOuvertureExcercice.html.twig", 52)->display($context);
+        // line 53
         echo "
                             ";
-        // line 50
-        $this->loadTemplate("Divs/siNon.html", "dossier/newOuvertureExcercice.html.twig", 50)->display($context);
-        // line 51
+        // line 54
+        $this->loadTemplate("Divs/siNon.html", "dossier/newOuvertureExcercice.html.twig", 54)->display($context);
+        // line 55
         echo "
 
                             <div class=\"form-row\" id=\"\">
@@ -165,21 +169,21 @@ class __TwigTemplate_ac437cc9bb8004f7e6de2effce04b72fdbcf972b3468c5a3b52b1764b65
 
 
 <script src=";
-        // line 107
+        // line 111
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("js/jquery-3.3.1.min.js"), "html", null, true);
         echo "></script>
 <script src=";
-        // line 108
+        // line 112
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("js/jquery.steps.js"), "html", null, true);
         echo "></script>
 <script src=";
-        // line 109
+        // line 113
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("js/main.js"), "html", null, true);
         echo "></script>
 
 
 <script src=";
-        // line 112
+        // line 116
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("js/ouvertureExcercice.js"), "html", null, true);
         echo "></script>
 
@@ -205,7 +209,7 @@ class __TwigTemplate_ac437cc9bb8004f7e6de2effce04b72fdbcf972b3468c5a3b52b1764b65
 
     public function getDebugInfo()
     {
-        return array (  183 => 112,  177 => 109,  173 => 108,  169 => 107,  111 => 51,  109 => 50,  106 => 49,  104 => 48,  91 => 38,  75 => 25,  71 => 24,  56 => 11,  54 => 10,  43 => 1,);
+        return array (  187 => 116,  181 => 113,  177 => 112,  173 => 111,  115 => 55,  113 => 54,  110 => 53,  108 => 52,  95 => 42,  79 => 29,  75 => 28,  56 => 11,  54 => 10,  43 => 1,);
     }
 
     public function getSourceContext()
@@ -229,12 +233,16 @@ class __TwigTemplate_ac437cc9bb8004f7e6de2effce04b72fdbcf972b3468c5a3b52b1764b65
     <link rel=\"stylesheet\" href=\"css/style.css\"/>
 </head>
 <body>
+<style>
+    select {  text-align-last:center; }
+
+</style>
 <div class=\"page-content\">
     <div class=\"wizard-v5-content\">
         <div class=\"wizard-form\">
 
             <form class=\"form-register\" action=\"{{ path('donneesExcerice') }}\" method=\"post\">
-                <input type=\"hidden\" name=\"formjuridique\" value=\"{{ formjuridique }}\">
+                <input type=\"hidden\" id=\"myjuridique\" name=\"formjuridique\" value=\"{{ formjuridique }}\">
 
                 <div id=\"form-total\">
                     <!-- SECTION 1 -->
@@ -324,6 +332,6 @@ class __TwigTemplate_ac437cc9bb8004f7e6de2effce04b72fdbcf972b3468c5a3b52b1764b65
 <script src={{ asset('js/ouvertureExcercice.js') }}></script>
 
 </body>
-</html>", "dossier/newOuvertureExcercice.html.twig", "C:\\Users\\21629\\Desktop\\VendrediAldini\\adlini\\templates\\dossier\\newOuvertureExcercice.html.twig");
+</html>", "dossier/newOuvertureExcercice.html.twig", "C:\\Users\\21629\\Desktop\\copie\\adlini\\templates\\dossier\\newOuvertureExcercice.html.twig");
     }
 }

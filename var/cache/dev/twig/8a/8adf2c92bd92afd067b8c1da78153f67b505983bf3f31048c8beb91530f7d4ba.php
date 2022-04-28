@@ -90,7 +90,7 @@ class __TwigTemplate_25fcfc504fbf462817c5447e9bf7cba56d1587615f324072eb735d2af76
                     <label class=\" badge bg-warning   \">Cela est défini dans les statuts
                         de
                         la société à
-                        l'article Exercice social\"</label>
+                        l'article Exercice social</label>
 
                     <input class=\"form-control\"  type=\"date\"
                            name=\"datesignatureStatus\"
@@ -171,7 +171,7 @@ class __TwigTemplate_25fcfc504fbf462817c5447e9bf7cba56d1587615f324072eb735d2af76
                     <label class=\" badge bg-warning   \">Cela est défini dans les statuts
                         de
                         la société à
-                        l'article Exercice social\"</label>
+                        l'article Exercice social</label>
 
                     <input class=\"form-control\"  type=\"date\"
                            name=\"datesignatureStatus\"
