@@ -464,3 +464,8 @@ b83ce2,127.0.0.1,GET,https://127.0.0.1:8000/ouvertureDossier,1651140998,,200
 ec2b25,127.0.0.1,GET,https://127.0.0.1:8000/ouvertureDossier,1651141608,,200
 b20b6e,127.0.0.1,GET,https://127.0.0.1:8000/ouvertureDossier,1651141908,,200
 8d6fd8,127.0.0.1,GET,https://127.0.0.1:8000/ouvertureDossier,1651142205,,200
+1978c4,127.0.0.1,GET,https://127.0.0.1:8000/dossier,1651142460,d8d1a6,500
+d8d1a6,127.0.0.1,GET,https://127.0.0.1:8000/dossier,1651142462,,500
+716653,127.0.0.1,GET,https://127.0.0.1:8000/dossier,1651142485,,200
+3f6648,127.0.0.1,POST,https://127.0.0.1:8000/ouvertureDossier,1651142903,,302
+7b22f8,127.0.0.1,GET,https://127.0.0.1:8000/ouvertureExcercice?formjuridique=SARL&idDossier=19&nomdeDossier=lkkearger,1651142903,,200

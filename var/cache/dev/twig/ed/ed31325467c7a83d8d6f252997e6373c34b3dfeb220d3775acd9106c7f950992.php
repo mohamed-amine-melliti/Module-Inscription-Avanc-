@@ -123,7 +123,6 @@ class __TwigTemplate_0984a1e77f0cb316eae0a6414422396c123ecf7ec8efe48c07592b84990
                 // line 27
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["dossier"], "raisonSociale", [], "any", false, false, false, 27), "html", null, true);
                 echo "
-                            <p style=\"color: #30f504\"> Créé &#9989;  </p>
                         </li>
                     </ul>
                 </div>
@@ -133,7 +132,7 @@ class __TwigTemplate_0984a1e77f0cb316eae0a6414422396c123ecf7ec8efe48c07592b84990
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['dossier'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 34
+            // line 33
             echo "
         </div>
 
@@ -141,7 +140,7 @@ class __TwigTemplate_0984a1e77f0cb316eae0a6414422396c123ecf7ec8efe48c07592b84990
         </div>
     ";
         }
-        // line 40
+        // line 39
         echo "
 
 ";
@@ -153,7 +152,7 @@ class __TwigTemplate_0984a1e77f0cb316eae0a6414422396c123ecf7ec8efe48c07592b84990
 
     }
 
-    // line 44
+    // line 43
     public function block_javascript($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -163,7 +162,7 @@ class __TwigTemplate_0984a1e77f0cb316eae0a6414422396c123ecf7ec8efe48c07592b84990
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascript"));
 
-        // line 45
+        // line 44
         echo "
 ";
         
@@ -186,7 +185,7 @@ class __TwigTemplate_0984a1e77f0cb316eae0a6414422396c123ecf7ec8efe48c07592b84990
 
     public function getDebugInfo()
     {
-        return array (  167 => 45,  157 => 44,  145 => 40,  137 => 34,  124 => 27,  118 => 23,  115 => 21,  111 => 20,  107 => 18,  105 => 17,  96 => 11,  89 => 6,  79 => 5,  60 => 3,  37 => 1,);
+        return array (  166 => 44,  156 => 43,  144 => 39,  136 => 33,  124 => 27,  118 => 23,  115 => 21,  111 => 20,  107 => 18,  105 => 17,  96 => 11,  89 => 6,  79 => 5,  60 => 3,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -218,7 +217,6 @@ class __TwigTemplate_0984a1e77f0cb316eae0a6414422396c123ecf7ec8efe48c07592b84990
                     <ul class=\"list-group mt-6\">
                         <li class=\"list-group-item d-flex justify-content-between align-items-center\">
                             {{ dossier.raisonSociale}}
-                            <p style=\"color: #30f504\"> Créé &#9989;  </p>
                         </li>
                     </ul>
                 </div>
@@ -238,6 +236,6 @@ class __TwigTemplate_0984a1e77f0cb316eae0a6414422396c123ecf7ec8efe48c07592b84990
 
 {% endblock %}
 
-", "dossier/indexE.html.twig", "C:\\Users\\21629\\Desktop\\VendrediAldini\\adlini\\templates\\dossier\\indexE.html.twig");
+", "dossier/indexE.html.twig", "C:\\Users\\21629\\Desktop\\copie\\adlini\\templates\\dossier\\indexE.html.twig");
     }
 }
