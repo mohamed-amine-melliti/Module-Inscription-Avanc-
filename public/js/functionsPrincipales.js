@@ -137,6 +137,8 @@ $(document).on('click', '#jsr', function (event) {
         $("#dossier_secteurActivite option[value='Transport de personnes']").remove();
         $("#dossier_secteurActivite option[value='Commerçant classique']").remove();
         $("#dossier_secteurActivite option[value='Garage']").remove();
+        $("#dossier_secteurActivite option[value='Pharmacie']").remove();
+
         $("#dossier_secteurActivite option[value='Services']").remove();
         $("#dossier_secteurActivite option[value='Profession Libérale']").remove();
         $("#dossier_secteurActivite option[value='Négoce']").remove();
@@ -287,7 +289,7 @@ $(document).on('click', '#jsr', function (event) {
         $('#dossier_capital').show("slow");
 
     } else {
-        
+
         $('label[for="dossier_capital"]').hide("slow");
         $('#dossier_capital').hide("slow");
     }
