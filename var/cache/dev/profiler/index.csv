@@ -475,3 +475,6 @@ ca64d4,127.0.0.1,GET,https://127.0.0.1:8000/ouvertureExcercice?formjuridique=SAR
 b7529b,127.0.0.1,GET,https://127.0.0.1:8000/ouvertureExcercice?formjuridique=SCI&idDossier=19&nomdeDossier=lkkearger,1651144646,,200
 a22bfc,127.0.0.1,GET,https://127.0.0.1:8000/ouvertureExcercice?formjuridique=SCI&idDossier=19&nomdeDossier=lkkearger,1651144782,,200
 bf77cc,127.0.0.1,GET,https://127.0.0.1:8000/ouvertureExcercice?formjuridique=SCI&idDossier=19&nomdeDossier=lkkearger,1651144944,,200
+8072a9,127.0.0.1,GET,https://127.0.0.1:8000/ouvertureExcercice?formjuridique=SCI&idDossier=19&nomdeDossier=lkkearger,1651145110,,200
+f189c7,127.0.0.1,GET,https://127.0.0.1:8000/ouvertureExcercice?formjuridique=Ahla&idDossier=19&nomdeDossier=lkkearger,1651145116,,200
+71c1f2,127.0.0.1,GET,https://127.0.0.1:8000/ouvertureExcercice?formjuridique=Ahla&idDossier=19&nomdeDossier=lkkearger,1651145209,,200

@@ -62,11 +62,20 @@ $(function () {
                     var ClotureExcercice = $('#datecloture1ex').val();
                     var OuvertureExcercice = $('#dateCreationEntreprise').val();
 
+                    $('#fullname-val').text(OuvertureExcercice);
+                    $('#email-val').text(ClotureExcercice);
+                    $('#phone-val').text(RegimeTva);
+
                 }
 
                 else {
                     var OuvertureExcercice = $('#nouvelExcerciceOuverture').val();
                     var ClotureExcercice = $('#nouvelExcerciceCloture').val();
+
+                    $('#fullname-val').text(OuvertureExcercice);
+                    $('#email-val').text(ClotureExcercice);
+                    $('#phone-val').text(RegimeTva);
+
                 }
 
             }
@@ -77,9 +86,20 @@ $(function () {
                 if ($('#ClotureChangeOuNon :selected').text() === 'oui') {
                     var ClotureExcercice = $('#dateClotureNvExcerciceSIdiffJuridiqueEtOui').val();
 
+
+                    $('#fullname-val').text(OuvertureExcercice);
+                    $('#email-val').text(ClotureExcercice);
+                    $('#phone-val').text(RegimeTva);
+
+
                 }
                 else {
                     var ClotureExcercice = $('#dateClotureNvExcerciceSIdiffJuridiqueEtNon').val();
+
+                    $('#fullname-val').text(OuvertureExcercice);
+                    $('#email-val').text(ClotureExcercice);
+                    $('#phone-val').text(RegimeTva);
+
                 }
             }
 
