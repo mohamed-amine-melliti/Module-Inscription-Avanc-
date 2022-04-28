@@ -55,6 +55,7 @@ function awedSecteurActivite(){
     $("#dossier_secteurActivite").append(new Option("Transport de marchandises", "Transport de marchandises"));
     $("#dossier_secteurActivite").append(new Option("Transport de personnes", "Transport de personnes"));
     $("#dossier_secteurActivite").append(new Option("Commerçant classique", "Commerçant classique"));
+    $("#dossier_secteurActivite").append(new Option("Pharmacie", "Pharmacie"));
     $("#dossier_secteurActivite").append(new Option("Garage", "Garage"));
     $("#dossier_secteurActivite").append(new Option("Services", "Services"));
     $("#dossier_secteurActivite").append(new Option("Profession Libérale", "Profession Libérale"));
