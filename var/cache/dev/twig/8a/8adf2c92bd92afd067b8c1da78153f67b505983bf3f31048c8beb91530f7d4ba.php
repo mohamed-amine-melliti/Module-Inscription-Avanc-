@@ -69,7 +69,7 @@ class __TwigTemplate_25fcfc504fbf462817c5447e9bf7cba56d1587615f324072eb735d2af76
         <div id=\"divFordateSignature\">
             <div class=\"form-row\">
                 <div class=\"form-holder form-holder-2\">
-                    <label> \"Veuillez indiquer la date de signature des statuts\"</label>
+                    <label> Veuillez indiquer la date de signature des statuts </label>
                     <input class=\"form-control\" type=\"date\"
                            name=\"datesignatureStatus\"
                            value=\"2017-06-01\">
@@ -150,7 +150,7 @@ class __TwigTemplate_25fcfc504fbf462817c5447e9bf7cba56d1587615f324072eb735d2af76
         <div id=\"divFordateSignature\">
             <div class=\"form-row\">
                 <div class=\"form-holder form-holder-2\">
-                    <label> \"Veuillez indiquer la date de signature des statuts\"</label>
+                    <label> Veuillez indiquer la date de signature des statuts </label>
                     <input class=\"form-control\" type=\"date\"
                            name=\"datesignatureStatus\"
                            value=\"2017-06-01\">
@@ -181,6 +181,6 @@ class __TwigTemplate_25fcfc504fbf462817c5447e9bf7cba56d1587615f324072eb735d2af76
             </div>
         </div>
     </div>
-</div>", "Divs/siOui.html", "C:\\Users\\21629\\Desktop\\VendrediAldini\\adlini\\templates\\Divs\\siOui.html");
+</div>", "Divs/siOui.html", "C:\\Users\\21629\\Desktop\\copie\\adlini\\templates\\Divs\\siOui.html");
     }
 }
