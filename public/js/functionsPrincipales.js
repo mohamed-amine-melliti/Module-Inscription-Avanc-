@@ -12,26 +12,26 @@ $(document).ready(function () {
 
     $theSteps = $('.steps ul').find('.current');
 //    $($theSteps).next('li').next('li').addClass('disabled');
-/********************
-    $('#dossier_nbAssocies').hide("slow");
-    $('label[for="dossier_nbAssocies"]').hide("slow");
+    /********************
+     $('#dossier_nbAssocies').hide("slow");
+     $('label[for="dossier_nbAssocies"]').hide("slow");
 
-    $('label[for="dossier_capitalSocial"]').hide("slow");
-    $('#dossier_capitalSocial').hide("fast");
-********************
-    var DivCapitalSocial= $('#DivCapitalSocial');
-    DivCapitalSocial.detach();
+     $('label[for="dossier_capitalSocial"]').hide("slow");
+     $('#dossier_capitalSocial').hide("fast");
+     ********************
+     var DivCapitalSocial= $('#DivCapitalSocial');
+     DivCapitalSocial.detach();
 
-    var DivnbAssocie= $('#DivNbAssocie');
-    DivnbAssocie.detach();
-**************************/
+     var DivnbAssocie= $('#DivNbAssocie');
+     DivnbAssocie.detach();
+     **************************/
 
     $('#DivCapitalSocial').hide("slow");
     $('#DivNbAssocie').hide("slow");
     /**********************************/
 
     simpleValidation();
-  //  checkIfFamilleSarl();
+    //  checkIfFamilleSarl();
 
     $('div#rubrique ').hide("fast");
     $('label[for="dossier_regimeIndependants"]').empty().append("Le gérant et co-gérant(sdossier_capitalSocial) sont-ils soumis au régime des indépendants ?");
@@ -115,15 +115,12 @@ $(document).on('click', '#jsr', function (event) {
         $('#dossier_formeJuridique :selected').text() == 'SARL' ||
         $('#dossier_formeJuridique :selected').text() == 'EURL' ||
         $('#dossier_formeJuridique :selected').text() == 'SELARL' ||
-        $('#dossier_formeJuridique :selected').text() == 'SELEURL'  ) {
+        $('#dossier_formeJuridique :selected').text() == 'SELEURL') {
 
         $("[id^=miseAjourSCISARL]").show("slow");
 
 
-    }
-
-    else
-    {
+    } else {
         $("[id^=miseAjourSCISARL]").hide("slow");
 
     }
@@ -280,6 +277,22 @@ $(document).on('click', '#jsr', function (event) {
 
     }
 
+
+    if (
+        $('#dossier_formeJuridique :selected').text() == 'SARL' ||
+        $('#dossier_formeJuridique :selected').text() == 'SELARL' ||
+        $('#dossier_formeJuridique :selected').text() == 'SCI'
+    ) {
+        $('label[for="dossier_capital"]').show("slow");
+        $('#dossier_capital').show("slow");
+
+    } else {
+        
+        $('label[for="dossier_capital"]').hide("slow");
+        $('#dossier_capital').hide("slow");
+    }
+
+
     if (
         $('#dossier_formeJuridique :selected').text() == 'SARL' ||
         $('#dossier_formeJuridique :selected').text() == 'EURL' ||
@@ -293,14 +306,14 @@ $(document).on('click', '#jsr', function (event) {
     ) {
         $('#DivCapitalSocial').show("slow");
 
-        $('label[for="dossier_capital"]').show("slow");
-        $('#dossier_capital').show("slow");
+        /* $('label[for="dossier_capital"]').show("slow");
+         $('#dossier_capital').show("slow");*/
 
     } else {
         $('#DivCapitalSocial').hide("slow");
 
-        $('label[for="dossier_capital"]').hide("slow");
-        $('#dossier_capital').hide("slow");
+        /* $('label[for="dossier_capital"]').hide("slow");
+         $('#dossier_capital').hide("slow");*/
     }
 
     /*******************************************************************************************************************************/
@@ -345,8 +358,7 @@ $(document).on('click', '#jsr', function (event) {
             $('#dossier_formeJuridique :selected').text() == 'Autoentrepreneur') {
             $('label[for="dossier_regimeIndependants"]').empty().append("L'entrepreneur est-il soumis au régime des indépendants ?");
 
-        }
-        else {
+        } else {
             $('label[for="dossier_regimeIndependants"]').empty().append("Le gérant et co-gérant(s) sont-ils soumis au régime des indépendants ? ?");
         }
 
@@ -404,14 +416,10 @@ $(document).on('click', '#jsr', function (event) {
         $('#dossier_formeJuridique :selected').text() == 'SARL' ||
         $('#dossier_formeJuridique :selected').text() == 'SELARL' ||
         $('#dossier_formeJuridique :selected').text() == 'SCI'
-    )
-    {
+    ) {
 
+    } else {
     }
-
-    else {
-    }
-
 
 
     /*****************************************************************/
@@ -422,7 +430,6 @@ $(document).on('click', '#jsr', function (event) {
         $('#dossier_formeJuridique :selected').text() == 'SELAS') {
 
         $('#DivNbAssocie').show("slow");
-
 
 
         //$('#dossier_categorieImposition').val("BNC");
@@ -632,7 +639,6 @@ $(document).on('change', '.toggleTypeImpo', function (event) {
     $('#' + target).toggleClass('hide');
 
 
-
     return false;
 
 });
@@ -647,7 +653,7 @@ $(document).on('change', '.toggleRegMicro', function (event) {
     $('#' + target).toggleClass('hide');
 
 
-    if ($('#dossier_regimeMicro :selected').text() == "OUI" || $('#dossier_regimeMicro :selected').text() == "oui" ) {
+    if ($('#dossier_regimeMicro :selected').text() == "OUI" || $('#dossier_regimeMicro :selected').text() == "oui") {
         createAlert('Opps!', '.', 'Pour rappel , la tenue de comptablilité n"est pas obligatoire en régime micro.', 'danger', true, false, 'pageMessages');
 
         if ($('#dossier_categorieImposition :selected').text() == 'BIC') {
@@ -665,7 +671,7 @@ $(document).on('change', '.toggleRegMicro', function (event) {
             $('#dossier_categorieImposition').val("Micro-Foncier");
         }
 
-    } else if ($('#dossier_regimeMicro :selected').text() == "non" || $('#dossier_regimeMicro :selected').text() == "NON" ) {
+    } else if ($('#dossier_regimeMicro :selected').text() == "non" || $('#dossier_regimeMicro :selected').text() == "NON") {
 
         if ($('#dossier_categorieImposition :selected').text() == 'Micro-BIC') {
             $("#dossier_categorieImposition").append(new Option("BIC", "BIC"));
@@ -736,14 +742,13 @@ $(document).on('change', '#dossier_categorieImposition', function (event) {
         awedSecteurActivite();
     }
 
-    if ($('#dossier_categorieImposition :selected').text() == 'BA')
-    {
-        createAlert('Opps!','Attention ! ','VOTRE ACTIVITE ETANT REGLEMENTEE, VOTRE COMPTABILITE NECESSITE UN COMMISSAIRE AUX COMPTES OU, A DEFAUT, UN EXPERT-COMPTABLE POUR LES CAPACITES FINANCIERES A JUSTIFIER AU DREAL','danger',true,false,'pageMessages');
+    if ($('#dossier_categorieImposition :selected').text() == 'BA') {
+        createAlert('Opps!', 'Attention ! ', 'VOTRE ACTIVITE ETANT REGLEMENTEE, VOTRE COMPTABILITE NECESSITE UN COMMISSAIRE AUX COMPTES OU, A DEFAUT, UN EXPERT-COMPTABLE POUR LES CAPACITES FINANCIERES A JUSTIFIER AU DREAL', 'danger', true, false, 'pageMessages');
 
     }
 
 
-        return false;
+    return false;
 });
 
 /*********PART 9 [régime indépendants]***********/

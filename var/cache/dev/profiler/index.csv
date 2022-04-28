@@ -454,3 +454,9 @@ c43161,127.0.0.1,GET,https://127.0.0.1:8000/ouvertureDossier,1650966432,,200
 c4f9a9,127.0.0.1,GET,https://127.0.0.1:8000/ouvertureDossier,1650966481,,200
 ab5380,127.0.0.1,GET,https://127.0.0.1:8000/ouvertureDossier,1650966512,,200
 de5185,127.0.0.1,GET,https://127.0.0.1:8000/,1651139915,,200
+563845,127.0.0.1,GET,https://127.0.0.1:8000/ouvertureDossier,1651140122,,200
+b5adcb,127.0.0.1,GET,https://127.0.0.1:8000/favicon.ico,1651140127,db23fa,404
+db23fa,127.0.0.1,GET,https://127.0.0.1:8000/favicon.ico,1651140129,,404
+186184,127.0.0.1,GET,https://127.0.0.1:8000/ouvertureDossier,1651140321,,200
+7133b2,127.0.0.1,GET,https://127.0.0.1:8000/ouvertureDossier,1651140366,,200
+b83ce2,127.0.0.1,GET,https://127.0.0.1:8000/ouvertureDossier,1651140998,,200
